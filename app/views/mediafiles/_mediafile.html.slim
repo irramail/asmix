@@ -1,7 +1,7 @@
 - if mediafile.md5.present?
   p
     strong Filename:
-    = mediafile.file
+    = mediafile.file.to_s.split('/')[-1]
 
   p
     strong Md5:
