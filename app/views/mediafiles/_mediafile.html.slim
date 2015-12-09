@@ -1,11 +1,5 @@
 - if mediafile.md5.present?
-  p
-    strong Filename:
-    = mediafile.file.to_s.split('/')[-1]
-
-  p
-    strong Md5:
-    = mediafile.md5
-
-  p
-    = link_to 'Destroy Mediafile', [mediafile.content, mediafile], method: :delete, data: { confirm: 'Are you sure?' }
+  tr
+    td = mediafile.file.to_s.split('/')[-1]
+    td = mediafile.md5
+    td = link_to 'Destroy Mediafile', [mediafile.content, mediafile], method: :delete, data: { confirm: 'Are you sure?' }

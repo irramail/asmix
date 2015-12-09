@@ -10,11 +10,19 @@ p
         - mediafile.errors.full_messages.each do |message|
           li = message
 
-h2 Mediafiles
-= render @content.mediafiles
-
 h2 Add a mediafile:
 = render 'mediafiles/form'
+
+h2 Mediafiles
+- if @content.mediafiles.any?
+  table
+    thead
+      tr
+        th Filename
+        th Md5
+        th [colspan="1"]
+    tbody
+      = render @content.mediafiles
 
 = link_to 'Edit', edit_content_path(@content)
 '|
