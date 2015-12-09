@@ -11,12 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208174218) do
+ActiveRecord::Schema.define(version: 20151208190039) do
 
   create_table "contents", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "mediafiles", force: :cascade do |t|
+    t.string   "file"
+    t.string   "md5"
+    t.integer  "content_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "mediafiles", ["content_id"], name: "index_mediafiles_on_content_id"
 
 end
