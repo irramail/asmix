@@ -1,0 +1,27 @@
+h1 Listing worktime_broadcastings
+
+table
+  thead
+    tr
+      th Market
+      th Wday
+      th Start
+      th Stop
+      th
+      th
+      th
+
+  tbody
+    - @worktime_broadcastings.each do |worktime_broadcasting|
+      tr
+        td = worktime_broadcasting.market
+        td = worktime_broadcasting.wday
+        td = worktime_broadcasting.start
+        td = worktime_broadcasting.stop
+        td = link_to 'Show', worktime_broadcasting
+        td = link_to 'Edit', edit_worktime_broadcasting_path(worktime_broadcasting)
+        td = link_to 'Destroy', worktime_broadcasting, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Worktime broadcasting', new_worktime_broadcasting_path

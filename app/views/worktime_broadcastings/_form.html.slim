@@ -1,0 +1,38 @@
+#timestring-start
+  #hours-start
+    #am-hours-start
+      - (0..11).each do |h|
+        li = link_to h.to_s, "#", :class => 'set-hours-start'
+    #pm-hours-start
+      - (12..23).each do |h|
+        li = link_to h.to_s, "#", :class => 'set-hours-start'
+  #minutes-start
+    - (0..55).step(5).each do |m|
+      li = link_to m.to_s, '#', :class => 'set-minutes-start'
+
+
+#work-time-form
+  = form_for [@market, @market.worktime_broadcastings.build] do |f|
+
+    .field
+      = f.label :wday
+      = f.number_field :wday, value: 6, min: 0, max:6
+    .field
+      = f.label :start
+      = f.text_field :start, value: '00:00', :readonly => true
+    .field
+      = f.label :stop
+      = f.text_field :stop, value: '23:00', :readonly => true
+    .actions = f.submit
+
+#timestring-stop
+  #hours-stop
+    #am-hours-stop
+      - (0..11).each do |h|
+        li = link_to h.to_s, "#", :class => 'set-hours-stop'
+    #pm-hours-stop
+      - (12..23).each do |h|
+        li = link_to h.to_s, "#", :class => 'set-hours-stop'
+  #minutes-stop
+    - (0..55).step(5).each do |m|
+      li = link_to m.to_s, '#', :class => 'set-minutes-stop'

@@ -1,0 +1,21 @@
+#timestring
+  #hours
+    #am-hours
+      - (0..11).each do |h|
+        li = link_to h.to_s, "#", :class => 'set-hours'
+    #pm-hours
+      - (12..23).each do |h|
+        li = link_to h.to_s, "#", :class => 'set-hours'
+  #minutes
+    - (0..55).step(5).each do |m|
+      li = link_to m.to_s, '#', :class => 'set-minutes'
+
+= form_for [@market, @market.volsofdays.build] do |f|
+
+  .field
+    = f.label :time
+    = f.text_field :time, value:'00:00', :readonly => true
+  .field
+    = f.label :value
+    = f.number_field :value, value: 60
+  .actions = f.submit

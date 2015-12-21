@@ -10,11 +10,11 @@ p
         - mediafile.errors.full_messages.each do |message|
           li = message
 
-h2 Add a mediafile:
+h2 Choice new files and upload:
 = render 'mediafiles/form'
 
-h2 Mediafiles
-- if @content.mediafiles.any?
+h2 Files
+- if @content.mediafiles.count > 0
   table
     thead
       tr

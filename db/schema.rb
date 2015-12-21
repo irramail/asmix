@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208190039) do
+ActiveRecord::Schema.define(version: 20151210110013) do
 
   create_table "contents", force: :cascade do |t|
     t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "markets", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "period"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -28,5 +35,26 @@ ActiveRecord::Schema.define(version: 20151208190039) do
   end
 
   add_index "mediafiles", ["content_id"], name: "index_mediafiles_on_content_id"
+
+  create_table "volsofdays", force: :cascade do |t|
+    t.string   "time"
+    t.integer  "value"
+    t.integer  "market_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "volsofdays", ["market_id"], name: "index_volsofdays_on_market_id"
+
+  create_table "worktime_broadcastings", force: :cascade do |t|
+    t.integer  "market_id"
+    t.integer  "wday"
+    t.string   "start"
+    t.string   "stop"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "worktime_broadcastings", ["market_id"], name: "index_worktime_broadcastings_on_market_id"
 
 end

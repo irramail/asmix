@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  market_id: 
+  wday: 1
+  start: MyString
+  stop: MyString
+
+two:
+  market_id: 
+  wday: 1
+  start: MyString
+  stop: MyString

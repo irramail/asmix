@@ -1,0 +1,27 @@
+h1 Listing volsofdays
+
+table
+  thead
+    tr
+      th Name
+      th Time
+      th Value
+      th Market
+      th
+      th
+      th
+
+  tbody
+    - @volsofdays.each do |volsofday|
+      tr
+        td = volsofday.name
+        td = volsofday.time
+        td = volsofday.value
+        td = volsofday.market
+        td = link_to 'Show', volsofday
+        td = link_to 'Edit', edit_volsofday_path(volsofday)
+        td = link_to 'Destroy', volsofday, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Volsofday', new_volsofday_path

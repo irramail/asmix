@@ -1,0 +1,50 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @market.name
+p
+  strong Period:
+  = @market.period
+
+- @market.volsofdays.each do |volsofday|
+    - if volsofday.errors.any?
+      #error_explanation
+        h2 = "#{pluralize(volsofday.errors.count, "error")} prohibited this content from being saved:"
+        ul
+          - volsofday.errors.full_messages.each do |message|
+            li = message
+
+h2 Create new time/value of volsofday
+= render 'volsofdays/form'
+
+h2 Volsofdays
+- if @market.volsofdays.count > 0
+  table
+    thead
+      tr
+        th Time
+        th Value
+        th [colspan="1"]
+    tbody
+      = render @market.volsofdays.order(:time)
+
+h2 Create work's time/wday of
+= render 'worktime_broadcastings/form'
+
+h2 Worktime_broadcastings
+- if @market.worktime_broadcastings.count > 0
+  #work-time-show
+    table
+      thead
+        tr
+          th WDay
+          th Start worktime
+          th Stop worktime
+          th [colspan="1"]
+      tbody
+        = render @market.worktime_broadcastings.order(:wday)
+
+= link_to 'Edit', edit_market_path(@market)
+'|
+= link_to 'Back', markets_path

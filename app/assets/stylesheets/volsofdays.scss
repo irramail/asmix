@@ -1,0 +1,27 @@
+// Place all the styles related to the volsofdays controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#am-hours {
+  float: left;
+  width: 30px;
+}
+
+#pm-hours {
+  float: left;
+  width: 50px;
+}
+
+#hours {
+  float: left;
+  width: 100px;
+}
+
+#minutes {
+  width: 50px;
+  float: left;
+}
+
+#timestring {
+  float: left;
+  width: 150px;
+}

@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  resources :markets do
+    resources :worktime_broadcastings
+    resources :volsofdays
+  end
+
   resources :contents do
     resources :mediafiles
   end

@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Market:
+  = @worktime_broadcasting.market
+p
+  strong Wday:
+  = @worktime_broadcasting.wday
+p
+  strong Start:
+  = @worktime_broadcasting.start
+p
+  strong Stop:
+  = @worktime_broadcasting.stop
+
+= link_to 'Edit', edit_worktime_broadcasting_path(@worktime_broadcasting)
+'|
+= link_to 'Back', worktime_broadcastings_path

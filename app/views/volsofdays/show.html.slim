@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Time:
+  = @volsofday.time
+p
+  strong Value:
+  = @volsofday.value
+p
+  strong Market:
+  = @volsofday.market
+
+= link_to 'Edit', edit_volsofday_path(@volsofday)
+'|
+= link_to 'Back', volsofdays_path

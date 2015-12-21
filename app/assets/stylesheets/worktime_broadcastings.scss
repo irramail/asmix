@@ -1,0 +1,60 @@
+// Place all the styles related to the worktime_broadcastings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#am-hours-start {
+  float: left;
+  width: 30px;
+}
+
+#pm-hours-start {
+  float: left;
+  width: 50px;
+}
+
+#hours-start {
+  float: left;
+  width: 100px;
+}
+
+#minutes-start {
+  width: 50px;
+  float: left;
+}
+
+#timestring-start {
+  float: left;
+  width: 150px;
+}
+
+#am-hours-stop {
+  float: left;
+  width: 30px;
+}
+
+#pm-hours-stop {
+  float: left;
+  width: 50px;
+}
+
+#hours-stop {
+  float: left;
+  width: 100px;
+}
+
+#minutes-stop {
+  width: 50px;
+  float: left;
+}
+
+#timestring-stop {
+  float: left;
+  width: 150px;
+}
+
+#work-time-form {
+  float: left;
+  width: 300px;
+}
+
+#work-time-show {
+}
