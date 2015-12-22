@@ -1,5 +1,5 @@
 class WorktimeBroadcastingsController < ApplicationController
-  before_action :set_worktime_broadcasting, only: [:show, :edit, :update, :destroy]
+  #before_action :set_worktime_broadcasting, only: [:show, :edit, :update, :destroy]
 
   # GET /worktime_broadcastings
   # GET /worktime_broadcastings.json
@@ -77,9 +77,9 @@ class WorktimeBroadcastingsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_worktime_broadcasting
-      @worktime_broadcasting = WorktimeBroadcasting.find(params[:id])
-    end
+    # def set_worktime_broadcasting
+    #   @worktime_broadcasting = WorktimeBroadcasting.find(params[:id])
+    # end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def worktime_broadcasting_params

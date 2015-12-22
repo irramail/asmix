@@ -1,0 +1,29 @@
+h1 Listing devices
+
+table
+  thead
+    tr
+      th Market
+      th Name
+      th Ping
+      th Updated
+      th Active
+      th
+      th
+      th
+
+  tbody
+    - @devices.each do |device|
+      tr
+        td = device.market.name
+        td = device.name
+        td = device.ping
+        td = device.updated_at.in_time_zone("Krasnoyarsk")
+        td = check_box 'Active', 'Active', checked: device.active, :disabled => true, :readonly => true
+        td = link_to 'Show', device
+        td = link_to 'Edit', edit_device_path(device)
+        td = link_to 'Destroy', device, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Device', new_device_path

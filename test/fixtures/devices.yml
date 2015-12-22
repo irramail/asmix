@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  market_id: 
+  name: MyString
+  ping: 1
+  tzdate: 1
+  sn: MyString
+  comment: MyText
+  active: false
+  eq0: 1
+  eq1: 1
+  eq2: 1
+  eq3: 1
+  eq4: 1
+  eq5: 1
+  eq6: 1
+  eq7: 1
+  eq8: 1
+  eq9: 1
+
+two:
+  market_id: 
+  name: MyString
+  ping: 1
+  tzdate: 1
+  sn: MyString
+  comment: MyText
+  active: false
+  eq0: 1
+  eq1: 1
+  eq2: 1
+  eq3: 1
+  eq4: 1
+  eq5: 1
+  eq6: 1
+  eq7: 1
+  eq8: 1
+  eq9: 1

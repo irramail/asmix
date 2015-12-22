@@ -1,0 +1,27 @@
+h1 Listing volumes
+
+table
+  thead
+    tr
+      th Device
+      th Description
+      th Name
+      th Value
+      th
+      th
+      th
+
+  tbody
+    - @volumes.each do |volume|
+      tr
+        td = volume.device
+        td = volume.description
+        td = volume.name
+        td = volume.value
+        td = link_to 'Show', volume
+        td = link_to 'Edit', edit_volume_path(volume)
+        td = link_to 'Destroy', volume, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Volume', new_volume_path

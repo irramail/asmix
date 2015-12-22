@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Device:
+  = @volume.device
+p
+  strong Description:
+  = @volume.description
+p
+  strong Name:
+  = @volume.name
+p
+  strong Value:
+  = @volume.value
+
+= link_to 'Edit', edit_volume_path(@volume)
+'|
+= link_to 'Back', volumes_path

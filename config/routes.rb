@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+
+  resources :devices do
+    resources :volumes
+  end
+
   resources :markets do
     resources :worktime_broadcastings
     resources :volsofdays

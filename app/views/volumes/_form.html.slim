@@ -1,0 +1,12 @@
+= form_for [@device, @device.volumes.build] do |f|
+
+  .field
+    = f.label :description
+    = f.text_field :description, value: 'Empty'
+  .field
+    = f.label :name
+    = f.text_field :name, value: 'Empty'
+  .field
+    = f.label :value
+    = f.number_field :value, value: 60, min: 0, max:100
+  .actions = f.submit

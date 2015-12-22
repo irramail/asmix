@@ -1,0 +1,6 @@
+- if volume.value.present?
+  tr
+    td = volume.name
+    td = volume.description
+    td = volume.value
+    td = link_to 'Destroy Volsofday', [volume.device, volume], method: :delete, data: { confirm: 'Are you sure?' }

@@ -11,13 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151210110013) do
+ActiveRecord::Schema.define(version: 20151221150001) do
 
   create_table "contents", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "devices", force: :cascade do |t|
+    t.integer  "market_id"
+    t.string   "name"
+    t.integer  "ping"
+    t.integer  "tzdate"
+    t.string   "sn"
+    t.text     "comment"
+    t.boolean  "active"
+    t.integer  "eq0"
+    t.integer  "eq1"
+    t.integer  "eq2"
+    t.integer  "eq3"
+    t.integer  "eq4"
+    t.integer  "eq5"
+    t.integer  "eq6"
+    t.integer  "eq7"
+    t.integer  "eq8"
+    t.integer  "eq9"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "devices", ["market_id"], name: "index_devices_on_market_id"
 
   create_table "markets", force: :cascade do |t|
     t.string   "name"
@@ -45,6 +69,17 @@ ActiveRecord::Schema.define(version: 20151210110013) do
   end
 
   add_index "volsofdays", ["market_id"], name: "index_volsofdays_on_market_id"
+
+  create_table "volumes", force: :cascade do |t|
+    t.integer  "device_id"
+    t.string   "description"
+    t.string   "name"
+    t.integer  "value"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "volumes", ["device_id"], name: "index_volumes_on_device_id"
 
   create_table "worktime_broadcastings", force: :cascade do |t|
     t.integer  "market_id"
