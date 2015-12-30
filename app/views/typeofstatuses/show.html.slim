@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @typeofstatus.name
+p
+  strong Priority:
+  = @typeofstatus.priority
+
+= link_to 'Edit', edit_typeofstatus_path(@typeofstatus)
+'|
+= link_to 'Back', typeofstatuses_path

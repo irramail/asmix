@@ -48,7 +48,17 @@ class VolumesController < ApplicationController
 
   # PATCH/PUT /volumes/1
   # PATCH/PUT /volumes/1.json
-  # def update
+  def update
+    @device = Device.find(params[:device_id])
+    @volume = @device.volumes.find(params[:id])
+    @volume.update(volume_params)
+
+    #<VOLUMES><MASTER>1</MASTER><R>2</R><L>3</L><RL>4</RL><RR>5</RR></VOLUMES>
+    vols = ""
+    @device.volumes.each { |vol| vols = vols + "<#{vol.name.upcase}>#{vol.value}</#{vol.name.upcase}>" }
+    @device.tasks.create(typeoftask_id: 3, typeofstatus_id: 1, options: "<VOLUMES>#{vols}</VOLUMES>")
+
+    redirect_to device_path(@device)
   #   respond_to do |format|
   #     if @volume.update(volume_params)
   #       format.html { redirect_to @volume, notice: 'Volume was successfully updated.' }
@@ -58,7 +68,7 @@ class VolumesController < ApplicationController
   #       format.json { render json: @volume.errors, status: :unprocessable_entity }
   #     end
   #   end
-  # end
+  end
 
   # DELETE /volumes/1
   # DELETE /volumes/1.json

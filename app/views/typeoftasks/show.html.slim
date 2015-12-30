@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @typeoftask.name
+p
+  strong Priority:
+  = @typeoftask.priority
+
+= link_to 'Edit', edit_typeoftask_path(@typeoftask)
+'|
+= link_to 'Back', typeoftasks_path

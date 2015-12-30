@@ -1,0 +1,15 @@
+= form_for @typeoftask do |f|
+  - if @typeoftask.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@typeoftask.errors.count, "error")} prohibited this typeoftask from being saved:"
+      ul
+        - @typeoftask.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :priority
+    = f.number_field :priority
+  .actions = f.submit

@@ -11,6 +11,18 @@ table
       th
       th
       th
+      th
+      th
+      th
+      th
+      th
+      th
+      th
+      th
+      th
+      th
+      th
+      th
 
   tbody
     - @devices.each do |device|
@@ -18,12 +30,24 @@ table
         td = device.market.name
         td = device.name
         td = device.ping
-        td = device.updated_at.in_time_zone("Krasnoyarsk")
+        td = (device.updated_at + 3600 * device.tzdate).to_s[0..18]
         td = check_box 'Active', 'Active', checked: device.active, :disabled => true, :readonly => true
         td = link_to 'Show', device
         td = link_to 'Edit', edit_device_path(device)
         td = link_to 'Destroy', device, data: {:confirm => 'Are you sure?'}, :method => :delete
-
+        td = link_to 'Setvol', {:controller => "tasks", :action => "create_setvol", :task => { :device_id => device.id, :typeoftask_id => 3, :typeofstatus_id => 1, :options => ''} }, :method => "post"
+        td = link_to 'Synctime', {:controller => "tasks", :action => "create_synctime", :task => { :device_id => device.id, :typeoftask_id => 4, :typeofstatus_id => 1, :options => ''} }, :method => "post"
+        td = link_to 'Ping', {:controller => "tasks", :action => "create_setinterval", :task => {:device_id => device.id, :typeoftask_id => 5, :typeofstatus_id => 1, :options => ''}}, :method => "post"
+        td = link_to 'Equalizer', {:controller => "tasks", :action => "create_setequalizer", :task => {:device_id => device.id, :typeoftask_id => 6, :typeofstatus_id => 1, :options => ''}}, :method => "post"
+        td = link_to 'Reboot', {:controller => "tasks", :action => "create_reboot", :task => {:device_id => device.id, :typeoftask_id => 9, :typeofstatus_id => 1, :options => ''}}, :method => "post"
+        td = link_to 'Getver', {:controller => "tasks", :action => "create_getver", :task => {:device_id => device.id, :typeoftask_id => 7, :typeofstatus_id => 1, :options => ''}}, :method => "post"
+        /cmd.two
+        td = link_to 'Getinfo', {:controller => "tasks", :action => "create_getinfo", :task => {:device_id => device.id, :typeoftask_id => 10, :typeofstatus_id => 1, :options => ''}}, :method => "post"
+        /cmd.one
+        td = link_to 'SSH', {:controller => "tasks", :action => "create_ssh", :task => {:device_id => device.id, :typeoftask_id => 11, :typeofstatus_id => 1, :options => ''}}, :method => "post"
+        td = link_to 'Volsofday', {:controller => "tasks", :action => "create_setvolsofday", :task => {:device_id => device.id, :typeoftask_id => 12, :typeofstatus_id => 1, :options => ''}}, :method => "post"
+        td = link_to 'Worktime', {:controller => "tasks", :action => "create_worktime", :task => {:device_id => device.id, :typeoftask_id => 13, :typeofstatus_id => 1, :options => ''}}, :method => "post"
+        td = link_to 'Update', {:controller => "tasks", :action => "create_update", :task => {:device_id => device.id, :typeoftask_id => 15, :typeofstatus_id => 1, :options => ''}}, :method => "post"
 br
 
 = link_to 'New Device', new_device_path

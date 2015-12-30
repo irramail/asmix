@@ -1,0 +1,23 @@
+h1 Listing typeoftasks
+
+table
+  thead
+    tr
+      th Name
+      th Priority
+      th
+      th
+      th
+
+  tbody
+    - @typeoftasks.each do |typeoftask|
+      tr
+        td = typeoftask.name
+        td = typeoftask.priority
+        td = link_to 'Show', typeoftask
+        td = link_to 'Edit', edit_typeoftask_path(typeoftask)
+        td = link_to 'Destroy', typeoftask, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Typeoftask', new_typeoftask_path

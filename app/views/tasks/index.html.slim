@@ -1,0 +1,33 @@
+h1 Listing tasks
+
+table
+  thead
+    tr
+      th ID
+      th Device
+      th Typeoftask
+      th Typeofstatus
+      th Options
+      th
+      th
+      th
+      th
+      th
+
+  tbody
+    - @tasks.each do |task|
+      tr
+        td = task.id
+        td = task.device.name
+        td = task.typeoftask.name
+        td = task.typeofstatus.name
+        td = task.options
+        td = (task.updated_at + 3600 * task.device.tzdate).to_s[0..18]
+        td = (task.created_at + 3600 * task.device.tzdate).to_s[0..18]
+        td = link_to 'Show', task
+        td = link_to 'Edit', edit_task_path(task)
+        td = link_to 'Destroy', task, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Task', new_task_path

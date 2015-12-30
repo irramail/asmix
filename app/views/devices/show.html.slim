@@ -9,9 +9,9 @@ p#notice = notice
           li = message
 
 h2 Create new volume of volume
-= render 'volumes/form'
+== render 'volumes/form'
 
-h2 Volsofdays
+h2 Volumes
 - if @device.volumes.count > 0
   table
     thead
@@ -21,7 +21,7 @@ h2 Volsofdays
         th Volume
         th [colspan="1"]
     tbody
-      = render @device.volumes
+      == render @device.volumes
 
 p
   strong Market:

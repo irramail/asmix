@@ -1,6 +1,22 @@
 Rails.application.routes.draw do
 
+  post '/' => 'gtw#index'
 
+  post "/tasks/create_setvol" => "tasks#create_setvol"
+  post "/tasks/create_synctime" => "tasks#create_synctime"
+  post "/tasks/create_setinterval" => "tasks#create_setinterval"
+  post "/tasks/create_equalizer" => "tasks#create_setequalizer"
+  post "/tasks/create_reboot" => "tasks#create_reboot"
+  post "/tasks/create_getver" => "tasks#create_getver"
+  post "/tasks/create_getinfo" => "tasks#create_getinfo"
+  post "/tasks/create_ssh" => "tasks#create_ssh"
+  post "/tasks/create_setvolsofday" => "tasks#create_setvolsofday"
+  post "/tasks/create_worktime" => "tasks#create_worktime"
+  post "/tasks/create_update" => "tasks#create_update"
+
+  resources :tasks
+  resources :typeofstatuses
+  resources :typeoftasks
   resources :devices do
     resources :volumes
   end

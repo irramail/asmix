@@ -1,0 +1,15 @@
+= form_for @typeofstatus do |f|
+  - if @typeofstatus.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@typeofstatus.errors.count, "error")} prohibited this typeofstatus from being saved:"
+      ul
+        - @typeofstatus.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :priority
+    = f.number_field :priority
+  .actions = f.submit

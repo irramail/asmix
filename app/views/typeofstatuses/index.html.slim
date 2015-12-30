@@ -1,0 +1,23 @@
+h1 Listing typeofstatuses
+
+table
+  thead
+    tr
+      th Name
+      th Priority
+      th
+      th
+      th
+
+  tbody
+    - @typeofstatuses.each do |typeofstatus|
+      tr
+        td = typeofstatus.name
+        td = typeofstatus.priority
+        td = link_to 'Show', typeofstatus
+        td = link_to 'Edit', edit_typeofstatus_path(typeofstatus)
+        td = link_to 'Destroy', typeofstatus, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Typeofstatus', new_typeofstatus_path

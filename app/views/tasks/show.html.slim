@@ -1,0 +1,22 @@
+p#notice = notice
+
+p
+  strong ID:
+  = @task.id
+
+p
+  strong Device:
+  = @task.device.name
+p
+  strong Typeoftask:
+  = @task.typeoftask.name
+p
+  strong Typeofstatus:
+  = @task.typeofstatus.name
+p
+  strong Options:
+  = @task.options
+
+= link_to 'Edit', edit_task_path(@task)
+'|
+= link_to 'Back', tasks_path

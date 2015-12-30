@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151221150001) do
+ActiveRecord::Schema.define(version: 20151222221100) do
 
   create_table "contents", force: :cascade do |t|
     t.string   "title"
@@ -59,6 +59,33 @@ ActiveRecord::Schema.define(version: 20151221150001) do
   end
 
   add_index "mediafiles", ["content_id"], name: "index_mediafiles_on_content_id"
+
+  create_table "tasks", force: :cascade do |t|
+    t.integer  "device_id"
+    t.integer  "typeoftask_id"
+    t.integer  "typeofstatus_id"
+    t.string   "options"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "tasks", ["device_id"], name: "index_tasks_on_device_id"
+  add_index "tasks", ["typeofstatus_id"], name: "index_tasks_on_typeofstatus_id"
+  add_index "tasks", ["typeoftask_id"], name: "index_tasks_on_typeoftask_id"
+
+  create_table "typeofstatuses", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "priority"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "typeoftasks", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "priority"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "volsofdays", force: :cascade do |t|
     t.string   "time"

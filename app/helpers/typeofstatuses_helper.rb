@@ -1,0 +1,2 @@
+module TypeofstatusesHelper
+end
