@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  #get 'gtw/index'
+
   post '/' => 'gtw#index'
 
   post "/tasks/create_setvol" => "tasks#create_setvol"
@@ -33,7 +35,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'gwt#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
