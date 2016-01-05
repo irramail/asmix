@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'slim-rails'
 gem 'carrierwave'
+gem 'bootstrap-sass'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.rc2'
 # Use sqlite3 as the database for Active Record
