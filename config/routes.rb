@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post "/tasks/create_setvolsofday" => "tasks#create_setvolsofday"
   post "/tasks/create_worktime" => "tasks#create_worktime"
   post "/tasks/create_update" => "tasks#create_update"
+  post "/tasks/create_delall" => "tasks#create_delall"
 
   resources :tasks
   resources :typeofstatuses

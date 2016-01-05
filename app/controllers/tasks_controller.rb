@@ -194,6 +194,12 @@ class TasksController < ApplicationController
     create_reboot
   end
 
+  # DEL.ALL
+  def create_delall
+    create_reboot
+  end
+
+
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update

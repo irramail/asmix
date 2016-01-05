@@ -23,6 +23,7 @@ table
       th
       th
       th
+      th
 
   tbody
     - @devices.each do |device|
@@ -48,6 +49,7 @@ table
         td = link_to 'Volsofday', {:controller => "tasks", :action => "create_setvolsofday", :task => {:device_id => device.id, :typeoftask_id => 12, :typeofstatus_id => 1, :options => ''}}, :method => "post"
         td = link_to 'Worktime', {:controller => "tasks", :action => "create_worktime", :task => {:device_id => device.id, :typeoftask_id => 13, :typeofstatus_id => 1, :options => ''}}, :method => "post"
         td = link_to 'Update', {:controller => "tasks", :action => "create_update", :task => {:device_id => device.id, :typeoftask_id => 15, :typeofstatus_id => 1, :options => ''}}, :method => "post"
+        td = link_to 'Del.all', {:controller => "tasks", :action => "create_delall", :task => {:device_id => device.id, :typeoftask_id => 17, :typeofstatus_id => 1, :options => ''}}, :method => "post"
 
 br
 

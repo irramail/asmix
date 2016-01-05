@@ -1,3 +1,23 @@
 // Place all the styles related to the tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.img-status {
+  background-repeat:no-repeat;
+  background-position: center;
+}
+
+.wait {
+  background-image: url("wait.png");
+}
+
+.received {
+  background-image: url("received.png");
+}
+
+.progress {
+  background-image: url("progress.png");
+}
+
+.completed {
+  background-image: url("completed.png");
+}
