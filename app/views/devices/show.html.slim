@@ -8,12 +8,18 @@ p#notice = notice
         - volume.errors.full_messages.each do |message|
           li = message
 
+p
+  strong Market:
+  = @device.market.name
+  strong ->Name:
+  = @device.name
+
 h2 Create new volume of volume
 == render 'volumes/form'
 
 h2 Volumes
 - if @device.volumes.count > 0
-  table
+  table class="table table-striped"
     thead
       tr
         th Name
@@ -23,12 +29,7 @@ h2 Volumes
     tbody
       == render @device.volumes
 
-p
-  strong Market:
-  = @device.market.name
-p
-  strong Name:
-  = @device.name
+
 p
   strong Ping:
   = @device.ping
@@ -45,35 +46,8 @@ p
   strong Active:
   = check_box 'Active', 'Active', checked: @device.active, :disabled => true, :readonly => true
 p
-  strong Eq0:
-  = @device.eq0
-p
-  strong Eq1:
-  = @device.eq1
-p
-  strong Eq2:
-  = @device.eq2
-p
-  strong Eq3:
-  = @device.eq3
-p
-  strong Eq4:
-  = @device.eq4
-p
-  strong Eq5:
-  = @device.eq5
-p
-  strong Eq6:
-  = @device.eq6
-p
-  strong Eq7:
-  = @device.eq7
-p
-  strong Eq8:
-  = @device.eq8
-p
-  strong Eq9:
-  = @device.eq9
+  strong Equalizer:
+  = " #{@device.eq0}:#{@device.eq1}:#{@device.eq2}:#{@device.eq3}:#{@device.eq4}:#{@device.eq5}:#{@device.eq6}:#{@device.eq7}:#{@device.eq8}:#{@device.eq9}"
 
 = link_to 'Edit', edit_device_path(@device)
 '|

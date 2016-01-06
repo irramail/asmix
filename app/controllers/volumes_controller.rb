@@ -56,7 +56,13 @@ class VolumesController < ApplicationController
     #<VOLUMES><MASTER>1</MASTER><R>2</R><L>3</L><RL>4</RL><RR>5</RR></VOLUMES>
     vols = ""
     @device.volumes.each { |vol| vols = vols + "<#{vol.name.upcase}>#{vol.value}</#{vol.name.upcase}>" }
-    @device.tasks.create(typeoftask_id: 3, typeofstatus_id: 1, options: "<VOLUMES>#{vols}</VOLUMES>")
+
+    task = @device.tasks.where({ typeofstatus_id: 1, typeoftask_id: 3}).first
+    if task.present?
+      task.update(typeofstatus_id: 1, options: "<VOLUMES>#{vols}</VOLUMES>")
+    else
+      @device.tasks.create(typeoftask_id: 3, typeofstatus_id: 1, options: "<VOLUMES>#{vols}</VOLUMES>")
+    end
 
     redirect_to device_path(@device)
   #   respond_to do |format|

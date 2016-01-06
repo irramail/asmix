@@ -10,14 +10,11 @@ class GtwController < ApplicationController
     done_status1="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<STATUS><DONE/></STATUS>"
     xml=params[:data]
     hash = Hash.from_xml(xml)
-    p '1------------------------'
-
-
 
     case params[:task]
       when 'getStatus'
         id = hash['STATUS']['ID'].to_i
-        not_found if Device.where(:id => id).blank?
+        not_found if Device.where(:id => id, :active => true).blank?
         Device.where(:id => id).first.touch
 
         if Task.where(:device_id => id, :typeofstatus_id => 1).present?
@@ -27,7 +24,7 @@ class GtwController < ApplicationController
         end
       when 'getJob'
         id = hash['STATUS']['ID'].to_i
-        not_found if Device.where(:id => id).blank?
+        not_found if Device.where(:id => id, :active => true).blank?
         Device.where(:id => id).first.touch
 
         tasks = Task.where(:device_id => id, :typeofstatus_id => 1)
@@ -46,7 +43,7 @@ class GtwController < ApplicationController
         end
       when 'setStatus'
         id = hash['TASKS']['ID'].to_i
-        not_found if Device.where(:id => id).blank?
+        not_found if Device.where(:id => id, :active => true).blank?
         Device.where(:id => id).first.touch
         task_id = hash['TASKS']['TASK']['TASK_ID'].to_i
         status = hash['TASKS']['TASK']['STATUS']
