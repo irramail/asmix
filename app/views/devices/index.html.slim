@@ -52,5 +52,5 @@ table class="table table-striped"
         td = link_to 'Del.all', {:controller => "tasks", :action => "create_delall", :task => {:device_id => device.id, :typeoftask_id => 17, :typeofstatus_id => 1, :options => ''}}, :method => "post"
 
 br
-
+= paginate @devices
 = link_to 'New Device', new_device_path

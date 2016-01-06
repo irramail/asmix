@@ -19,5 +19,5 @@ table class="table table-striped"
         td = link_to 'Destroy', market, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
-
+= paginate @markets
 = link_to 'New Market', new_market_path

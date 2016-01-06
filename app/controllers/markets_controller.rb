@@ -4,7 +4,7 @@ class MarketsController < ApplicationController
   # GET /markets
   # GET /markets.json
   def index
-    @markets = Market.all
+    @markets = Market.all.page params[:page]
   end
 
   # GET /markets/1
