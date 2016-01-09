@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Plsbgmusic:
+  = @plsbgmusic_device.plsbgmusic
+p
+  strong Device:
+  = @plsbgmusic_device.device
+
+= link_to 'Edit', edit_plsbgmusic_device_path(@plsbgmusic_device)
+'|
+= link_to 'Back', plsbgmusic_devices_path

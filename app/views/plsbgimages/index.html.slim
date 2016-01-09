@@ -1,0 +1,21 @@
+h1 Listing plsbgimages
+
+table
+  thead
+    tr
+      th Name
+      th
+      th
+      th
+
+  tbody
+    - @plsbgimages.each do |plsbgimage|
+      tr
+        td = plsbgimage.name
+        td = link_to 'Show', plsbgimage
+        td = link_to 'Edit', edit_plsbgimage_path(plsbgimage)
+        td = link_to 'Destroy', plsbgimage, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Plsbgimage', new_plsbgimage_path

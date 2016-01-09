@@ -22,6 +22,7 @@ class FileUploader < CarrierWave::Uploader::Base
   end
 
   def filename
+    p "#{File.basename('sad')}"
     @name ||= "#{File.basename(super)}" if super
   end
 

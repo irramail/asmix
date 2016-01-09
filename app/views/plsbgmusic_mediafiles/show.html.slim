@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Plsbgmusic:
+  = @plsbgmusic_mediafile.plsbgmusic
+p
+  strong Mediafile:
+  = @plsbgmusic_mediafile.mediafile
+
+= link_to 'Edit', edit_plsbgmusic_mediafile_path(@plsbgmusic_mediafile)
+'|
+= link_to 'Back', plsbgmusic_mediafiles_path

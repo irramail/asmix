@@ -1,0 +1,19 @@
+= form_for @plsbgmusic do |f|
+  - if @plsbgmusic.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@plsbgmusic.errors.count, "error")} prohibited this plsbgmusic from being saved:"
+      ul
+        - @plsbgmusic.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :device
+    = f.collection_select :device_ids, Device.all, :id, :name, {}, { :multiple => true}
+  .field
+    = f.label :mediafile
+    - media = Content.find(1).mediafiles
+    = f.collection_select :mediafile_ids, media, :id, :file, {}, { :multiple => true}
+  .actions = f.submit

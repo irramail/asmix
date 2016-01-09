@@ -1,0 +1,23 @@
+h1 Listing plsbgmusic_devices
+
+table
+  thead
+    tr
+      th Plsbgmusic
+      th Device
+      th
+      th
+      th
+
+  tbody
+    - @plsbgmusic_devices.each do |plsbgmusic_device|
+      tr
+        td = plsbgmusic_device.plsbgmusic
+        td = plsbgmusic_device.device
+        td = link_to 'Show', plsbgmusic_device
+        td = link_to 'Edit', edit_plsbgmusic_device_path(plsbgmusic_device)
+        td = link_to 'Destroy', plsbgmusic_device, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Plsbgmusic device', new_plsbgmusic_device_path

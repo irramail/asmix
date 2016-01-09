@@ -1,0 +1,12 @@
+= form_for @plsbgvideo do |f|
+  - if @plsbgvideo.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@plsbgvideo.errors.count, "error")} prohibited this plsbgvideo from being saved:"
+      ul
+        - @plsbgvideo.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .actions = f.submit

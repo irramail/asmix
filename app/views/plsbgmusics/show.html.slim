@@ -1,0 +1,16 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @plsbgmusic.name
+p
+  strong Devices:
+  - @plsbgmusic.devices.each do |device|
+    p #{device.id}. #{device.name}
+p
+  strong Mediafiles:
+  - @plsbgmusic.mediafiles.each do |mediafile|
+    p #{mediafile.id}. #{mediafile.file.to_s.split('/')[-1]}
+= link_to 'Edit', edit_plsbgmusic_path(@plsbgmusic)
+'|
+= link_to 'Back', plsbgmusics_path

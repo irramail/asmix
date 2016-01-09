@@ -1,0 +1,15 @@
+= form_for @plsbgmusic_device do |f|
+  - if @plsbgmusic_device.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@plsbgmusic_device.errors.count, "error")} prohibited this plsbgmusic_device from being saved:"
+      ul
+        - @plsbgmusic_device.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :plsbgmusic
+    = f.text_field :plsbgmusic
+  .field
+    = f.label :device
+    = f.text_field :device
+  .actions = f.submit

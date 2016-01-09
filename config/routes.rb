@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  resources :plsbgmusic_mediafiles
+  resources :plsbgmusic_devices
+  resources :plsbgimages
+  resources :plsbgvideos
+  resources :plsbgmusics
   #get 'gtw/index'
 
   post '/' => 'gtw#index'

@@ -1,0 +1,21 @@
+h1 Listing plsbgvideos
+
+table
+  thead
+    tr
+      th Name
+      th
+      th
+      th
+
+  tbody
+    - @plsbgvideos.each do |plsbgvideo|
+      tr
+        td = plsbgvideo.name
+        td = link_to 'Show', plsbgvideo
+        td = link_to 'Edit', edit_plsbgvideo_path(plsbgvideo)
+        td = link_to 'Destroy', plsbgvideo, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Plsbgvideo', new_plsbgvideo_path

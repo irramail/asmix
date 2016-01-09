@@ -1,0 +1,23 @@
+h1 Listing plsbgmusics
+
+table class="table table-striped"
+  thead
+    tr
+      th Name
+      th Created
+      th
+      th
+      th
+
+  tbody
+    - @plsbgmusics.each do |plsbgmusic|
+      tr
+        td = plsbgmusic.name
+        td = plsbgmusic.created_at
+        td = link_to 'Show', plsbgmusic
+        td = link_to 'Edit', edit_plsbgmusic_path(plsbgmusic)
+        td = link_to 'Destroy', plsbgmusic, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Plsbgmusic', new_plsbgmusic_path
