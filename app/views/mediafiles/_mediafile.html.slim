@@ -1,5 +1,7 @@
 - if mediafile.md5.present?
   tr
-    td = mediafile.file.to_s.split('/')[-1]
+    td = mediafile.id
+    td = mediafile.filename
     td = mediafile.md5
+    td = mediafile.file
     td = link_to 'Destroy Mediafile', [mediafile.content, mediafile], method: :delete, data: { confirm: 'Are you sure?' }

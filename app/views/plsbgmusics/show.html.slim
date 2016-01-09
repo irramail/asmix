@@ -10,7 +10,7 @@ p
 p
   strong Mediafiles:
   - @plsbgmusic.mediafiles.each do |mediafile|
-    p #{mediafile.id}. #{mediafile.file.to_s.split('/')[-1]}
+    p #{mediafile.id}. #{mediafile.filename}
 = link_to 'Edit', edit_plsbgmusic_path(@plsbgmusic)
 '|
 = link_to 'Back', plsbgmusics_path

@@ -14,6 +14,5 @@
     = f.collection_select :device_ids, Device.all, :id, :name, {}, { :multiple => true}
   .field
     = f.label :mediafile
-    - media = Content.find(1).mediafiles
-    = f.collection_select :mediafile_ids, media, :id, :file, {}, { :multiple => true}
+    = f.collection_select :mediafile_ids, Mediafile.where(:content_id => 1).all, :id, :filename, {}, { :multiple => true}
   .actions = f.submit

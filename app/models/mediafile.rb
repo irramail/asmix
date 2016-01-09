@@ -10,10 +10,10 @@ class Mediafile < ActiveRecord::Base
 
   private
     def file_uniqueness
-      tmp_md5 = Mediafile.where(:md5 => self.file.md5).first
-      tmp_name = Mediafile.where(:file => self.file.filename).first
-      errors.add :md5, "This file already uploaded with name: #{tmp_md5.file}" if tmp_md5
-      errors.add :file, "File with this name already exists: #{tmp_name.file}" if tmp_name
+      #tmp_md5 = Mediafile.where(:md5 => self.file.md5).first
+      #tmp_name = Mediafile.where(:file => self.file.filename).first
+      #errors.add :md5, "This file already uploaded with name: #{tmp_md5.file}" if tmp_md5
+      #errors.add :file, "File with this name already exists: #{tmp_name.file}" if tmp_name
 
       if Mediafile.where(:file => file.file.original_filename).present?
         errors.add :file_name, "'#{file.file.original_filename}' already exists"
