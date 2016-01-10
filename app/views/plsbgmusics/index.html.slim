@@ -1,8 +1,9 @@
 h1 Listing plsbgmusics
-
+= link_to 'New Plsbgmusic', new_plsbgmusic_path
 table class="table table-striped"
   thead
     tr
+      th ID
       th Name
       th Created
       th
@@ -12,12 +13,14 @@ table class="table table-striped"
   tbody
     - @plsbgmusics.each do |plsbgmusic|
       tr
+        td = plsbgmusic.id
         td = plsbgmusic.name
-        td = plsbgmusic.created_at
+        / FIXME timezone in user.tz
+        td = (plsbgmusic.created_at + 3600 * 7).to_s[0..18]
         td = link_to 'Show', plsbgmusic
         td = link_to 'Edit', edit_plsbgmusic_path(plsbgmusic)
         td = link_to 'Destroy', plsbgmusic, data: {:confirm => 'Are you sure?'}, :method => :delete
-
+= paginate @plsbgmusics
 br
 
 = link_to 'New Plsbgmusic', new_plsbgmusic_path

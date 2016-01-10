@@ -4,7 +4,7 @@ class PlsbgmusicsController < ApplicationController
   # GET /plsbgmusics
   # GET /plsbgmusics.json
   def index
-    @plsbgmusics = Plsbgmusic.all
+    @plsbgmusics = Plsbgmusic.all.page params[:page]
   end
 
   # GET /plsbgmusics/1
@@ -28,6 +28,17 @@ class PlsbgmusicsController < ApplicationController
 
     respond_to do |format|
       if @plsbgmusic.save
+        tracks=""
+        @plsbgmusic.mediafiles.each do |mediafile|
+          tracks += "<TRACK><HASH>#{mediafile.md5}</HASH></TRACK>"
+        end
+
+        @plsbgmusic.devices.each do |device|
+          device.tasks.create(typeoftask_id: 14, typeofstatus_id: 1, options: "<TRACKS>#{tracks}</TRACKS>")
+          @plsbgmusic.mediafiles.each do |mediafile|
+            device.tasks.create(typeoftask_id: 1, typeofstatus_id: 1, options: "<URLS><URL>http://192.168.0.91:3000#{mediafile.file}|#{mediafile.md5[-4..-1]}</URL></URLS>")
+          end
+        end
         format.html { redirect_to @plsbgmusic, notice: 'Plsbgmusic was successfully created.' }
         format.json { render :show, status: :created, location: @plsbgmusic }
       else

@@ -60,29 +60,9 @@ class TasksController < ApplicationController
 
   # POST /tasks
   # POST /tasks.json
-  def create_synctime
-    @task = Task.new(task_params)
-    #<STIME>2012-10-15 04:15:04</STIME>
-    @task.options="<STIME>#{Time.now.to_s[0..18]}</STIME>"
-
-
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to devices_path, notice: 'Task was successfully created.' }
-        format.json { render :index, status: :created, location: @task.devices }
-      else
-        format.html { render :index, location: @task.devices }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # POST /tasks
-  # POST /tasks.json
   def create_setinterval
     @task = Task.new(task_params)
     @task.options="<INTERVAL>#{@task.device.ping}</INTERVAL>"
-
 
     respond_to do |format|
       if @task.save
@@ -102,7 +82,6 @@ class TasksController < ApplicationController
     #<0>0</0><1>0</1><2>0</2><3>0</3><4>0</4><5>0</5><6>0</6><7>0</7><8>0</8><9>0</9>
     eq = "<0>#{@task.device.eq0}</0><1>#{@task.device.eq1}</1><2>#{@task.device.eq2}</2><3>#{@task.device.eq3}</3><4>#{@task.device.eq4}</4><5>#{@task.device.eq5}</5><6>#{@task.device.eq6}</6><7>#{@task.device.eq7}</7><8>#{@task.device.eq8}</8><9>#{@task.device.eq9}</9>"
     @task.options="<EQUALIZER>#{eq}</EQUALIZER>"
-
 
     respond_to do |format|
       if @task.save
@@ -130,6 +109,10 @@ class TasksController < ApplicationController
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def create_synctime
+    create_reboot
   end
 
   def create_getver

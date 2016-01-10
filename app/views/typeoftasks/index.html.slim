@@ -3,6 +3,7 @@ h1 Listing typeoftasks
 table class="table table-striped"
   thead
     tr
+      th ID
       th Name
       th Priority
       th
@@ -12,6 +13,7 @@ table class="table table-striped"
   tbody
     - @typeoftasks.each do |typeoftask|
       tr
+        td = typeoftask.id
         td = typeoftask.name
         td = typeoftask.priority
         td = link_to 'Show', typeoftask

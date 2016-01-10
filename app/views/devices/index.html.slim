@@ -1,11 +1,12 @@
 h1 Listing devices
 
-table class="table table-striped"
+table class="table table-striped table-hover"
   thead
     tr
       th Market
       th Name
       th Ping
+      th Version
       th Updated
       th Active
       th
@@ -31,7 +32,9 @@ table class="table table-striped"
         td = device.market.name
         td = device.name
         td = device.ping
-        td = (device.updated_at + 3600 * device.tzdate).to_s[0..18]
+        td = device.version
+        td class=('danger' if (Time.now.utc - device.updated_at > device.ping * 2))
+          = (device.updated_at + 3600 * device.tzdate).to_s[0..18]
         td = check_box 'Active', 'Active', checked: device.active, :disabled => true, :readonly => true
         td = link_to 'Show', device
         td = link_to 'Edit', edit_device_path(device)
