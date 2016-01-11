@@ -56,8 +56,10 @@ class GtwController < ApplicationController
         status = hash['TASKS']['TASK']['STATUS']
         lstatus = Typeofstatus.where(:name => status).first
 
-        priority = lstatus.priority if (status.present? && lstatus.present?)
-        Task.update(task_id, :typeofstatus_id => priority) if ( status == 'RECEIVED' || status == 'PROGRESS' || status == 'COMPLETED')
+        if (status.present? && lstatus.present?)
+          priority = lstatus.priority
+          Task.update(task_id, :typeofstatus_id => priority) if ( status == 'RECEIVED' || status == 'PROGRESS' || status == 'COMPLETED')
+        end
 
         render xml: done_status1
       when 'setJob'
