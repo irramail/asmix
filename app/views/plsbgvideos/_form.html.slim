@@ -9,4 +9,10 @@
   .field
     = f.label :name
     = f.text_field :name
+  .field
+    = f.label :device
+    = f.collection_select :device_ids, Device.all, :id, :name, {}, { :multiple => true}
+  .field
+    = f.label :mediafile
+    = f.collection_select :mediafile_ids, Mediafile.where(:content_id => 5).all, :id, :filename, {}, { :multiple => true}
   .actions = f.submit

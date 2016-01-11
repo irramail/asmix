@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160111024547) do
+ActiveRecord::Schema.define(version: 20160111091424) do
 
   create_table "contents", force: :cascade do |t|
     t.string   "title"
@@ -62,6 +62,26 @@ ActiveRecord::Schema.define(version: 20160111024547) do
 
   add_index "mediafiles", ["content_id"], name: "index_mediafiles_on_content_id"
 
+  create_table "plsbgimage_devices", force: :cascade do |t|
+    t.integer  "plsbgimage_id"
+    t.integer  "device_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "plsbgimage_devices", ["device_id"], name: "index_plsbgimage_devices_on_device_id"
+  add_index "plsbgimage_devices", ["plsbgimage_id"], name: "index_plsbgimage_devices_on_plsbgimage_id"
+
+  create_table "plsbgimage_mediafiles", force: :cascade do |t|
+    t.integer  "plsbgimage_id"
+    t.integer  "mediafile_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "plsbgimage_mediafiles", ["mediafile_id"], name: "index_plsbgimage_mediafiles_on_mediafile_id"
+  add_index "plsbgimage_mediafiles", ["plsbgimage_id"], name: "index_plsbgimage_mediafiles_on_plsbgimage_id"
+
   create_table "plsbgimages", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -93,6 +113,26 @@ ActiveRecord::Schema.define(version: 20160111024547) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "plsbgvideo_devices", force: :cascade do |t|
+    t.integer  "plsbgvideo_id"
+    t.integer  "device_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "plsbgvideo_devices", ["device_id"], name: "index_plsbgvideo_devices_on_device_id"
+  add_index "plsbgvideo_devices", ["plsbgvideo_id"], name: "index_plsbgvideo_devices_on_plsbgvideo_id"
+
+  create_table "plsbgvideo_mediafiles", force: :cascade do |t|
+    t.integer  "plsbgvideo_id"
+    t.integer  "mediafile_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "plsbgvideo_mediafiles", ["mediafile_id"], name: "index_plsbgvideo_mediafiles_on_mediafile_id"
+  add_index "plsbgvideo_mediafiles", ["plsbgvideo_id"], name: "index_plsbgvideo_mediafiles_on_plsbgvideo_id"
 
   create_table "plsbgvideos", force: :cascade do |t|
     t.string   "name"

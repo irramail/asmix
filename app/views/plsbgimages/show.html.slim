@@ -3,7 +3,14 @@ p#notice = notice
 p
   strong Name:
   = @plsbgimage.name
-
+p
+  strong Devices:
+  - @plsbgimage.devices.each do |device|
+    p #{device.id}. #{device.name}
+p
+  strong Mediafiles:
+  - @plsbgimage.mediafiles.each do |mediafile|
+    p #{mediafile.id}. #{mediafile.filename}
 = link_to 'Edit', edit_plsbgimage_path(@plsbgimage)
 '|
 = link_to 'Back', plsbgimages_path

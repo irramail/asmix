@@ -69,6 +69,6 @@ class PlsbgimagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plsbgimage_params
-      params.require(:plsbgimage).permit(:name)
+      params.require(:plsbgimage).permit(:name, :device_ids => [], :mediafile_ids => [])
     end
 end
