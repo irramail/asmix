@@ -3,5 +3,15 @@
     td = mediafile.id
     td = mediafile.filename
     td = mediafile.md5
-    td = mediafile.file
+    / td = mediafile.file
+    td
+      - if mediafile.filename.length > 4 && mediafile.filename[-4..-1] == '.mp3'
+        audio controls=true
+          source src="#{mediafile.file}" type="audio/mpeg"
+          | Your browser does not support the audio tag.
+
+      - if mediafile.filename.length > 4 && mediafile.filename[-4..-1] == '.mp4'
+        video width="50" controls=true
+          source src="#{mediafile.file}" type="video/mp4"
+          | Your browser does not support HTML5 video.
     td = link_to 'Destroy Mediafile', [mediafile.content, mediafile], method: :delete, data: { confirm: 'Are you sure?' }

@@ -51,4 +51,5 @@ public/uploads/
 rails_best_practices_output.html
 /tags
 vendor/bundle/*
+venor/bundle/*
 builds/*

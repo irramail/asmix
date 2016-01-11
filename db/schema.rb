@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160109233457) do
+ActiveRecord::Schema.define(version: 20160111024547) do
 
   create_table "contents", force: :cascade do |t|
     t.string   "title"
@@ -107,9 +107,11 @@ ActiveRecord::Schema.define(version: 20160109233457) do
     t.string   "options"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "mediafile_id"
   end
 
   add_index "tasks", ["device_id"], name: "index_tasks_on_device_id"
+  add_index "tasks", ["mediafile_id"], name: "index_tasks_on_mediafile_id"
   add_index "tasks", ["typeofstatus_id"], name: "index_tasks_on_typeofstatus_id"
   add_index "tasks", ["typeoftask_id"], name: "index_tasks_on_typeoftask_id"
 

@@ -2,6 +2,7 @@ class Mediafile < ActiveRecord::Base
   belongs_to :content
   has_many :plsbgmusic_devices
   has_many :plsbgmusics, :through => :plsbgmusic_devices
+  has_many :tasks
 
   mount_uploader :file, FileUploader
 

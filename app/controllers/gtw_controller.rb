@@ -57,8 +57,9 @@ class GtwController < ApplicationController
         lstatus = Typeofstatus.where(:name => status).first
 
         if (status.present? && lstatus.present?)
-          priority = lstatus.priority
-          Task.update(task_id, :typeofstatus_id => priority) if ( status == 'RECEIVED' || status == 'PROGRESS' || status == 'COMPLETED')
+          #priority = lstatus.priority
+          #Task.find(task_id).update(typeofstatus: priority) if ( status == 'RECEIVED' || status == 'PROGRESS' || status == 'COMPLETED')
+          Task.update(task_id, :typeofstatus_id => lstatus.priority) if ( status == 'RECEIVED' || status == 'PROGRESS' || status == 'COMPLETED')
         end
 
         render xml: done_status1
