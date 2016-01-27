@@ -4,6 +4,7 @@ gem 'slim-rails'
 gem 'carrierwave'
 gem 'bootstrap-sass'
 gem 'kaminari'
+gem 'devise'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.rc2'
