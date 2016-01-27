@@ -28,6 +28,20 @@ class PlsbgimagesController < ApplicationController
 
     respond_to do |format|
       if @plsbgimage.save
+#<TYPE>PLAYLIST.BGIMAGE</TYPE><IMGS><IMG><HASH>ecccf33bbea8496bef4b8d76c315fb39</HASH></IMG>
+        tracks=""
+        @plsbgimage.mediafiles.each do |mediafile|
+          tracks += "<IMG><HASH>#{mediafile.md5}</HASH></IMG>"
+        end
+
+        @plsbgimage.devices.each do |device|
+          device.tasks.create(typeoftask_id: 18, typeofstatus_id: 1, options: "<IMGS>#{tracks}</IMGS>")
+          @plsbgimage.mediafiles.each do |mediafile|
+            if device.tasks.where(mediafile_id: mediafile.id).empty?
+              device.tasks.create(typeoftask_id: 1, typeofstatus_id: 1, options: "<URLS><URL>http://192.168.0.91:3000#{mediafile.file}|#{mediafile.md5[-4..-1]}</URL></URLS>", mediafile_id: mediafile.id)
+            end
+          end
+        end
         format.html { redirect_to @plsbgimage, notice: 'Plsbgimage was successfully created.' }
         format.json { render :show, status: :created, location: @plsbgimage }
       else
@@ -42,6 +56,19 @@ class PlsbgimagesController < ApplicationController
   def update
     respond_to do |format|
       if @plsbgimage.update(plsbgimage_params)
+        tracks=""
+        @plsbgimage.mediafiles.each do |mediafile|
+          tracks += "<IMG><HASH>#{mediafile.md5}</HASH></IMG>"
+        end
+
+        @plsbgimage.devices.each do |device|
+          device.tasks.create(typeoftask_id: 18, typeofstatus_id: 1, options: "<IMGS>#{tracks}</IMGS>")
+          @plsbgimage.mediafiles.each do |mediafile|
+            if device.tasks.where(mediafile_id: mediafile.id).empty?
+              device.tasks.create(typeoftask_id: 1, typeofstatus_id: 1, options: "<URLS><URL>http://192.168.0.91:3000#{mediafile.file}|#{mediafile.md5[-4..-1]}</URL></URLS>", mediafile_id: mediafile.id)
+            end
+          end
+        end
         format.html { redirect_to @plsbgimage, notice: 'Plsbgimage was successfully updated.' }
         format.json { render :show, status: :ok, location: @plsbgimage }
       else

@@ -1,3 +1,5 @@
+require 'base64'
+
 class GtwController < ApplicationController
   skip_before_action  :verify_authenticity_token
 
@@ -76,6 +78,8 @@ class GtwController < ApplicationController
           device.version = version
           device.save
         end
+        render xml: done_status
+      when 'sendwave'
         render xml: done_status
       else
         not_found
