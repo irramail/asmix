@@ -1,4 +1,5 @@
 class PlsbgimagesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_plsbgimage, only: [:show, :edit, :update, :destroy]
 
   # GET /plsbgimages
@@ -35,7 +36,7 @@ class PlsbgimagesController < ApplicationController
         end
 
         @plsbgimage.devices.each do |device|
-          device.tasks.create(typeoftask_id: 18, typeofstatus_id: 1, options: "<IMGS>#{tracks}</IMGS>")
+          device.tasks.create(typeoftask_id: 19, typeofstatus_id: 1, options: "<IMGS>#{tracks}</IMGS>")
           @plsbgimage.mediafiles.each do |mediafile|
             if device.tasks.where(mediafile_id: mediafile.id).empty?
               device.tasks.create(typeoftask_id: 1, typeofstatus_id: 1, options: "<URLS><URL>http://192.168.0.91:3000#{mediafile.file}|#{mediafile.md5[-4..-1]}</URL></URLS>", mediafile_id: mediafile.id)
@@ -62,7 +63,7 @@ class PlsbgimagesController < ApplicationController
         end
 
         @plsbgimage.devices.each do |device|
-          device.tasks.create(typeoftask_id: 18, typeofstatus_id: 1, options: "<IMGS>#{tracks}</IMGS>")
+          device.tasks.create(typeoftask_id: 19, typeofstatus_id: 1, options: "<IMGS>#{tracks}</IMGS>")
           @plsbgimage.mediafiles.each do |mediafile|
             if device.tasks.where(mediafile_id: mediafile.id).empty?
               device.tasks.create(typeoftask_id: 1, typeofstatus_id: 1, options: "<URLS><URL>http://192.168.0.91:3000#{mediafile.file}|#{mediafile.md5[-4..-1]}</URL></URLS>", mediafile_id: mediafile.id)

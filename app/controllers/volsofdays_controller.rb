@@ -1,4 +1,5 @@
 class VolsofdaysController < ApplicationController
+  before_action :authenticate_user!
 #  before_action :set_volsofday, only: [:show, :edit, :update, :destroy]
 
   # GET /volsofdays

@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   resources :plsbgimages
   resources :plsbgvideos
   resources :plsbgmusics
-  #get 'gtw/index'
+  #get 'gtws/index'
 
-  post '/' => 'gtw#index'
+  post '/' => 'gtws#index'
 
   post "/tasks/create_setvol" => "tasks#create_setvol"
   post "/tasks/create_synctime" => "tasks#create_synctime"
@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'gwt#index'
+  root to: 'gtws#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

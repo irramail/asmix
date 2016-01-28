@@ -1,4 +1,5 @@
 class WorktimeBroadcastingsController < ApplicationController
+  before_action :authenticate_user!
   #before_action :set_worktime_broadcasting, only: [:show, :edit, :update, :destroy]
 
   # GET /worktime_broadcastings

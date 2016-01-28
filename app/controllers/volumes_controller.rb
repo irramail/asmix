@@ -1,4 +1,5 @@
 class VolumesController < ApplicationController
+  before_action :authenticate_user!
 #  before_action :set_volume, only: [:show, :edit, :update, :destroy]
 
   # GET /volumes

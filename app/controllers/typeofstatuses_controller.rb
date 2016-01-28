@@ -1,4 +1,5 @@
 class TypeofstatusesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_typeofstatus, only: [:show, :edit, :update, :destroy]
 
   # GET /typeofstatuses

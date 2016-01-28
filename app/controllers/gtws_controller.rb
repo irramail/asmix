@@ -1,6 +1,6 @@
 require 'base64'
 
-class GtwController < ApplicationController
+class GtwsController < ApplicationController
   skip_before_action  :verify_authenticity_token
 
   def not_found

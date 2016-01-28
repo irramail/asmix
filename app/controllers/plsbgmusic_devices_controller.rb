@@ -1,4 +1,5 @@
 class PlsbgmusicDevicesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_plsbgmusic_device, only: [:show, :edit, :update, :destroy]
 
   # GET /plsbgmusic_devices

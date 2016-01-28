@@ -1,4 +1,5 @@
 class PlsbgmusicMediafilesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_plsbgmusic_mediafile, only: [:show, :edit, :update, :destroy]
 
   # GET /plsbgmusic_mediafiles

@@ -1,4 +1,5 @@
 class TypeoftasksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_typeoftask, only: [:show, :edit, :update, :destroy]
 
   # GET /typeoftasks
