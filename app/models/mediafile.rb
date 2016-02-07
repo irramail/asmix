@@ -3,6 +3,7 @@ class Mediafile < ActiveRecord::Base
   has_many :plsbgmusic_devices
   has_many :plsbgmusics, :through => :plsbgmusic_devices
   has_many :tasks
+  has_many :plists
 
   mount_uploader :file, FileUploader
 

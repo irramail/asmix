@@ -1,17 +1,13 @@
 h1 Listing orders
 
-table
+table class="table table-striped table-hover"
   thead
     tr
+      th ID
       th Name
       th Status
-      th Sun
-      th Mon
-      th Tue
-      th Wed
-      th Thu
-      th Fri
-      th Sat
+      th Crated_at
+      th User
       th
       th
       th
@@ -19,15 +15,12 @@ table
   tbody
     - @orders.each do |order|
       tr
+        td = order.id
         td = order.name
-        td = order.status
-        td = order.sun
-        td = order.mon
-        td = order.tue
-        td = order.wed
-        td = order.thu
-        td = order.fri
-        td = order.sat
+        td = order.status.name
+        td = order.created_at
+        /Fixme after adde in order user_id
+        td = current_user.email
         td = link_to 'Show', order
         td = link_to 'Edit', edit_order_path(order)
         td = link_to 'Destroy', order, data: {:confirm => 'Are you sure?'}, :method => :delete

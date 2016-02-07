@@ -3,30 +3,54 @@ p#notice = notice
 p
   strong Name:
   = @order.name
+
 p
   strong Status:
-  = @order.status
+  = @order.status.name
 p
   strong Sun:
-  = @order.sun
-p
+  = check_box 'Sun', 'Sun', checked: @order.sun, :disabled => true, :readonly => true
   strong Mon:
-  = @order.mon
-p
+  = check_box 'Mon', 'Mon', checked: @order.mon, :disabled => true, :readonly => true
   strong Tue:
-  = @order.tue
-p
+  = check_box 'Tue', 'Tue', checked: @order.tue, :disabled => true, :readonly => true
   strong Wed:
-  = @order.wed
-p
+  = check_box 'Wed', 'Wed', checked: @order.wed, :disabled => true, :readonly => true
   strong Thu:
-  = @order.thu
-p
+  = check_box 'Thu', 'Thu', checked: @order.thu, :disabled => true, :readonly => true
   strong Fri:
-  = @order.fri
-p
+  = check_box 'Fri', 'Fri', checked: @order.fri, :disabled => true, :readonly => true
   strong Sat:
-  = @order.sat
+  = check_box 'Sat', 'Sat', checked: @order.sat, :disabled => true, :readonly => true
+
+  - if @order.suborders.size > 0
+    table id="suborders_list" class="table table-striped table-hover"
+      thead
+        tr
+          th ID device
+          th Device
+          th Period
+          th Start date
+          th Stop date
+          th Start time
+          th Stop time
+          th Files
+      tbody id="suborders_body"
+        - @order.suborders.each do |order|
+          tr
+            td = order.device.id
+            td = order.device.name
+            td = order.period.name
+            td = order.startdt
+            td = order.stopdt
+            td = order.startt
+            td = order.stopt
+            - names = ""
+            - order.plists.each do |plist|
+              - if plist.mediafile.present?
+                - names += "#{plist.mediafile.filename}\n"
+            td title = "#{names}"
+              = order.plists.size
 
 = link_to 'Edit', edit_order_path(@order)
 '|

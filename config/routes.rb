@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :periods
   resources :statuses
   resources :plists
   resources :suborders

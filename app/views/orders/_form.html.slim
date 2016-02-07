@@ -9,28 +9,63 @@
   .field
     = f.label :name
     = f.text_field :name
-  .field
+
     = f.label :status
-    = f.text_field :status
-  .field
+    = f.collection_select :status_id, Status.all, :id, :name
+
     = f.label :sun
-    = f.check_box :sun
-  .field
+    = f.check_box :sun, {checked: true}
+
     = f.label :mon
-    = f.check_box :mon
-  .field
+    = f.check_box :mon, {checked: true}
+
     = f.label :tue
-    = f.check_box :tue
-  .field
+    = f.check_box :tue, {checked: true}
+
     = f.label :wed
-    = f.check_box :wed
-  .field
+    = f.check_box :wed, {checked: true}
+
     = f.label :thu
-    = f.check_box :thu
-  .field
+    = f.check_box :thu, {checked: true}
+
     = f.label :fri
-    = f.check_box :fri
-  .field
+    = f.check_box :fri, {checked: true}
+
     = f.label :sat
-    = f.check_box :sat
+    = f.check_box :sat, {checked: true}
+  .field
+    = f.label :contents
+    = collection_select :contents, :content_id, Mediafile.all, :id, :filename, {}, {:multiple => true}
+    = f.label :plist_ids
+    = collection_select :plist_ids, :plist_id, {}, :id, :name, {}, {:multiple => true}
+  .field
+    = f.label :devices
+    = collection_select :devices, :device_id, Device.all, :id, :name, {}, {:multiple => true}
+    = f.label :device_ids
+    = collection_select :device_ids, :device_id, {}, :id, :name, {}, {:multiple => true}
+  .field
+    = f.label :startdt
+    = datetime_select :startdatetime, :startdt, :minute_step => 5
+    = f.label :stopdt
+    = datetime_select :stopdatetime, :stopdt, default: 1.month.from_now, :minute_step => 5
+    = f.label :startt
+    = time_select :starttime, :startt
+    = f.label :stopt
+    = time_select :stoptime, :stopt
+  table id="suborders_list"
+    thead
+      tr
+        th ID device
+        th Device
+        th Period
+        th Start date
+        th Stop date
+        th Start time
+        th Stop time
+        th Files
+    tbody id="suborders_body"
   .actions = f.submit
+.field
+  button onclick="cleanAllDevices()" Clean all devices
+.field
+  button onclick="cleanAllFiles()" Clean all files
