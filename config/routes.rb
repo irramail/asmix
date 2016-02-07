@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :plists
   resources :suborders
   resources :orders
   devise_for :users

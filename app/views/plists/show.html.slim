@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Suborder:
+  = @plist.suborder
+p
+  strong Mediafile:
+  = @plist.mediafile
+
+= link_to 'Edit', edit_plist_path(@plist)
+'|
+= link_to 'Back', plists_path

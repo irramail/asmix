@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160207125114) do
+ActiveRecord::Schema.define(version: 20160207125336) do
 
   create_table "contents", force: :cascade do |t|
     t.string   "title"
@@ -77,6 +77,16 @@ ActiveRecord::Schema.define(version: 20160207125114) do
   end
 
   add_index "orders", ["status_id"], name: "index_orders_on_status_id"
+
+  create_table "plists", force: :cascade do |t|
+    t.integer  "suborder_id"
+    t.integer  "mediafile_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "plists", ["mediafile_id"], name: "index_plists_on_mediafile_id"
+  add_index "plists", ["suborder_id"], name: "index_plists_on_suborder_id"
 
   create_table "plsbgimage_devices", force: :cascade do |t|
     t.integer  "plsbgimage_id"

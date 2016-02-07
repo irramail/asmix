@@ -1,0 +1,15 @@
+= form_for @plist do |f|
+  - if @plist.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@plist.errors.count, "error")} prohibited this plist from being saved:"
+      ul
+        - @plist.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :suborder
+    = f.text_field :suborder
+  .field
+    = f.label :mediafile
+    = f.text_field :mediafile
+  .actions = f.submit
