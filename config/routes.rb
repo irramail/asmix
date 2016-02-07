@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :orders
   devise_for :users
   resources :plsbgmusic_mediafiles
   resources :plsbgmusic_devices

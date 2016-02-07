@@ -1,0 +1,37 @@
+h1 Listing orders
+
+table
+  thead
+    tr
+      th Name
+      th Status
+      th Sun
+      th Mon
+      th Tue
+      th Wed
+      th Thu
+      th Fri
+      th Sat
+      th
+      th
+      th
+
+  tbody
+    - @orders.each do |order|
+      tr
+        td = order.name
+        td = order.status
+        td = order.sun
+        td = order.mon
+        td = order.tue
+        td = order.wed
+        td = order.thu
+        td = order.fri
+        td = order.sat
+        td = link_to 'Show', order
+        td = link_to 'Edit', edit_order_path(order)
+        td = link_to 'Destroy', order, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Order', new_order_path

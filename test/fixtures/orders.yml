@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  status_id: 
+  sun: false
+  mon: false
+  tue: false
+  wed: false
+  thu: false
+  fri: false
+  sat: false
+
+two:
+  name: MyString
+  status_id: 
+  sun: false
+  mon: false
+  tue: false
+  wed: false
+  thu: false
+  fri: false
+  sat: false

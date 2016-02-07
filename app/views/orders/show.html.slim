@@ -1,0 +1,33 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @order.name
+p
+  strong Status:
+  = @order.status
+p
+  strong Sun:
+  = @order.sun
+p
+  strong Mon:
+  = @order.mon
+p
+  strong Tue:
+  = @order.tue
+p
+  strong Wed:
+  = @order.wed
+p
+  strong Thu:
+  = @order.thu
+p
+  strong Fri:
+  = @order.fri
+p
+  strong Sat:
+  = @order.sat
+
+= link_to 'Edit', edit_order_path(@order)
+'|
+= link_to 'Back', orders_path
