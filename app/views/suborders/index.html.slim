@@ -1,0 +1,33 @@
+h1 Listing suborders
+
+table
+  thead
+    tr
+      th Order
+      th Device
+      th Period
+      th Startdt
+      th Stopdt
+      th Startt
+      th Stopt
+      th
+      th
+      th
+
+  tbody
+    - @suborders.each do |suborder|
+      tr
+        td = suborder.order
+        td = suborder.device
+        td = suborder.period
+        td = suborder.startdt
+        td = suborder.stopdt
+        td = suborder.startt
+        td = suborder.stopt
+        td = link_to 'Show', suborder
+        td = link_to 'Edit', edit_suborder_path(suborder)
+        td = link_to 'Destroy', suborder, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Suborder', new_suborder_path

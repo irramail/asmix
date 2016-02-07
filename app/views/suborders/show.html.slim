@@ -1,0 +1,27 @@
+p#notice = notice
+
+p
+  strong Order:
+  = @suborder.order
+p
+  strong Device:
+  = @suborder.device
+p
+  strong Period:
+  = @suborder.period
+p
+  strong Startdt:
+  = @suborder.startdt
+p
+  strong Stopdt:
+  = @suborder.stopdt
+p
+  strong Startt:
+  = @suborder.startt
+p
+  strong Stopt:
+  = @suborder.stopt
+
+= link_to 'Edit', edit_suborder_path(@suborder)
+'|
+= link_to 'Back', suborders_path

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160207124324) do
+ActiveRecord::Schema.define(version: 20160207125114) do
 
   create_table "contents", force: :cascade do |t|
     t.string   "title"
@@ -155,6 +155,22 @@ ActiveRecord::Schema.define(version: 20160207124324) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "suborders", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "device_id"
+    t.integer  "period_id"
+    t.datetime "startdt"
+    t.datetime "stopdt"
+    t.datetime "startt"
+    t.datetime "stopt"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "suborders", ["device_id"], name: "index_suborders_on_device_id"
+  add_index "suborders", ["order_id"], name: "index_suborders_on_order_id"
+  add_index "suborders", ["period_id"], name: "index_suborders_on_period_id"
 
   create_table "tasks", force: :cascade do |t|
     t.integer  "device_id"

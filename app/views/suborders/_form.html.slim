@@ -1,0 +1,30 @@
+= form_for @suborder do |f|
+  - if @suborder.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@suborder.errors.count, "error")} prohibited this suborder from being saved:"
+      ul
+        - @suborder.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :order
+    = f.text_field :order
+  .field
+    = f.label :device
+    = f.text_field :device
+  .field
+    = f.label :period
+    = f.text_field :period
+  .field
+    = f.label :startdt
+    = f.datetime_select :startdt
+  .field
+    = f.label :stopdt
+    = f.datetime_select :stopdt
+  .field
+    = f.label :startt
+    = f.datetime_select :startt
+  .field
+    = f.label :stopt
+    = f.datetime_select :stopt
+  .actions = f.submit
