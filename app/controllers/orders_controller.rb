@@ -2,12 +2,12 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_order, only: [:show, :edit, :update, :destroy, :start]
 
-  def create_days(m, t1, w, t2, f, s, sun)
+  def create_days(m, tu, w, th, f, s, sun)
     result = ""
     result += "1," if m == true
-    result += "2," if t1 == true
+    result += "2," if tu == true
     result += "3," if w == true
-    result += "4," if t2 == true
+    result += "4," if th == true
     result += "5," if f == true
     result += "6," if s == true
     result += "7," if sun == true
