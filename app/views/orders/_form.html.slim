@@ -11,7 +11,8 @@
     = f.text_field :name
 
     = f.label :status
-    = f.collection_select :status_id, Status.all, :id, :name
+    / but Disabled doing not sending status in params, set in controller after Order.new in create
+    = f.collection_select :status_id, Status.all, :id, :name, {}, { disabled: true }
 
     = f.label :sun
     = f.check_box :sun, {checked: true}
@@ -35,24 +36,35 @@
     = f.check_box :sat, {checked: true}
   .field
     = f.label :contents
-    = collection_select :contents, :content_id, Mediafile.all, :id, :filename, {}, {:multiple => true}
-    = f.label :plist_ids
-    = collection_select :plist_ids, :plist_id, {}, :id, :name, {}, {:multiple => true}
+    = collection_select :contents, :content_id, Mediafile.all.reverse_order, :id, :filename, {}, {:multiple => true}
+    /= f.label :plist_ids
+    - collection_files = {}
+    - if @old_order.present?
+      - array = []
+      - @old_order.suborders.each { |suborder| suborder.plists.each { |plist| array << plist.mediafile} }
+      - collection_files = array.uniq.reverse.flat_map { |i| i }
+    = collection_select :plist_ids, :plist_id, collection_files, :id, :filename, {}, {:multiple => true}
   .field
     = f.label :devices
     = collection_select :devices, :device_id, Device.all, :id, :name, {}, {:multiple => true}
-    = f.label :device_ids
-    = collection_select :device_ids, :device_id, {}, :id, :name, {}, {:multiple => true}
-  .field
-    = f.label :startdt
-    = datetime_select :startdatetime, :startdt, :minute_step => 5
-    = f.label :stopdt
-    = datetime_select :stopdatetime, :stopdt, default: 1.month.from_now, :minute_step => 5
-    = f.label :startt
-    = time_select :starttime, :startt
-    = f.label :stopt
-    = time_select :stoptime, :stopt
-  table id="suborders_list"
+    /= f.label :device_ids
+    - collection_devices = {}
+    - if @old_order.present?
+      - collection_devices = Device.where(id: Suborder.where(order: @old_order.id).pluck(:device_id))
+    = collection_select :device_ids, :device_id, collection_devices, :id, :name, {}, {:multiple => true}
+    = f.label :periods
+    = collection_select :periods, :period_id, Period.all, :id, :name
+  .field hidden="hidden"
+    /= f.label :startdt
+    = datetime_select :startdatetime, :startdt, { :minute_step => 5, :default => {:hour => '00', :minute => '00'} }
+    /= f.label :stopdt
+    = datetime_select :stopdatetime, :stopdt, :minute_step => 5, default: Time.now.utc.change(hour:23, min: 55)+1.months
+    /= f.label :startt
+    = time_select :starttime, :startt, :default => {:hour => '00', :minute => '00'}
+    /= f.label :stopt
+    = time_select :stoptime, :stopt, :default => {:hour => '23', :minute => '59'}
+
+  table id="suborders_list" class="table table-striped table-hover"
     thead
       tr
         th ID device
@@ -64,6 +76,20 @@
         th Stop time
         th Files
     tbody id="suborders_body"
+      -if @old_order.present?
+        - if @old_order.suborders.present?
+          - @old_order.suborders.each do |suborder|
+            tr  id="line4divice#{suborder.device.id}"
+              td
+                = suborder.device.id
+                input name="suborders[#{suborder.device.id}][device_id]" type="hidden" value="#{suborder.device.id}"
+              td = suborder.device.name
+              td = collection_select "suborders[#{suborder.device.id}]", 'period_id', Period.all, :id, :name, selected: suborder.period.value
+              td = datetime_select "suborders[#{suborder.device.id}]", 'startdt', default: suborder.startdt
+              td = datetime_select "suborders[#{suborder.device.id}]", 'stopdt', default: suborder.stopdt
+              td = time_select "suborders[#{suborder.device.id}]", 'startt', default: suborder.startt
+              td = time_select "suborders[#{suborder.device.id}]", 'stopt', default: suborder.stopt
+              td = collection_select :select, "files4device#{suborder.device.id}", Mediafile.where(id: Plist.where(suborder: suborder.id).pluck(:mediafile_id)).reverse_order, :id, :filename, {}, { multiple: true, class: "files4device", name: "suborders[#{suborder.device.id}][files][]"}
   .actions = f.submit
 .field
   button onclick="cleanAllDevices()" Clean all devices

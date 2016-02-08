@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   post "/tasks/create_update" => "tasks#create_update"
   post "/tasks/create_delall" => "tasks#create_delall"
 
+  post "/orders/start" => "orders#start"
+
   resources :tasks
   resources :typeofstatuses
   resources :typeoftasks

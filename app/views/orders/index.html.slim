@@ -1,5 +1,8 @@
 h1 Listing orders
 
+= link_to 'New Order', new_order_path
+br
+
 table class="table table-striped table-hover"
   thead
     tr
@@ -18,13 +21,14 @@ table class="table table-striped table-hover"
         td = order.id
         td = order.name
         td = order.status.name
-        td = order.created_at
+        td = order.created_at.to_s[0..18]
         /Fixme after adde in order user_id
         td = current_user.email
         td = link_to 'Show', order
         td = link_to 'Edit', edit_order_path(order)
         td = link_to 'Destroy', order, data: {:confirm => 'Are you sure?'}, :method => :delete
+        - if order.status.name == 'New'
+          td = link_to "Start", {:controller => "orders", :action => "start", :id => order.id}, :method => "post"
+        td = link_to "Clone", {:controller => "orders", :action => "new", :old_id => order.id}, :method => "get"
 
-br
-
-= link_to 'New Order', new_order_path
+= paginate @orders

@@ -1,5 +1,8 @@
 p#notice = notice
 
+- if @order.status.name == 'New'
+  td = link_to "Start", {:controller => "orders", :action => "start", :id => @order.id}, :method => "post"
+
 p
   strong Name:
   = @order.name
@@ -41,10 +44,10 @@ p
             td = order.device.id
             td = order.device.name
             td = order.period.name
-            td = order.startdt
-            td = order.stopdt
-            td = order.startt
-            td = order.stopt
+            td = order.startdt.to_s[0..18]
+            td = order.stopdt.to_s[0..18]
+            td = order.startt.to_s[11..18]
+            td = order.stopt.to_s[11..18]
             - names = ""
             - order.plists.each do |plist|
               - if plist.mediafile.present?

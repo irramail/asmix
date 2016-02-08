@@ -1,4 +1,5 @@
 class PlistsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_plist, only: [:show, :edit, :update, :destroy]
 
   # GET /plists

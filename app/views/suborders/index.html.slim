@@ -1,8 +1,10 @@
 h1 Listing suborders
 
-table
+table class="table table-striped table-hover"
   thead
     tr
+      th ID
+      th Order ID
       th Order
       th Device
       th Period
@@ -17,9 +19,13 @@ table
   tbody
     - @suborders.each do |suborder|
       tr
-        td = suborder.order
-        td = suborder.device
-        td = suborder.period
+        td = suborder.id
+        td = suborder.order_id
+        td
+          - if suborder.order.present?
+            = suborder.order.name
+        td = suborder.device.name
+        td = suborder.period.name
         td = suborder.startdt
         td = suborder.stopdt
         td = suborder.startt
