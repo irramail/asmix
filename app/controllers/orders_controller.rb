@@ -99,7 +99,7 @@ class OrdersController < ApplicationController
           stopt: stopt
       );
       b [:files].each do |c|
-        @order.suborders.last.plists.new(mediafile_id: c.to_i)
+        @order.suborders.last.plists.new(mediafile_id: c.to_i) unless c == ''
       end
 
     end
