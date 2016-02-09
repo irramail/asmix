@@ -17,6 +17,12 @@ p
   strong Options:
   = @task.options
 
+p
+  strong Order:
+  - @task.suborders.each do |suborder|
+    - if suborder.order.present?
+      = link_to "#{suborder.order_id} '#{suborder.order.name}'", suborder.order
+
 = link_to 'Edit', edit_task_path(@task)
 '|
 = link_to 'Back', tasks_path

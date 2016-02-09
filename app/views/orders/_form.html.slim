@@ -36,13 +36,13 @@
     = f.check_box :sat, {checked: true}
   .field
     = f.label :contents
-    = collection_select :contents, :content_id, Mediafile.all.reverse_order, :id, :filename, {}, {:multiple => true}
+    = collection_select :contents, :content_id, Mediafile.all, :id, :filename, {}, {:multiple => true}
     /= f.label :plist_ids
     - collection_files = {}
     - if @old_order.present?
       - array = []
       - @old_order.suborders.each { |suborder| suborder.plists.each { |plist| array << plist.mediafile} }
-      - collection_files = array.uniq.reverse.flat_map { |i| i }
+      - collection_files = array.uniq.flat_map { |i| i }
     = collection_select :plist_ids, :plist_id, collection_files, :id, :filename, {}, {:multiple => true}
   .field
     = f.label :devices
@@ -89,7 +89,7 @@
               td = datetime_select "suborders[#{suborder.device.id}]", 'stopdt', default: suborder.stopdt
               td = time_select "suborders[#{suborder.device.id}]", 'startt', default: suborder.startt
               td = time_select "suborders[#{suborder.device.id}]", 'stopt', default: suborder.stopt
-              td = collection_select :select, "files4device#{suborder.device.id}", Mediafile.where(id: Plist.where(suborder: suborder.id).pluck(:mediafile_id)).reverse_order, :id, :filename, {}, { multiple: true, class: "files4device", name: "suborders[#{suborder.device.id}][files][]"}
+              td = collection_select :select, "files4device#{suborder.device.id}", Mediafile.where(id: Plist.where(suborder: suborder.id).pluck(:mediafile_id)), :id, :filename, {}, { multiple: true, class: "files4device", name: "suborders[#{suborder.device.id}][files][]"}
   .actions = f.submit
 .field
   button onclick="cleanAllDevices()" Clean all devices

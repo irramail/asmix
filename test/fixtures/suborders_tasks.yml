@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  suborder_id: 
+  task_id: 
+
+two:
+  suborder_id: 
+  task_id: 

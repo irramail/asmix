@@ -54,7 +54,18 @@ p
                 - names += "#{plist.mediafile.filename}\n"
             td title = "#{names}"
               = order.plists.size
+          - if order.tasks.present?
+              - order.tasks.each do |task|
+                tr
+                  td
+                  td
+                  td
+                  td
+                  td
+                  td = link_to task.id.to_s, task
+                  td = task.typeoftask.name
+                  td class="img-status #{task.typeofstatus.name.downcase}"
 
-= link_to 'Edit', edit_order_path(@order)
-'|
+/= link_to 'Edit', edit_order_path(@order)
+/'|
 = link_to 'Back', orders_path

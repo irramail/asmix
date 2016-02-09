@@ -1,5 +1,3 @@
-require 'base64'
-
 class GtwsController < ApplicationController
   skip_before_action  :verify_authenticity_token
 
@@ -16,7 +14,7 @@ class GtwsController < ApplicationController
     case params[:task]
       when 'getStatus'
         id = hash['STATUS']['ID'].to_i
-        not_found if Device.where(:id => id, :active => true).blank?
+        return if Device.where(:id => id, :active => true).blank?
         Device.where(:id => id).first.touch
 
         if Task.where(:device_id => id, :typeofstatus_id => 1).present?
@@ -29,7 +27,7 @@ class GtwsController < ApplicationController
         not_found if Device.where(:id => id, :active => true).blank?
         Device.where(:id => id).first.touch
 
-        tasks = Task.where(:device_id => id, :typeofstatus_id => 1) if Task.where(:device_id => id, :typeofstatus_id => 3).empty?
+        tasks = Task.where(:device_id => id, :typeofstatus_id => 1) if Task.where(:device_id => id, :typeofstatus_id => 3, :typeoftask_id => 1).empty?
         if tasks.present?
           Typeoftask.all.order(:priority).each do |at_ttype|
             sub_tasks = tasks.where(:typeoftask_id => at_ttype)
@@ -48,11 +46,11 @@ class GtwsController < ApplicationController
             end
           end
         else
-          render not_found
+          return
         end
       when 'setStatus'
         id = hash['TASKS']['ID'].to_i
-        not_found if Device.where(:id => id, :active => true).blank?
+        return if Device.where(:id => id, :active => true).blank?
         Device.where(:id => id).first.touch
         task_id = hash['TASKS']['TASK']['TASK_ID'].to_i
         status = hash['TASKS']['TASK']['STATUS']
@@ -68,7 +66,7 @@ class GtwsController < ApplicationController
       when 'setJob'
         #<?xml version="1.0" encoding="UTF-8"?><JOB><ID>1</ID><VERSION>0.0.3491s</VERSION></JOB>
         id = hash['JOB']['ID'].to_i
-        not_found if Device.where(:id => id, :active => true).blank?
+        return if Device.where(:id => id, :active => true).blank?
 
         device = Device.where(:id => id).first
         device.touch
@@ -82,7 +80,7 @@ class GtwsController < ApplicationController
       when 'sendwave'
         render xml: done_status
       else
-        not_found
+        return
     end
   end
 end

@@ -1,6 +1,32 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_order, only: [:show, :edit, :update, :destroy, :start]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :start, :cancel]
+
+  def cancel
+    # task is DONWLOADS + status not WAIT => nothing doing
+    # tasl is
+    @order.suborders.each do |suborder|
+
+      suborder.tasks.each do |task|
+        if task.typeoftask_id == 2
+          if task.typeofstatus_id > 1
+            suborder.tasks.create(device_id: suborder.device.id, typeoftask_id: 24, typeofstatus_id: 1, options: "<DELETE><DEL_ID>#{task.id}</DEL_ID></DELETE>")
+          end
+          task.update(typeofstatus_id: 5)
+        end
+
+        if task.typeoftask_id == 1 && task.typeofstatus_id == 1
+            task.update(typeofstatus_id: 5, mediafile_id: nil)
+        end
+      end
+    end
+    @order.update(status_id: 3)
+
+    respond_to do |format|
+      format.html { redirect_to orders_url, notice: 'Order was successfully canceled.' }
+      format.json { head :no_content }
+    end
+  end
 
   def create_days(m, tu, w, th, f, s, sun)
     result = ""
@@ -39,12 +65,12 @@ class OrdersController < ApplicationController
         tracks += "<TRACK><HASH>#{file.mediafile.md5}</HASH></TRACK>" if file.mediafile.present?
       end
 
-      order.device.tasks.create(typeoftask_id: 14, typeofstatus_id: 1, options: "#{begindate}#{enddate}#{begintime}#{endtime}#{days}#{period}<TRACKS>#{tracks}</TRACKS>")
+      order.tasks.create(device_id: order.device.id, typeoftask_id: 2, typeofstatus_id: 1, options: "#{begindate}#{enddate}#{begintime}#{endtime}#{days}#{period}<TRACKS>#{tracks}</TRACKS>")
 
       order.plists.each do |file|
         if file.mediafile.present?
           if order.device.tasks.where(mediafile_id: file.mediafile.id).empty?
-            order.device.tasks.create(typeoftask_id: 1, typeofstatus_id: 1, options: "<URLS><URL>http://192.168.0.91:3000#{file.mediafile.file}|#{file.mediafile.md5[-4..-1]}</URL></URLS>", mediafile_id: file.mediafile.id)
+            order.tasks.create(device_id: order.device.id, typeoftask_id: 1, typeofstatus_id: 1, options: "<URLS><URL>http://192.168.0.91:3000#{file.mediafile.file}|#{file.mediafile.md5[-4..-1]}</URL></URLS>", mediafile_id: file.mediafile.id)
           end
         end
       end

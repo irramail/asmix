@@ -4,7 +4,7 @@ class Mediafile < ActiveRecord::Base
   has_many :plsbgmusics, :through => :plsbgmusic_devices
   has_many :tasks
   has_many :plists
-
+  default_scope { order("created_at DESC") }
   mount_uploader :file, FileUploader
 
   validate :file_uniqueness, :on => [:create]

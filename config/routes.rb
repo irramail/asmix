@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   post "/tasks/create_delall" => "tasks#create_delall"
 
   post "/orders/start" => "orders#start"
+  post "/orders/cancel" => "orders#cancel"
 
   resources :tasks
   resources :typeofstatuses
