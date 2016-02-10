@@ -7,7 +7,7 @@ table class="table table-striped table-hover"
       th Device
       th Type
       th Status
-      th Options
+      /th Options
       th
       th
       th
@@ -21,7 +21,7 @@ table class="table table-striped table-hover"
         td = task.device.name
         td = task.typeoftask.name
         td class="img-status #{task.typeofstatus.name.downcase}"
-        td = task.options[0..30]+'...'
+        /td = task.options[0..30]+'...'
         td = (task.updated_at + 3600 * task.device.tzdate).to_s[0..18]
         td = (task.created_at + 3600 * task.device.tzdate).to_s[0..18]
         td = link_to 'Show', task

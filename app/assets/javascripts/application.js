@@ -82,10 +82,11 @@ jQuery(document).ready(function($){
                     value: $(this).val(),
                     text: $(this).text()
                 }));
+
                 suborders_list.append('<tr id="line4divice' + $(this).val() + '">'
                     + '<td>'+$(this).val() + '<input name="suborders['+ $(this).val() +'][device_id]" type="hidden" value="'+ $(this).val() + '" /></td>'
                     + '<td>' + $(this).text() + '</td>'
-                    + '<td><select name="suborders['+ $(this).val() +'][period_id]">' + $('#periods_period_id').html() + '</select></td>'
+                    + '<td><select id="device_period_' + $(this).val() + '" name="suborders['+ $(this).val() +'][period_id]">' + $('#periods_period_id').html() + '</select></td>'
                     + '<td><select name="suborders['+ $(this).val() +'][startdt(1i)]">' + $('#startdatetime_startdt_1i').html()
                     + '</select> '
                     + '<select name="suborders['+ $(this).val() +'][startdt(2i)]">' + $('#startdatetime_startdt_2i').html()
@@ -106,18 +107,29 @@ jQuery(document).ready(function($){
                     + '</select> : '
                     + '<select name="suborders['+ $(this).val() +'][stopdt(5i)]">' + $('#stopdatetime_stopdt_5i').html()
                     + '</select></td>'
-                    + '<td><select name="suborders['+ $(this).val() +'][startt(4i)]">' + $('#starttime_startt_4i').html()
+                    + '<td><select id="device_wt_start_h_' + $(this).val() + '" name="suborders['+ $(this).val() +'][startt(4i)]">' + $('#starttime_startt_4i').html()
                     + '</select> : '
-                    + '<select name="suborders['+ $(this).val() +'][startt(5i)]">' + $('#starttime_startt_5i').html()
+                    + '<select id="device_wt_start_m_' + $(this).val() + '" name="suborders['+ $(this).val() +'][startt(5i)]">' + $('#starttime_startt_5i').html()
                     + '</select></td>'
-                    + '<td><select name="suborders['+ $(this).val() +'][stopt(4i)]">' + $('#stoptime_stopt_4i').html()
+                    + '<td><select id="device_wt_stop_h_' + $(this).val() + '" name="suborders['+ $(this).val() +'][stopt(4i)]">' + $('#stoptime_stopt_4i').html()
                     + '</select> : '
-                    + '<select name="suborders['+ $(this).val() +'][stopt(5i)]">' + $('#stoptime_stopt_5i').html()
+                    + '<select id="device_wt_stop_m_' + $(this).val() + '" name="suborders['+ $(this).val() +'][stopt(5i)]">' + $('#stoptime_stopt_5i').html()
                     + '</select></td>'
                     + '<td><select name="suborders['+ $(this).val() +'][files][]" id="select_files4device' + $(this).val() + '" class="files4device" multiple="multiple">'
                     + $('#plist_ids_plist_id').html()
                     + '</select></td>'
                     + '</tr>');
+                var device_period = document.getElementById('device_period_'+ $(this).val());
+                device_period.value = periods[$(this).val()-1];
+
+                var device_wt_start_h = document.getElementById('device_wt_start_h_'+ $(this).val());
+                device_wt_start_h.value = worktimes[($(this).val()-1)*4].toString().slice(1);
+                var device_wt_start_m = document.getElementById('device_wt_start_m_'+ $(this).val());
+                device_wt_start_m.value = worktimes[($(this).val()-1)*4 + 1].toString().slice(1);
+                var device_wt_stop_h = document.getElementById('device_wt_stop_h_'+ $(this).val());
+                device_wt_stop_h.value = worktimes[($(this).val()-1)*4 + 2].toString().slice(1);
+                var device_wt_stop_m = document.getElementById('device_wt_stop_m_'+ $(this).val());
+                device_wt_stop_m.value = worktimes[($(this).val()-1)*4 + 3].toString().slice(1);
             }
         });
     });

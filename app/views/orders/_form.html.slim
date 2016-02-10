@@ -6,6 +6,19 @@
         - @order.errors.full_messages.each do |message|
           li = message
 
+  /Do you like SHIT?
+  - periods = ""
+  - (1..Device.all.size).each { |x| periods += Device.find(x).market.period.to_s + ',' }
+  | <script>var periods=[
+  = "#{periods[0..-2]}"
+  | ];</script>
+
+  - worktimes = ""
+  - (1..Device.all.size).each { |x| worktimes += '1'+(Device.find(x).market.worktime_broadcastings.first.start + ',1' + Device.find(x).market.worktime_broadcastings.first.stop).gsub(/:/, ',1') + ',' }
+  | <script>var worktimes=[
+  = "#{worktimes[0..-2]}"
+  | ];</script>
+
   .field
     = f.label :name
     = f.text_field :name
@@ -47,6 +60,7 @@
   .field
     = f.label :devices
     = collection_select :devices, :device_id, Device.all, :id, :name, {}, {:multiple => true}
+
     /= f.label :device_ids
     - collection_devices = {}
     - if @old_order.present?
@@ -59,6 +73,7 @@
     = datetime_select :startdatetime, :startdt, { :minute_step => 5, :default => {:hour => '00', :minute => '00'} }
     /= f.label :stopdt
     = datetime_select :stopdatetime, :stopdt, :minute_step => 5, default: Time.now.utc.change(hour:23, min: 55)+1.months
+
     /= f.label :startt
     = time_select :starttime, :startt, :default => {:hour => '00', :minute => '00'}
     /= f.label :stopt
