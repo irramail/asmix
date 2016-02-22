@@ -2,6 +2,13 @@ class Mediafile < ActiveRecord::Base
   belongs_to :content
   has_many :plsbgmusic_devices
   has_many :plsbgmusics, :through => :plsbgmusic_devices
+
+  has_many :plsbgmusic_mediafiles
+  has_many :plsbgmusics, :through => :plsbgmusic_mediafiles
+
+  has_many :plsbgvideo_mediafiles
+  has_many :plsbgvideos, :through => :plsbgvideo_mediafiles
+
   has_many :tasks
   has_many :plists
   default_scope { order("created_at DESC") }

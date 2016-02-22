@@ -8,13 +8,14 @@ class GtwsController < ApplicationController
   def index
     done_status="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<STATUS><DONE /></STATUS>"
     done_status1="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<STATUS><DONE/></STATUS>"
-    xml=params[:data]
-    hash = Hash.from_xml(xml)
+
+    not_found unless xml=params[:data]
+    not_found unless hash = Hash.from_xml(xml)
 
     case params[:task]
       when 'getStatus'
-        id = hash['STATUS']['ID'].to_i
-        return if Device.where(:id => id, :active => true).blank?
+        not_found unless id = hash['STATUS']['ID'].to_i
+        not_found if Device.where(:id => id, :active => true).blank?
         Device.where(:id => id).first.touch
 
         if Task.where(:device_id => id, :typeofstatus_id => 1).present?
@@ -46,11 +47,11 @@ class GtwsController < ApplicationController
             end
           end
         else
-          return
+          not_found
         end
       when 'setStatus'
         id = hash['TASKS']['ID'].to_i
-        return if Device.where(:id => id, :active => true).blank?
+        not_found if Device.where(:id => id, :active => true).blank?
         Device.where(:id => id).first.touch
         task_id = hash['TASKS']['TASK']['TASK_ID'].to_i
         status = hash['TASKS']['TASK']['STATUS']
@@ -66,7 +67,7 @@ class GtwsController < ApplicationController
       when 'setJob'
         #<?xml version="1.0" encoding="UTF-8"?><JOB><ID>1</ID><VERSION>0.0.3491s</VERSION></JOB>
         id = hash['JOB']['ID'].to_i
-        return if Device.where(:id => id, :active => true).blank?
+        not_found if Device.where(:id => id, :active => true).blank?
 
         device = Device.where(:id => id).first
         device.touch
@@ -80,7 +81,7 @@ class GtwsController < ApplicationController
       when 'sendwave'
         render xml: done_status
       else
-        return
+        not_found
     end
   end
 end
