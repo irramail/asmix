@@ -8,12 +8,8 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<header>
-  <div class="container">
-    <div class="row">
-    </div>
-  </div>
-</header>
+<%= render 'layouts/application_nav' %>
+
 <div class="container-fluid">
   <% if current_user.present? %>
       <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
