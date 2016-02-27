@@ -27,7 +27,7 @@ p
   = check_box 'Sat', 'Sat', checked: @order.sat, :disabled => true, :readonly => true
 
   - if @order.suborders.size > 0
-    table id="suborders_list" class="table table-striped table-hover"
+    table id="suborders_list" class="table table-striped table-hover table-condensed"
       thead
         tr
           th ID device

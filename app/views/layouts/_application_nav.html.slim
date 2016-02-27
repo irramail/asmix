@@ -1,0 +1,19 @@
+- if current_user.present?
+  .navbar.navbar-default.navbar-fixed-top
+    .container-fluid
+      .collapse.navbar-collapse
+        ul.nav.navbar-navnav.navbar-nav
+          li.active = link_to 'Devices', devices_path
+          li = link_to 'Orders', orders_path
+          li = link_to 'Tasks', tasks_path
+          li = link_to 'Contents', contents_path
+          /li = link_to 'SubOrders', suborders_path
+          li = link_to 'BgVideos', plsbgvideos_path
+          li = link_to 'BgMusics', plsbgmusics_path
+          li = link_to 'BgImages', plsbgimages_path
+          li = link_to 'Markets', markets_path
+          li = link_to 'Periods', periods_path
+          li = link_to 'OrdersStatuses', statuses_path
+          li = link_to 'TasksStatuses', typeofstatuses_path
+          li = link_to 'TypeOfTasks', typeoftasks_path
+          li = link_to 'Logout', destroy_user_session_path, method: :delete
