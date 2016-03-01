@@ -11,9 +11,8 @@ p#notice = notice
 p
   strong Market:
   = @device.market.name
-  strong ->Name:
-  = @device.name
-
+  strong -> Device:
+  = "#{@device.id} - #{@device.name}"
 h2 Create new volume of volume
 == render 'volumes/form'
 

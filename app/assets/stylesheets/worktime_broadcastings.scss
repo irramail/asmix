@@ -1,60 +1,79 @@
 // Place all the styles related to the worktime_broadcastings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#am-hours-start {
+
+#worktime {
   float: left;
-  width: 30px;
+  width: 50%;
+  #worktime-new {
+    float: left;
+    width: 100%;
+    #timestring-start {
+      float: left;
+      width: 25%;
+      #hours-start {
+        float: left;
+        width: 50%;
+        #am-hours-start {
+        }
+
+        #pm-hours-start {
+        }
+      }
+
+      #minutes-start {
+        float: left;
+        width: 50%;
+      }
+    }
+
+    #work-time-form {
+      float: left;
+      width: 40%;
+    }
+
+    #timestring-stop {
+      float: left;
+      width: 30%;
+      #hours-stop {
+        float: left;
+        width: 50%;
+        #am-hours-stop {
+        }
+
+        #pm-hours-stop {
+        }
+      }
+
+      #minutes-stop {
+        float: left;
+        width: 50%;
+      }
+    }
+  }
+
+  #worktime-broadcastings {
+    float: left;
+    width: 50%;
+    #worktime-show {
+
+    }
+  }
 }
 
-#pm-hours-start {
-  float: left;
-  width: 50px;
+#worktime_broadcasting_wday {
+  width: 50%;
 }
 
-#hours-start {
-  float: left;
-  width: 100px;
+#worktime_broadcasting_start {
+  width: 50%;
 }
 
-#minutes-start {
-  width: 50px;
-  float: left;
+#worktime_broadcasting_stop {
+  width: 50%;
 }
 
-#timestring-start {
+#new_worktime_broadcasting {
   float: left;
-  width: 150px;
-}
-
-#am-hours-stop {
-  float: left;
-  width: 30px;
-}
-
-#pm-hours-stop {
-  float: left;
-  width: 50px;
-}
-
-#hours-stop {
-  float: left;
-  width: 100px;
-}
-
-#minutes-stop {
-  width: 50px;
-  float: left;
-}
-
-#timestring-stop {
-  float: left;
-  width: 150px;
-}
-
-#work-time-form {
-  float: left;
-  width: 300px;
-}
-
-#work-time-show {
+  width: 100%;
 }
