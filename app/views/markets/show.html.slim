@@ -18,13 +18,14 @@ p
         ul
           - volsofday.errors.full_messages.each do |message|
             li = message
-#market-show
-  #volsofdays
-    #volsofdays-new
+
+#market-show class="col-md-12"
+  #volsofdays class="col-md-6"
+    #volsofdays-new class="col-md-8"
       h2 Create new time/value of volsofday
       = render 'volsofdays/form'
 
-    #volsofdays-list
+    #volsofdays-list class="col-md-2"
       h2 Volsofdays
       - if @market.volsofdays.count > 0
         table class="table table-striped table-hover table-condensed"
@@ -36,15 +37,15 @@ p
           tbody
             = render @market.volsofdays.order(:time)
 
-  #worktime
-    #worktime-new
+  #worktime class="col-md-6"
+    #worktime-new class="col-md-6"
       h2 Create work's time/wday of
       = render 'worktime_broadcastings/form'
 
-    #worktime-broadcastings
+    #worktime-broadcastings class="col-md-6"
       h2 Worktime_broadcastings
       - if @market.worktime_broadcastings.count > 0
-        #worktime-show
+        #worktime-show class="col-md-6"
           table class="table table-striped table-hover table-condensed"
             thead
               tr

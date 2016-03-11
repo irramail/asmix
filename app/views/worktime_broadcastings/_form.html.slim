@@ -1,6 +1,6 @@
-#timestring-start
-  #hours-start
-    #am-hours-start
+#timestring-start class="col-md-6"
+  #hours-start class="col-md-3"
+    #am-hours-start class="col-md-6"
       table.table-bordered
         tbody
           - h = 0
@@ -9,7 +9,7 @@
               - (1..4).each do |td|
                 td = link_to h.to_s, "#", remote: true, class: 'set-hours-start'
                 - h+=1
-    #pm-hours-start
+    #pm-hours-start class="col-md-1"
       table.table-bordered
         tbody
           - h = 12
@@ -18,7 +18,7 @@
               - (1..4).each do |td|
                 td = link_to h.to_s, "#", remote: true, class: 'set-hours-start'
                 - h+=1
-  #minutes-start
+  #minutes-start class="col-md-1"
     table.table-bordered
       tbody
         - m = 0
@@ -28,21 +28,21 @@
               td = link_to m.to_s, "#", remote: true, class: 'set-minutes-start'
               - m+=5
 
-#work-time-form
-  = form_for [@market, @market.worktime_broadcastings.build] do |f|
+#work-time-form class="col-md-1"
+  = form_for [@market, @market.worktime_broadcastings.build], html: {class: "form-control"} do |f|
 
-    .field
+    .field class="form-group"
       = f.label :wday
       = f.number_field :wday, value: 6, min: 0, max:6
-    .field
+    .field class="form-group"
       = f.label :start
       = f.text_field :start, value: '00:00', :readonly => true
-    .field
+    .field class="form-group"
       = f.label :stop
       = f.text_field :stop, value: '23:00', :readonly => true
-    .actions = f.submit
+    .actions = f.submit nil, class: "btn btn-primary"
 
-#timestring-stop
+#timestring-stop class="col-md-2"
   #hours-stop
     #am-hours-stop
       table.table-bordered

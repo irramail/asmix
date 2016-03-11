@@ -1,6 +1,6 @@
 #timestring
-  #hours
-    #am-hours
+  #hours class="col-md-4"
+    #am-hours class="col-md-6"
       table.table-bordered
         tbody
           - h = 0
@@ -9,7 +9,7 @@
               - (1..4).each do |td|
                 td = link_to h.to_s, "#", remote: true, class: 'set-hours'
                 - h+=1
-    #pm-hours
+    #pm-hours class="col-md-6"
       table.table-bordered
         tbody
           - h = 12
@@ -19,16 +19,16 @@
                 td = link_to h.to_s, "#", remote: true, class: 'set-hours'
                 - h+=1
 
-  = form_for [@market, @market.volsofdays.build] do |f|
-    .field
-      = f.label :time
-      = f.text_field :time, value:'00:00', :readonly => true
-    .field
-      = f.label :value
-      = f.number_field :value, value: 60
-    .actions = f.submit
-
-  #minutes
+  #volsofdays-form class="col-md-4"
+    = form_for [@market, @market.volsofdays.build], html: {class: "form-control"} do |f|
+      .field class="form-group"
+        = f.label :time
+        = f.text_field :time, value: '00:00', :readonly => true
+      .field class="form-group"
+        = f.label :value
+        = f.number_field :value, value: 60
+      .actions = f.submit nil, class: "btn btn-primary"
+    #minutes class="col-md-4"
     table.table-bordered
       tbody
         - m = 0
