@@ -49,7 +49,7 @@ class PeriodsController < ApplicationController
     Period.create!(value: 12, name: "5 minutes")
 
     respond_to do |format|
-      format.html { redirect_to periods_url, notice: 'Period was successfully destroyed.' }
+      format.html { redirect_to periods_url, notice: 'Period was successfully generated.' }
       format.json { head :no_content }
     end
   end

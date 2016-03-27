@@ -40,12 +40,12 @@ class StatusesController < ApplicationController
 
   def gen
     #FIXME need render with warnings, errors
-    Status.create(name: "New")
-    Status.create(name: "Play")
-    Status.create(name: "Cancel")
+    Status.create!(name: "New")
+    Status.create!(name: "Play")
+    Status.create!(name: "Cancel")
 
     respond_to do |format|
-      format.html { redirect_to statuses_url, notice: 'Status was successfully destroyed.' }
+      format.html { redirect_to statuses_url, notice: 'Status was successfully generated.' }
       format.json { head :no_content }
     end
   end

@@ -38,6 +38,20 @@ class TypeofstatusesController < ApplicationController
     end
   end
 
+  def gen
+    #FIXME need render with warnings, errors
+    Typeofstatus.create!(name: "WAIT", priority: 1)
+    Typeofstatus.create!(name: "RECEIVED", priority: 2)
+    Typeofstatus.create!(name: "PROGRESS", priority: 3)
+    Typeofstatus.create!(name: "COMPLETED", priority: 4)
+    Typeofstatus.create!(name: "CANCEL", priority: 5)
+
+    respond_to do |format|
+      format.html { redirect_to typeofstatuses_url, notice: 'Typeofstatus was successfully generated.' }
+      format.json { head :no_content }
+    end
+  end
+
   # PATCH/PUT /typeofstatuses/1
   # PATCH/PUT /typeofstatuses/1.json
   def update

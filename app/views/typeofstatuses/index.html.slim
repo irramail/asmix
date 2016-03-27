@@ -1,5 +1,9 @@
 .col-md-6
-  p.btn-group.pull-right = link_to 'New Typeofstatus', new_typeofstatus_path, class:"glyphicon glyphicon-plus btn btn-md btn-primary pull-right"
+  p.btn-group.pull-right
+    - if @typeofstatuses.all.count == 0
+      = link_to 'Generate', {:controller => "typeofstatuses", :action => "gen"}, :method => "post", class: "glyphicon glyphicon-forward btn btn-md btn-success pull-left"
+
+    = link_to 'New status of tasks', new_typeofstatus_path, class:"glyphicon glyphicon-plus btn btn-md btn-primary pull-right"
   h1 Listing typeofstatuses
 
   table.table.table-striped.table-hover.table-condensed.table-bordered
