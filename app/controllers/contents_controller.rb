@@ -26,6 +26,18 @@ class ContentsController < ApplicationController
     end
   end
 
+  def gen
+    #FIXME i18n title
+    Content.create!(title: "Background music")
+    Content.create!(title: "Adware music")
+    Content.create!(title: "Background video")
+    Content.create!(title: "Adware video")
+    Content.create!(title: "Background image")
+    Content.create!(title: "Adware image")
+
+    redirect_to contents_path
+  end
+
   def update
     @content = Content.find(params[:id])
 

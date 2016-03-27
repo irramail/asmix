@@ -29,6 +29,13 @@ class DevicesController < ApplicationController
 
     respond_to do |format|
       if @device.save
+        #FIXME i18n description
+        @device.volumes.create!(description: "Master", name: "Master", value:60)
+        @device.volumes.create!(description: "R BG", name: "R", value:60)
+        @device.volumes.create!(description: "L BG", name: "L", value:60)
+        @device.volumes.create!(description: "RL AD", name: "RL", value:60)
+        @device.volumes.create!(description: "RR AD", name: "RR", value:60)
+
         format.html { redirect_to @device, notice: 'Device was successfully created.' }
         format.json { render :show, status: :created, location: @device }
       else
