@@ -38,6 +38,18 @@ class StatusesController < ApplicationController
     end
   end
 
+  def gen
+    #FIXME need render with warnings, errors
+    Status.create(name: "New")
+    Status.create(name: "Play")
+    Status.create(name: "Cancel")
+
+    respond_to do |format|
+      format.html { redirect_to statuses_url, notice: 'Status was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
   # PATCH/PUT /statuses/1
   # PATCH/PUT /statuses/1.json
   def update

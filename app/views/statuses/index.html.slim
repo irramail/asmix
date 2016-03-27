@@ -1,5 +1,10 @@
 .col-md-6
-  p.btn-group.pull-right = link_to 'New Status', new_status_path, class:"glyphicon glyphicon-plus btn btn-md btn-primary pull-right"
+  p.btn-group.pull-right
+    - if @statuses.all.count == 0
+      = link_to 'Generate', {:controller => "statuses", :action => "gen"}, :method => "post", class: "glyphicon glyphicon-forward btn btn-md btn-success pull-left"
+
+    = link_to 'New Status', new_status_path, class:"glyphicon glyphicon-plus btn btn-md btn-primary pull-right"
+
   h1 Listing statuses
   table.table.table-striped.table-hover.table-condensed.table-bordered
     thead
@@ -16,5 +21,3 @@
             = link_to '', edit_status_path(status), class: "glyphicon glyphicon-edit btn btn-md btn-default", title: t('std.edit')
           /td = link_to 'Destroy', status, data: {:confirm => 'Are you sure?'}, :method => :delete
   = paginate @statuses
-
-

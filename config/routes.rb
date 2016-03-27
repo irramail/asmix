@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   post "/orders/cancel" => "orders#cancel"
 
   post "/periods/gen" => "periods#gen"
+  post "/statuses/gen" => "statuses#gen"
 
   resources :tasks
   resources :typeofstatuses
