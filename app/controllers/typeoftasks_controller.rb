@@ -38,6 +38,46 @@ class TypeoftasksController < ApplicationController
     end
   end
 
+  def gen
+    Typeoftask.create!(name: "SETVOL", priority: "1")
+    Typeoftask.create!(name: "DOWNLOADS", priority: "2")
+    Typeoftask.create!(name: "PLAYLIST.MUSIC", priority: "3")
+    Typeoftask.create!(name: "SYNC.TIME", priority: "4")
+    Typeoftask.create!(name: "SETINTERVAL", priority: "5")
+    Typeoftask.create!(name: "SETEQU", priority: "6")
+    Typeoftask.create!(name: "GETVER", priority: "7")
+    Typeoftask.create!(name: "CMD.FOUR", priority: "8")
+    Typeoftask.create!(name: "CMD.FIVE", priority: "9")
+    Typeoftask.create!(name: "CMD.TWO", priority: "10")
+    Typeoftask.create!(name: "CMD.ONE", priority: "11")
+    Typeoftask.create!(name: "SET.VOLSOFDAY", priority: "12")
+    Typeoftask.create!(name: "WORKTIME", priority: "13")
+    Typeoftask.create!(name: "PLAYLIST.BGMUSIC", priority: "14")
+    Typeoftask.create!(name: "UPDATE", priority: "15")
+    Typeoftask.create!(name: "CMD.SIX", priority: "16")
+    Typeoftask.create!(name: "DEL.ALL", priority: "17")
+    Typeoftask.create!(name: "PLAYLIST.BGVIDEO", priority: "18")
+    Typeoftask.create!(name: "PLAYLIST.BGIMAGE", priority: "19")
+    Typeoftask.create!(name: "TJINJLES", priority: "20")
+    Typeoftask.create!(name: "TNEWID", priority: "21")
+    Typeoftask.create!(name: "TSENDWAVE", priority: "22")
+    Typeoftask.create!(name: "TSENDPLSOFDAY", priority: "23")
+    Typeoftask.create!(name: "DEL.TASK", priority: "24")
+    Typeoftask.create!(name: "TCHGPWD", priority: "25")
+    Typeoftask.create!(name: "TMUTEOFF", priority: "26")
+    Typeoftask.create!(name: "TFWEIGHT", priority: "27")
+    Typeoftask.create!(name: "TCFWEIGHT", priority: "28")
+    Typeoftask.create!(name: "TSLEEP", priority: "29")
+    Typeoftask.create!(name: "TIMAGEGET", priority: "30")
+    Typeoftask.create!(name: "TIMAGEVIEW", priority: "31")
+    Typeoftask.create!(name: "EXTDOWNLOADS", priority: "32")
+
+    respond_to do |format|
+      format.html { redirect_to typeoftasks_url, notice: 'Typeoftask was successfully generated.' }
+      format.json { head :no_content }
+    end
+  end
+
   # PATCH/PUT /typeoftasks/1
   # PATCH/PUT /typeoftasks/1.json
   def update

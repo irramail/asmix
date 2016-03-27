@@ -1,6 +1,6 @@
 .col-md-6
   p.btn-group.pull-right
-    - if @statuses.all.count == 0
+    - if Status.all.count == 0
       = link_to 'Generate', {:controller => "statuses", :action => "gen"}, :method => "post", class: "glyphicon glyphicon-forward btn btn-md btn-success pull-left"
 
     = link_to 'New Status', new_status_path, class:"glyphicon glyphicon-plus btn btn-md btn-primary pull-right"

@@ -1,7 +1,7 @@
 .col-md-6
 
   p.btn-group.pull-right
-    - if @periods.all.count == 0
+    - if Period.all.count == 0
       = link_to 'Generate', {:controller => "periods", :action => "gen"}, :method => "post", class: "glyphicon glyphicon-forward btn btn-md btn-success pull-left"
 
     = link_to 'New Period', new_period_path, class: "glyphicon glyphicon-plus btn btn-md btn-primary pull-right"

@@ -1,5 +1,10 @@
 .col-md-6
-  p.btn-group.pull-right = link_to 'New Typeoftask', new_typeoftask_path, class:"glyphicon glyphicon-plus btn btn-md btn-primary pull-right"
+  p.btn-group.pull-right
+    - if Typeoftask.all.count == 31
+      = link_to 'Generate', {:controller => "typeoftasks", :action => "gen"}, :method => "post", class: "glyphicon glyphicon-forward btn btn-md btn-success pull-left"
+
+    = link_to 'New Typeoftask', new_typeoftask_path, class: "glyphicon glyphicon-plus btn btn-md btn-primary pull-right"
+
   h1 Listing typeoftasks
 
   table.table.table-striped.table-hover.table-condensed.table-bordered

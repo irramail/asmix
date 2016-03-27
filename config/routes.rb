@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   post "/periods/gen" => "periods#gen"
   post "/statuses/gen" => "statuses#gen"
   post "/typeofstatuses/gen" => "typeofstatuses#gen"
+  post "/typeoftasks/gen" => "typeoftasks#gen"
 
   resources :tasks
   resources :typeofstatuses
