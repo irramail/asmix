@@ -1,0 +1,10 @@
+ru:
+  orders:
+    thead:
+      id: "#"
+      name: "Имя"
+      status: "Статус"
+      created: "Создан"
+      user: "Владелец"
+
+    new: "Новый заказ"

@@ -1,0 +1,12 @@
+ru:
+  devices:
+    thead:
+      id: "#"
+      name: "Имя"
+      market: "Магазин"
+      ping: "Интервал ответа"
+      version: "Версия"
+      updated: "Последний ответ"
+      active: "Ативно"
+
+    new: "Новое Устройство"

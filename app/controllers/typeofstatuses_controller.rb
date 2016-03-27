@@ -5,7 +5,7 @@ class TypeofstatusesController < ApplicationController
   # GET /typeofstatuses
   # GET /typeofstatuses.json
   def index
-    @typeofstatuses = Typeofstatus.all
+    @typeofstatuses = Typeofstatus.all.page params[:page]
   end
 
   # GET /typeofstatuses/1

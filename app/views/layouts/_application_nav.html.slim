@@ -1,19 +1,25 @@
 - if current_user.present?
   .navbar.navbar-default.navbar-fixed-top
     .container-fluid
-      .collapse.navbar-collapse
-        ul.nav.navbar-navnav.navbar-nav
-          li.active = link_to 'Devices', devices_path
-          li = link_to 'Orders', orders_path
-          li = link_to 'Tasks', tasks_path
-          li = link_to 'Contents', contents_path
-          /li = link_to 'SubOrders', suborders_path
-          li = link_to 'BgVideos', plsbgvideos_path
-          li = link_to 'BgMusics', plsbgmusics_path
-          li = link_to 'BgImages', plsbgimages_path
-          li = link_to 'Markets', markets_path
-          li = link_to 'Periods', periods_path
-          li = link_to 'OrdersStatuses', statuses_path
-          li = link_to 'TasksStatuses', typeofstatuses_path
-          li = link_to 'TypeOfTasks', typeoftasks_path
-          li = link_to 'Logout', destroy_user_session_path, method: :delete
+      .navbar-header
+        button.navbar-toggle.pull-left data-target="#bs-asmix-navbar-collapse-1" data-toggle="collapse" type="button"
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+      #bs-asmix-navbar-collapse-1.collapse.navbar-collapse
+        ul.nav.navbar-nav
+          li = link_to t('nav.orders'), orders_path
+          li = link_to t('nav.contents'), contents_path
+          li = link_to t('nav.devices'), devices_path
+          li = link_to t('nav.tasks'), tasks_path
+          /li = link_to t('nav.'), suborders_path
+          li = link_to t('nav.bgvideos'), plsbgvideos_path
+          li = link_to t('nav.bgmusics'), plsbgmusics_path
+          li = link_to t('nav.bgimages'), plsbgimages_path
+          li = link_to t('nav.markets'), markets_path
+          li = link_to t('nav.periods'), periods_path
+          li = link_to t('nav.ordersstatuses'), statuses_path
+          li = link_to t('nav.tasksstatuses'), typeofstatuses_path
+          li = link_to t('nav.typeoftasks'), typeoftasks_path
+          li = link_to t('nav.logout'), destroy_user_session_path, method: :delete

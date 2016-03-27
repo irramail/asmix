@@ -1,0 +1,9 @@
+en:
+  tasks:
+    thead:
+      id: "#"
+      device: "Device"
+      type: "Type"
+      status: "Status"
+
+    new: "New Task"

@@ -1,0 +1,15 @@
+ru:
+  nav:
+    devices:  "Устройства"
+    orders:   "Заказы"
+    tasks:    "Задачи"
+    contents: "Контент"
+    bgvideos: "ФонВидео"
+    bgmusics: "ФонМузыка"
+    bgimages: "ФонИзображение"
+    markets:  "Магазин"
+    periods:  "Периоды"
+    ordersstatuses: "Статусы заказов"
+    tasksstatuses:  "Статусы задач"
+    typeoftasks:  "Типы задач"
+    logout:   "Выход"

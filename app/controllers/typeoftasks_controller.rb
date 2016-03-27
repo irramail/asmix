@@ -5,7 +5,7 @@ class TypeoftasksController < ApplicationController
   # GET /typeoftasks
   # GET /typeoftasks.json
   def index
-    @typeoftasks = Typeoftask.all.order(:priority)
+    @typeoftasks = Typeoftask.all.order(:priority).page params[:page]
   end
 
   # GET /typeoftasks/1

@@ -1,0 +1,10 @@
+en:
+  orders:
+    thead:
+      id: "#"
+      name: "Name"
+      status: "Status"
+      created: "Created"
+      user: "User"
+
+    new: "New Order"

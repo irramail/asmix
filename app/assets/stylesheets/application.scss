@@ -11,12 +11,36 @@
  * file per style scope.
  *
  */
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 @import "tasks";
 @import "worktime_broadcastings";
 @import "volsofdays.scss";
+
+//navbar padding
+body { padding-top: 110px; }
+
 .login-form { max-width: 380px; margin-top: 10px }
 #wrap {
-  margin-top: 80px;
+  margin-top: 0px;
+}
+
+.padt20 {
+  padding-top: 20px;
+}
+
+.padb20 {
+  padding-bottom: 20px;
+}
+
+.field.col-md-1 input[type="number"], input[type="text"] {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.margin-bottom-m5 {
+  margin-bottom: -5px;
 }

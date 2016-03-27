@@ -1,0 +1,12 @@
+en:
+  devices:
+    thead:
+      id: "#"
+      name: "Name"
+      market: "Market"
+      ping: "Ping"
+      version: "Version"
+      updated: "Updated"
+      active: "Active"
+
+    new: "New Device"

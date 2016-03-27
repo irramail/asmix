@@ -5,6 +5,10 @@ gem 'carrierwave'
 gem 'bootstrap-sass'
 gem 'kaminari'
 gem 'devise'
+gem 'font-awesome-sass', '~> 4.5.0'
+
+# Localization
+gem 'rails-i18n'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.rc2'

@@ -16,9 +16,10 @@
 //= require_tree .
 
 jQuery(document).ready(function($){
-
     var filename = document.getElementById('contents_content_id');
     var playlist = document.getElementById('plist_ids_plist_id');
+
+    if (filename != null)
     filename.addEventListener("click", function() {
         var qwe = $('#contents_content_id option:selected');
         var asd = $('#plist_ids_plist_id');
@@ -48,6 +49,7 @@ jQuery(document).ready(function($){
         });
     });
 
+    if (playlist != null)
     playlist.addEventListener("click", function() {
         var selected = $('#plist_ids_plist_id    option:selected');
         selected.each(function() {
@@ -59,6 +61,8 @@ jQuery(document).ready(function($){
 
     var device = document.getElementById('devices_device_id');
     var groupdevices = document.getElementById('device_ids_device_id');
+
+    if (device != null)
     device.addEventListener("click", function() {
         var qwe = $('#devices_device_id option:selected');
         var asd = $('#device_ids_device_id');
@@ -134,6 +138,7 @@ jQuery(document).ready(function($){
         });
     });
 
+    if (groupdevices != null)
     groupdevices.addEventListener("click", function() {
         var selected = $('#device_ids_device_id option:selected');
         selected.each(function() {
@@ -154,4 +159,24 @@ jQuery(document).ready(function($){
 
         return true; // return false to cancel form action
     });
+
+    /*menu handler*/
+    function stripTrailingSlash(str) {
+        if(str.substr(-1) == '/') {
+            return str.substr(0, str.length - 1);
+        }
+        return str;
+    }
+
+    var url = window.location.pathname;
+    var activePage = stripTrailingSlash(url);
+
+    $('.nav li a').each(function(){
+        var currentPage = stripTrailingSlash($(this).attr('href'));
+
+        if (activePage == currentPage) {
+            $(this).parent().addClass('active');
+        }
+    });
+
 });

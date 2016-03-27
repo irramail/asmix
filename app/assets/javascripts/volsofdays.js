@@ -1,8 +1,8 @@
 /**
  * Created by p6 on 12/18/15.
  */
-
 $(document).ready(function() {
+    $('#volsofday_time').timepicker();
     $('.set-minutes').click(function (event) {
         var self = $(this);
         var time = $('#volsofday_time').val();

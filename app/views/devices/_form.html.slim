@@ -6,55 +6,59 @@
         - @device.errors.full_messages.each do |message|
           li = message
 
-  .field
+  .field.col-md-2
     = f.label :market
-    = f.collection_select :market_id, Market.all, :id, :name
-  .field
+    = f.collection_select :market_id, Market.all, :id, :name, class: "col-md-12"
+  .field.col-md-2
     = f.label :name
-    = f.text_field :name
-  .field
+    = f.text_field :name, class: "col-md-12"
+  .field.col-md-1
     = f.label :ping
-    = f.number_field :ping, value: 15, min: 1, max: 3600
-  .field
+    = f.number_field :ping, value: 15, min: 1, max: 3600, class: "col-md-12"
+  .field.col-md-1
     = f.label :tzdate
-    = f.number_field :tzdate, value: 7
-  .field
+    = f.number_field :tzdate, value: 7, class: "col-md-12"
+  .field.col-md-1
     = f.label :sn
-    = f.text_field :sn, value: '0000'
-  .field
-    = f.label :comment
-    = f.text_area :comment
+    = f.text_field :sn, value: '0000', class: "col-md-12"
   .field
     = f.label :active
     = f.check_box :active, checked: true
-  .field
-    = f.label :eq0
-    = f.number_field :eq0, value: 0, min: -12, max: 12
-  .field
-    = f.label :eq1
-    = f.number_field :eq1, value: 0, min: -12, max: 12
-  .field
-    = f.label :eq2
-    = f.number_field :eq2, value: 0, min: -12, max: 12
-  .field
-    = f.label :eq3
-    = f.number_field :eq3, value: 0, min: -12, max: 12
-  .field
-    = f.label :eq4
-    = f.number_field :eq4, value: 0, min: -12, max: 12
-  .field
-    = f.label :eq5
-    = f.number_field :eq5, value: 0, min: -12, max: 12
-  .field
-    = f.label :eq6
-    = f.number_field :eq6, value: 0, min: -12, max: 12
-  .field
-    = f.label :eq7
-    = f.number_field :eq7, value: 0, min: -12, max: 12
-  .field
-    = f.label :eq8
-    = f.number_field :eq8, value: 0, min: -12, max: 12
-  .field
-    = f.label :eq9
-    = f.number_field :eq9, value: 0, min: -12, max: 12
-  .actions = f.submit
+  .field.col-md-12.padt20.padb20
+    .field.col-md-1
+      = f.label :eq0, '31.25', class: "col-md-12"
+      = f.number_field :eq0, value: 0, min: -12, max: 12, class: "col-md-12"
+    .field.col-md-1
+      = f.label :eq1, '62.50', class: "col-md-12"
+      = f.number_field :eq1, value: 0, min: -12, max: 12, class: "col-md-12"
+    .field.col-md-1
+      = f.label :eq2, '125', class: " col-md-12"
+      = f.number_field :eq2, value: 0, min: -12, max: 12, class: "col-md-12"
+    .field.col-md-1
+      = f.label :eq3, '250', class: "col-md-12"
+      = f.number_field :eq3, value: 0, min: -12, max: 12, class: "col-md-12"
+    .field.col-md-1
+      = f.label :eq4, '500', class: "col-md-12"
+      = f.number_field :eq4, value: 0, min: -12, max: 12, class: "col-md-12"
+    .field.col-md-1
+      = f.label :eq5, '1k', class: "col-md-12"
+      = f.number_field :eq5, value: 0, min: -12, max: 12, class: "col-md-12"
+    .field.col-md-1
+      = f.label :eq6, '2k', class: "col-md-12"
+      = f.number_field :eq6, value: 0, min: -12, max: 12, class: "col-md-12"
+    .field.col-md-1
+      = f.label :eq7, '4k', class: "col-md-12"
+      = f.number_field :eq7, value: 0, min: -12, max: 12, class: "col-md-12"
+    .field.col-md-1
+      = f.label :eq8, '8k', class: "col-md-12"
+      = f.number_field :eq8, value: 0, min: -12, max: 12, class: "col-md-12"
+    .field.col-md-1
+      = f.label :eq9, '16k', class: "col-md-12"
+      = f.number_field :eq9, value: 0, min: -12, max: 12, class: "col-md-12"
+
+  .field.col-md-12
+    = f.label :comment
+    = f.text_area :comment, class: "col-md-12"
+  .field.col-md-12
+    .actions = f.submit 'Save', class: "btn btn-md btn-success pull-right"
+  br

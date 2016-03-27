@@ -1,21 +1,22 @@
-h1 Listing plsbgvideos
-
-table class="table table-striped table-hover table-condensed"
-  thead
-    tr
-      th Name
-      th
-      th
-      th
-
-  tbody
-    - @plsbgvideos.each do |plsbgvideo|
+.col-md-6
+  h1.col-md-8.pull-left Listing plsbgvideos
+  = link_to 'New Plsbgvideo', new_plsbgvideo_path, class:"glyphicon glyphicon-plus btn btn-md btn-primary pull-right"
+  table.table.table-striped.table-hover.table-condensed.table-bordered
+    thead
       tr
-        td = plsbgvideo.name
-        td = link_to 'Show', plsbgvideo
-        td = link_to 'Edit', edit_plsbgvideo_path(plsbgvideo)
-        td = link_to 'Destroy', plsbgvideo, data: {:confirm => 'Are you sure?'}, :method => :delete
+        th #
+        th Name
+        th Created
 
-br
-
-= link_to 'New Plsbgvideo', new_plsbgvideo_path
+    tbody
+      - @plsbgvideos.each do |plsbgvideo|
+        tr
+          td = plsbgvideo.id
+          td.col-md-6 = plsbgvideo.name
+          td = (plsbgvideo.created_at + 3600 * 7).to_s[0..18]
+          td.btn-group role="group"
+            = link_to '', plsbgvideo, class: "glyphicon glyphicon-eye-open btn btn-sm btn-default", title: t('std.show')
+            = link_to '', {:controller => "plsbgvideos", :action => "new", :old_id => plsbgvideo.id}, :method => "get", class: "glyphicon glyphicon-copy btn btn-sm btn-success", title: 'Clone'
+          /  = link_to '', edit_plsbgvideo_path(plsbgvideo), class: "glyphicon glyphicon-edit btn btn-md btn-default", title: t('std.edit')
+          /td = link_to 'Destroy', plsbgvideo, data: {:confirm => 'Are you sure?'}, :method => :delete
+.col-md-12 = paginate @plsbgvideos

@@ -1,10 +1,12 @@
 - if volume.value.present?
       tr
-        td = volume.name
-        td = volume.description
+        td.col-md-2 = volume.description
+        td.col-md-1 = volume.name
         / td = volume.value
-        td
+        td.col-md-1
           = form_for([volume.device, volume]) do |f|
-            = f.number_field :value, min: 0, max:100
-            = f.submit
-        td = link_to 'Destroy', [volume.device, volume], method: :delete, data: { confirm: 'Are you sure?' }
+            .input-group
+              = f.number_field :value, min: 0, max:100, class: "form-control"
+              .input-group-btn
+                = f.submit 'Save', class: "btn btn-md btn-success"
+        td.col-md-1 = link_to 'Destroy', [volume.device, volume], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-md btn-danger"

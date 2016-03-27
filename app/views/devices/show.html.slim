@@ -1,4 +1,4 @@
-p#notice = notice
+/p#notice = notice
 
 - @device.volumes.each do |volume|
   - if volume.errors.any?
@@ -8,45 +8,53 @@ p#notice = notice
         - volume.errors.full_messages.each do |message|
           li = message
 
-p
-  strong Market:
-  = @device.market.name
-  strong -> Device:
-  = "#{@device.id} - #{@device.name}"
-h2 Create new volume of volume
-== render 'volumes/form'
 
-h2 Volumes
-- if @device.volumes.count > 0
-  table class="table table-striped"
-    thead
-      tr
-        th Name
-        th Description
-        th Volume
-        th [colspan="1"]
-    tbody
-      == render @device.volumes
+.col-md-6
+  p
+    strong Market:
+    = @device.market.name
+    strong -> Device:
+    = "#{@device.id} - #{@device.name}"
 
-p
-  strong Ping:
-  = @device.ping
-p
-  strong Tzdate:
-  = @device.tzdate
-p
-  strong Sn:
-  = @device.sn
-p
-  strong Comment:
-  = @device.comment
-p
-  strong Active:
-  = check_box 'Active', 'Active', checked: @device.active, :disabled => true, :readonly => true
-p
-  strong Equalizer:
-  = " #{@device.eq0}:#{@device.eq1}:#{@device.eq2}:#{@device.eq3}:#{@device.eq4}:#{@device.eq5}:#{@device.eq6}:#{@device.eq7}:#{@device.eq8}:#{@device.eq9}"
+  h2 Volumes
 
-= link_to 'Edit', edit_device_path(@device)
-'|
-= link_to 'Back', devices_path
+  - if @device.volumes.count > 0
+    table.table.table-striped.col-md-12.table-hover.table-condensed.table-bordered
+      thead
+        tr
+          th Description
+          th Name
+          th Volume
+          th [colspan="1"]
+      tbody
+        == render @device.volumes
+
+  h2 Create new volume of volume
+  == render 'volumes/form'
+
+
+
+.col-md-6
+  p
+    strong Ping:
+    = @device.ping
+  p
+    strong Tzdate:
+    = @device.tzdate
+  p
+    strong Sn:
+    = @device.sn
+  p
+    strong Active:
+    = check_box 'Active', 'Active', checked: @device.active, :disabled => true, :readonly => true
+  p
+    strong Equalizer:
+    = " #{@device.eq0}:#{@device.eq1}:#{@device.eq2}:#{@device.eq3}:#{@device.eq4}:#{@device.eq5}:#{@device.eq6}:#{@device.eq7}:#{@device.eq8}:#{@device.eq9}"
+  p
+    strong Comment:
+    = @device.comment
+
+.col-md-12
+  = link_to 'Edit', edit_device_path(@device)
+  '|
+  = link_to 'Back', devices_path

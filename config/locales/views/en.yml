@@ -1,0 +1,15 @@
+en:
+  nav:
+    devices: "Devices"
+    orders: "Orders"
+    tasks:  "Tasks"
+    contents: "Contents"
+    bgvideos: "BgVideos"
+    bgmusics: "BgMusics"
+    bgimages: "BgImages"
+    markets:  "Markets"
+    periods:  "Periods"
+    ordersstatuses: "OrdersStatuses"
+    tasksstatuses:  "TasksStatuses"
+    typeoftasks:  "TypeOfTasks"
+    logout:   "Logout"

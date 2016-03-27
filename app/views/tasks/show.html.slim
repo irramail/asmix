@@ -1,28 +1,31 @@
-p#notice = notice
+/p#notice = notice
 
-p
+p.col-md-12
+  - @task.suborders.each do |suborder|
+    - if suborder.order.present?
+      = link_to "#{suborder.order_id} '#{suborder.order.name}'", suborder.order, class: "btn btn-primary pull-right"
+      strong.col-md-1.pull-right Order:
+
+p.col-md-1
   strong ID:
   = @task.id
 
-p
+p.col-md-2
   strong Device:
   = @task.device.name
-p
+p.col-md-3
   strong Typeoftask:
   = @task.typeoftask.name
-p
+p.col-md-3
   strong Typeofstatus:
+  span.img-status.img-status-sz20.center-block.padt20.margin-bottom-m5 class="#{@task.typeofstatus.name.downcase}"
   = @task.typeofstatus.name
-p
+
+p.col-md-12
   strong Options:
   = @task.options
 
-p
-  strong Order:
-  - @task.suborders.each do |suborder|
-    - if suborder.order.present?
-      = link_to "#{suborder.order_id} '#{suborder.order.name}'", suborder.order
-
-= link_to 'Edit', edit_task_path(@task)
-'|
-= link_to 'Back', tasks_path
+.col-md-12
+  = link_to 'Edit', edit_task_path(@task)
+  '|
+  = link_to 'Back', tasks_path

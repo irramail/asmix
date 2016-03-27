@@ -6,13 +6,13 @@
         - @plsbgimage.errors.full_messages.each do |message|
           li = message
 
-  .field
+  .field.col-md-3
     = f.label :name
     = f.text_field :name
-  .field
+  .field.col-md-3
     = f.label :device
     = f.collection_select :device_ids, Device.all, :id, :name, {}, { :multiple => true}
-  .field
+  .field.col-md-6
     = f.label :mediafile
     = f.collection_select :mediafile_ids, Mediafile.where(:content_id => 5).all, :id, :filename, {}, { :multiple => true}
   .actions = f.submit

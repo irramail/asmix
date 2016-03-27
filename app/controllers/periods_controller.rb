@@ -5,7 +5,7 @@ class PeriodsController < ApplicationController
   # GET /periods
   # GET /periods.json
   def index
-    @periods = Period.all
+    @periods = Period.all.all.page params[:page]
   end
 
   # GET /periods/1

@@ -15,7 +15,7 @@ h2 Choice new files and upload:
 
 h2 Files
 - if @content.mediafiles.count > 0
-  table class="table table-striped table-hover table-condensed"
+  table.table.table-striped.table-hover.table-condensed.table-bordered
     thead
       tr
         th ID
@@ -23,7 +23,7 @@ h2 Files
         th Md5
         / th File
         th Play
-        th [colspan="1"]
+        /th [colspan="1"]
     tbody
       = render @content.mediafiles
 

@@ -1,0 +1,8 @@
+ru:
+  tasks:
+    thead:
+      id: "#"
+      device: "Устройство"
+      type: "Тип"
+      status: "Статус"
+    new: "Новая Задача"

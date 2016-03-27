@@ -5,7 +5,7 @@ class PlsbgvideosController < ApplicationController
   # GET /plsbgvideos
   # GET /plsbgvideos.json
   def index
-    @plsbgvideos = Plsbgvideo.all
+    @plsbgvideos = Plsbgvideo.all.page params[:page]
   end
 
   # GET /plsbgvideos/1
@@ -16,6 +16,7 @@ class PlsbgvideosController < ApplicationController
   # GET /plsbgvideos/new
   def new
     @plsbgvideo = Plsbgvideo.new
+    @old_order = Plsbgvideo.find(params[:old_id]) if params[:old_id]
   end
 
   # GET /plsbgvideos/1/edit

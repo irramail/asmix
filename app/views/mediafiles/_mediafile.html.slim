@@ -18,4 +18,4 @@
       - if mediafile.filename.length > 4 && (mediafile.filename[-4..-1] == '.png' || mediafile.filename[-4..-1] == '.jpg')
         = link_to image_tag(mediafile.file, :size => '25x25'), image_path(mediafile.file)
 
-    td = link_to 'Destroy Mediafile', [mediafile.content, mediafile], method: :delete, data: { confirm: 'Are you sure?' }
+    /td = link_to 'Destroy Mediafile', [mediafile.content, mediafile], method: :delete, data: { confirm: 'Are you sure?' }

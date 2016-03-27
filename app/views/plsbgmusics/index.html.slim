@@ -1,26 +1,23 @@
-h1 Listing plsbgmusics
-= link_to 'New Plsbgmusic', new_plsbgmusic_path
-table class="table table-striped table-hover table-condensed"
-  thead
-    tr
-      th ID
-      th Name
-      th Created
-      th
-      th
-      th
-
-  tbody
-    - @plsbgmusics.each do |plsbgmusic|
+.col-md-6
+  h1.col-md-8.pull-left Listing plsbgmusics
+  = link_to 'New Plsbgmusic', new_plsbgmusic_path, class:"glyphicon glyphicon-plus btn btn-md btn-primary pull-right"
+  table.table.table-striped.table-hover.table-condensed.table-bordered
+    thead
       tr
-        td = plsbgmusic.id
-        td = plsbgmusic.name
-        / FIXME timezone in user.tz
-        td = (plsbgmusic.created_at + 3600 * 7).to_s[0..18]
-        td = link_to 'Show', plsbgmusic
-        td = link_to 'Edit', edit_plsbgmusic_path(plsbgmusic)
-        td = link_to 'Destroy', plsbgmusic, data: {:confirm => 'Are you sure?'}, :method => :delete
-= paginate @plsbgmusics
-br
+        th #
+        th Name
+        th Created
 
-= link_to 'New Plsbgmusic', new_plsbgmusic_path
+    tbody
+      - @plsbgmusics.each do |plsbgmusic|
+        tr
+          td = plsbgmusic.id
+          td.col-md-6 = plsbgmusic.name
+          / FIXME timezone in user.tz
+          td = (plsbgmusic.created_at + 3600 * 7).to_s[0..18]
+          td.btn-group role="group"
+            = link_to '', plsbgmusic, class: "glyphicon glyphicon-eye-open btn btn-md btn-default", title: t('std.show')
+          /td = link_to 'Edit', edit_plsbgmusic_path(plsbgmusic)
+          /td = link_to 'Destroy', plsbgmusic, data: {:confirm => 'Are you sure?'}, :method => :delete
+.col-md-12 = paginate @plsbgmusics
+
