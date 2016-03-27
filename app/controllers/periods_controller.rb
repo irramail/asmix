@@ -38,6 +38,22 @@ class PeriodsController < ApplicationController
     end
   end
 
+  def gen
+    #FIXME need render with warnings, errors
+    #FIXME need i18n "minutes"
+    Period.create!(value: 1, name: "60 minutes")
+    Period.create!(value: 2, name: "30 minutes")
+    Period.create!(value: 3, name: "20 minutes")
+    Period.create!(value: 4, name: "15 minutes")
+    Period.create!(value: 6, name: "10 minutes")
+    Period.create!(value: 12, name: "5 minutes")
+
+    respond_to do |format|
+      format.html { redirect_to periods_url, notice: 'Period was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
   # PATCH/PUT /periods/1
   # PATCH/PUT /periods/1.json
   def update

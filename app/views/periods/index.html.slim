@@ -1,6 +1,10 @@
 .col-md-6
 
-  p.btn-group.pull-right = link_to 'New Period', new_period_path, class: "glyphicon glyphicon-plus btn btn-md btn-primary pull-right"
+  p.btn-group.pull-right
+    - if @periods.all.count == 0
+      = link_to 'Generate', {:controller => "periods", :action => "gen"}, :method => "post", class: "glyphicon glyphicon-forward btn btn-md btn-success pull-left"
+
+    = link_to 'New Period', new_period_path, class: "glyphicon glyphicon-plus btn btn-md btn-primary pull-right"
 
   h1 Listing periods
 
@@ -21,5 +25,3 @@
           /td = link_to 'Destroy', period, data: {:confirm => 'Are you sure?'}, :method => :delete
 
   = paginate @periods
-
-
