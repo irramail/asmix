@@ -49,7 +49,34 @@ class WorktimeBroadcastingsController < ApplicationController
 
   # PATCH/PUT /worktime_broadcastings/1
   # PATCH/PUT /worktime_broadcastings/1.json
-  # def update
+  def update
+    @market = Market.find(params[:market_id])
+    @worktime_broadcasting = @market.worktime_broadcastings.find(params[:id])
+
+    @worktime_broadcasting.update(worktime_broadcasting_params)
+
+
+    day = ""
+    stringdays = "SUNMONTUEWEDTHUFRISAT"
+    worktime = ""
+    i = 0;
+
+    @market.worktime_broadcastings.order(:wday).each  { |wt|
+      day = stringdays[i*3..i*3+2]
+      worktime += "<#{day}><BEGIN>#{wt.start}:00</BEGIN><END>#{wt.stop}:00</END></#{day}>"
+      i+=1
+    }
+
+    @market.devices.each do |device|
+      task = device.tasks.where({ typeofstatus_id: 1, typeoftask_id: 13}).first
+      if task.present?
+        task.update(typeofstatus_id: 1, options: "<DAYS>#{worktime}</DAYS>")
+      else
+        device.tasks.create(typeoftask_id: 13, typeofstatus_id: 1, options: "<DAYS>#{worktime}</DAYS>")
+      end
+    end
+
+    redirect_to market_path(@market)
   #   respond_to do |format|
   #     if @worktime_broadcasting.update(worktime_broadcasting_params)
   #       format.html { redirect_to @worktime_broadcasting, notice: 'Worktime broadcasting was successfully updated.' }
@@ -59,7 +86,7 @@ class WorktimeBroadcastingsController < ApplicationController
   #       format.json { render json: @worktime_broadcasting.errors, status: :unprocessable_entity }
   #     end
   #   end
-  # end
+  end
 
   # DELETE /worktime_broadcastings/1
   # DELETE /worktime_broadcastings/1.json

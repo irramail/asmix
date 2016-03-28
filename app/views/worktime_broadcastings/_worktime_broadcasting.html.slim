@@ -1,6 +1,17 @@
 - if worktime_broadcasting.wday.present?
   tr
-    td = worktime_broadcasting.wday
-    td = worktime_broadcasting.start
-    td = worktime_broadcasting.stop
-    td = link_to 'Destroy', [worktime_broadcasting.market, worktime_broadcasting], method: :delete, data: { confirm: 'Are you sure?' }
+    - stringdays = "SUNMONTUEWEDTHUFRISAT"
+    td.col-md-1 = stringdays[worktime_broadcasting.wday*3..worktime_broadcasting.wday*3+2]
+    td.col-md-3
+      = form_for([worktime_broadcasting.market, worktime_broadcasting], remote: true) do |f|
+        .input-group
+          = f.text_field :start, class: "form-control"
+          .input-group-btn
+            = f.submit 'Save', class: "btn btn-md btn-success"
+    td.col-md-3
+      = form_for([worktime_broadcasting.market, worktime_broadcasting], remote: true) do |f|
+        .input-group
+          = f.text_field :stop, class: "form-control"
+          .input-group-btn
+            = f.submit 'Save', class: "btn btn-md btn-success"
+    /td.col-md-1 = link_to '', [worktime_broadcasting.market, worktime_broadcasting], method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-remove btn btn-md btn-danger pull-right", title: t('std.destroy')

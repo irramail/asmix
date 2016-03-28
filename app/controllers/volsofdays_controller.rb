@@ -47,17 +47,35 @@ class VolsofdaysController < ApplicationController
 
   # PATCH/PUT /volsofdays/1
   # PATCH/PUT /volsofdays/1.json
-#  def update
-#    respond_to do |format|
-#      if @volsofday.update(volsofday_params)
-#        format.html { redirect_to @volsofday, notice: 'Volsofday was successfully updated.' }
-#        format.json { render :show, status: :ok, location: @volsofday }
-#      else
-#        format.html { render :edit }
-#        format.json { render json: @volsofday.errors, status: :unprocessable_entity }
-#      end
-#    end
-#  end
+  def update
+    @market = Market.find(params[:market_id])
+    @volsofday = @market.volsofdays.find(params[:id])
+    @volsofday.update(volsofday_params)
+
+    volsofday = ""
+    @market.volsofdays.order(:time).each  { |vol| volsofday += "#{vol.value}:" }
+
+    @market.devices.each do |device|
+      task = device.tasks.where({ typeofstatus_id: 1, typeoftask_id: 12}).first
+      if task.present?
+        task.update(typeofstatus_id: 1, options: "<VOLSOFDAY>#{volsofday[0..-2]}</VOLSOFDAY>")
+      else
+        device.tasks.create(typeoftask_id: 12, typeofstatus_id: 1, options: "<VOLSOFDAY>#{volsofday[0..-2]}</VOLSOFDAY>")
+      end
+    end
+
+    redirect_to market_path(@market)
+
+    # respond_to do |format|
+    #   if @volsofday.update(volsofday_params)
+    #     format.html { redirect_to @volsofday, notice: 'Volsofday was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @volsofday }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @volsofday.errors, status: :unprocessable_entity }
+    #   end
+    # end
+  end
 
   # DELETE /volsofdays/1
   # DELETE /volsofdays/1.json

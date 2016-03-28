@@ -4,9 +4,9 @@
         td.col-md-1 = volume.name
         / td = volume.value
         td.col-md-1
-          = form_for([volume.device, volume]) do |f|
+          = form_for([volume.device, volume], remote: true) do |f|
             .input-group
               = f.number_field :value, min: 0, max:100, class: "form-control"
               .input-group-btn
                 = f.submit 'Save', class: "btn btn-md btn-success"
-        td.col-md-1 = link_to 'Destroy', [volume.device, volume], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-md btn-danger"
+        td.col-md-1 = link_to '', [volume.device, volume], method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-remove btn btn-sm btn-danger pull-right", title: t('std.destroy')

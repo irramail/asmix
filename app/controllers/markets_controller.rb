@@ -29,6 +29,24 @@ class MarketsController < ApplicationController
 
     respond_to do |format|
       if @market.save
+        24.times do |hour|
+          if (10..18).include? hour
+            value = 60
+          else
+            value = 0
+          end
+          if hour.to_s.length == 1
+            zero = "0"
+          else
+            zero = ""
+          end
+          @market.volsofdays.create!(time: "#{zero}#{hour}:00", value: value)
+        end
+
+        7.times do |day|
+          @market.worktime_broadcastings.create!(wday: day, start: "10:00", stop: "20:00")
+        end
+
         format.html { redirect_to @market, notice: 'Market was successfully created.' }
         format.json { render :show, status: :created, location: @market }
       else

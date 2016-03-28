@@ -1,8 +1,9 @@
 = form_for [@market, @market.volsofdays.build] do |f|
-  .div class="input-group bootstrap-timepicker timepicker col-md-5"
-    = f.text_field :time, value: '10:00', class: "form-control input-small"
+  .field.input-group.padb20
+    = f.number_field :value, value: 60, class: "form-control"
+    .actions.input-group-btn = f.submit 'Add', class: "btn btn-primary btn-md"
+  .field.input-group.bootstrap-timepicker.timepicker
+    = f.text_field :time, value: '10:00', class: "form-control"
     span class="input-group-addon"
       i class="glyphicon glyphicon-time"
-  .div class="input-group bootstrap-timepicker timepicker col-md-6"
-    = f.number_field :value, value: 60
-  .actions = f.submit nil, class: "btn btn-primary"
+

@@ -1,5 +1,11 @@
 - if volsofday.value.present?
   tr
     td = volsofday.time
-    td = volsofday.value
-    td = link_to 'Destroy', [volsofday.market, volsofday], method: :delete, data: { confirm: 'Are you sure?' }
+    /td = volsofday.value
+    td.col-md-7
+      = form_for([volsofday.market, volsofday], remote: true) do |f|
+        .input-group
+          = f.number_field :value, min: 0, max:100, class: "form-control"
+          .input-group-btn
+            = f.submit 'Save', class: "btn btn-md btn-success"
+    /td = link_to '', [volsofday.market, volsofday], method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-remove btn btn-md btn-danger pull-right", title: t('std.destroy')
