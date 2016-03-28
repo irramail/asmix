@@ -1,5 +1,4 @@
 .col-md-6
-
   h1.col-md-8.pull-left Listing plsbgimages
   = link_to 'New Plsbgimage', new_plsbgimage_path, class:"glyphicon glyphicon-plus btn btn-md btn-primary pull-right"
   table.table.table-striped.table-hover.table-condensed.table-bordered
@@ -13,10 +12,11 @@
       - @plsbgimages.each do |plsbgimage|
         tr
           td = plsbgimage.id
-          td.col-md-5 = plsbgimage.name
+          td.col-md-6 = plsbgimage.name
           td = (plsbgimage.created_at + 3600 * 7).to_s[0..18]
           td.btn-group role="group"
-            = link_to '', plsbgimage, class: "glyphicon glyphicon-eye-open btn btn-md btn-default", title: t('std.show')
+            = link_to '', plsbgimage, class: "glyphicon glyphicon-eye-open btn btn-sm btn-default", title: t('std.show')
+            = link_to '', {:controller => "plsbgimages", :action => "new", :old_id => plsbgimage.id}, :method => "get", class: "glyphicon glyphicon-copy btn btn-sm btn-success", title: 'Clone'
           /td = link_to 'Edit', edit_plsbgimage_path(plsbgimage)
           /td = link_to 'Destroy', plsbgimage, data: {:confirm => 'Are you sure?'}, :method => :delete
 = paginate @plsbgimages

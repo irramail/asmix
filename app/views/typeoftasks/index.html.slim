@@ -1,6 +1,6 @@
 .col-md-6
   p.btn-group.pull-right
-    - if Typeoftask.all.count == 31
+    - if Typeoftask.all.count == 0
       = link_to 'Generate', {:controller => "typeoftasks", :action => "gen"}, :method => "post", class: "glyphicon glyphicon-forward btn btn-md btn-success pull-left"
 
     = link_to 'New Typeoftask', new_typeoftask_path, class: "glyphicon glyphicon-plus btn btn-md btn-primary pull-right"
@@ -10,7 +10,7 @@
   table.table.table-striped.table-hover.table-condensed.table-bordered
     thead
       tr
-        th ID
+        th #
         th Name
         th Priority
 
@@ -18,7 +18,7 @@
       - @typeoftasks.each do |typeoftask|
         tr
           td = typeoftask.id
-          td.col-md-8 = typeoftask.name
+          td.col-md-10 = typeoftask.name
           td = typeoftask.priority
           td.btn-group role="group"
             = link_to '', edit_typeoftask_path(typeoftask), class: "glyphicon glyphicon-edit btn btn-md btn-default", title: t('std.edit')

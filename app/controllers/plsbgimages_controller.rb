@@ -16,6 +16,7 @@ class PlsbgimagesController < ApplicationController
   # GET /plsbgimages/new
   def new
     @plsbgimage = Plsbgimage.new
+    @old_order = Plsbgimage.find(params[:old_id]) if params[:old_id]
   end
 
   # GET /plsbgimages/1/edit
@@ -57,19 +58,6 @@ class PlsbgimagesController < ApplicationController
   def update
     respond_to do |format|
       if @plsbgimage.update(plsbgimage_params)
-        tracks=""
-        @plsbgimage.mediafiles.each do |mediafile|
-          tracks += "<IMG><HASH>#{mediafile.md5}</HASH></IMG>"
-        end
-
-        @plsbgimage.devices.each do |device|
-          device.tasks.create(typeoftask_id: 19, typeofstatus_id: 1, options: "<IMGS>#{tracks}</IMGS>")
-          @plsbgimage.mediafiles.each do |mediafile|
-            if device.tasks.where(mediafile_id: mediafile.id).empty?
-              device.tasks.create(typeoftask_id: 1, typeofstatus_id: 1, options: "<URLS><URL>http://192.168.0.91:3000#{mediafile.file}|#{mediafile.md5[-4..-1]}</URL></URLS>", mediafile_id: mediafile.id)
-            end
-          end
-        end
         format.html { redirect_to @plsbgimage, notice: 'Plsbgimage was successfully updated.' }
         format.json { render :show, status: :ok, location: @plsbgimage }
       else

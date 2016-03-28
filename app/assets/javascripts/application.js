@@ -179,4 +179,261 @@ jQuery(document).ready(function($){
         }
     });
 
+    //plsbgvideos
+    var $devices = $('#source_device_ids');
+    var $plsDevices = $('#plsbgvideo_device_ids');
+    if ($devices.length && $plsDevices.length) {
+        $devices.click(function (e) {
+            var selectedDevices = $('#source_device_ids option:selected');
+            var selectedPlsDevices = $('#plsbgvideo_device_ids');
+            if (selectedDevices.length == 1) {
+                oldDevice = selectedDevices.val();
+            }
+            selectedDevices.each(function () {
+                if (selectedDevices.length > 1 && oldDevice == $(this).val()) {
+                    return true;
+                }
+
+                var device = $(this),
+                    addNewDevice = true;
+                $('#plsbgvideo_device_ids option').each(function () {
+                    if ($(this).text() == device.text() && $(this).val() == device.val())
+                        addNewDevice = false;
+                });
+                if (addNewDevice) {
+                    selectedPlsDevices.append($('<option>', {
+                        value: $(this).val(),
+                        text: $(this).text()
+                    }));
+                }
+            });
+        });
+
+        $plsDevices.click(function (e) {
+            var selectedDevices = $('#plsbgvideo_device_ids option:selected');
+            selectedDevices.each(function () {
+                if ($plsDevices.find('option').length > 1) {
+                    $plsDevices[0].remove($plsDevices[0].selectedIndex)
+                }
+            });
+        });
+    }
+
+    var $files = $('#source_mediafile_ids');
+    var $plsFiles = $('#plsbgvideo_mediafile_ids');
+    if ($files.length && $plsFiles.length) {
+        $files.click(function (e) {
+            var selectedFiles = $('#source_mediafile_ids option:selected');
+            var selectedPlsFiles = $('#plsbgvideo_mediafile_ids');
+            if (selectedFiles.length == 1) {
+                oldFiles = selectedFiles.val();
+            }
+            selectedFiles.each(function () {
+                if (selectedFiles.length > 1 && oldFile == $(this).val()) {
+                    return true;
+                }
+
+                var file = $(this),
+                    addNewFile = true;
+                $('#plsbgvideo_mediafile_ids option').each(function () {
+                    if ($(this).text() == file.text() && $(this).val() == file.val())
+                        addNewFile = false;
+                });
+                if (addNewFile) {
+                    selectedPlsFiles.append($('<option>', {
+                        value: $(this).val(),
+                        text: $(this).text()
+                    }));
+                }
+            });
+        });
+
+        $plsFiles.click(function (e) {
+            var selectedFiles = $('#plsbgvideo_mediafile_ids option:selected');
+            selectedFiles.each(function () {
+                if ($plsFiles.find('option').length > 1) {
+                    $plsFiles[0].remove($plsFiles[0].selectedIndex)
+                }
+            });
+        });
+    }
+
+    $('.new_plsbgvideo').submit(function() {
+        $('#plsbgvideo_device_ids option').prop('selected', true);
+        $('#plsbgvideo_mediafile_ids option').prop('selected', true);
+
+        return true; // return false to cancel form action
+    });
+
+    //plsbgmusics
+    //var $devices = $('#source_device_ids');
+    var $plsMusicDevices = $('#plsbgmusic_device_ids');
+    if ($devices.length && $plsMusicDevices.length) {
+        $devices.click(function (e) {
+            var selectedDevices = $('#source_device_ids option:selected');
+            var selectedPlsDevices = $('#plsbgmusic_device_ids');
+            if (selectedDevices.length == 1) {
+                oldDevice = selectedDevices.val();
+            }
+            selectedDevices.each(function () {
+                if (selectedDevices.length > 1 && oldDevice == $(this).val()) {
+                    return true;
+                }
+
+                var device = $(this),
+                    addNewDevice = true;
+                $('#plsbgmusic_device_ids option').each(function () {
+                    if ($(this).text() == device.text() && $(this).val() == device.val())
+                        addNewDevice = false;
+                });
+                if (addNewDevice) {
+                    selectedPlsDevices.append($('<option>', {
+                        value: $(this).val(),
+                        text: $(this).text()
+                    }));
+                }
+            });
+        });
+
+        $plsMusicDevices.click(function (e) {
+            var selectedDevices = $('#plsbgmusic_device_ids option:selected');
+            selectedDevices.each(function () {
+                if ($plsMusicDevices.find('option').length > 1) {
+                    $plsMusicDevices[0].remove($plsMusicDevices[0].selectedIndex)
+                }
+            });
+        });
+    }
+
+    //var $files = $('#source_mediafile_ids');
+    var $plsMusicFiles = $('#plsbgmusic_mediafile_ids');
+    if ($files.length && $plsMusicFiles.length) {
+        $files.click(function (e) {
+            var selectedFiles = $('#source_mediafile_ids option:selected');
+            var selectedPlsFiles = $('#plsbgmusic_mediafile_ids');
+            if (selectedFiles.length == 1) {
+                oldFiles = selectedFiles.val();
+            }
+            selectedFiles.each(function () {
+                if (selectedFiles.length > 1 && oldFile == $(this).val()) {
+                    return true;
+                }
+
+                var file = $(this),
+                    addNewFile = true;
+                $('#plsbgmusic_mediafile_ids option').each(function () {
+                    if ($(this).text() == file.text() && $(this).val() == file.val())
+                        addNewFile = false;
+                });
+                if (addNewFile) {
+                    selectedPlsFiles.append($('<option>', {
+                        value: $(this).val(),
+                        text: $(this).text()
+                    }));
+                }
+            });
+        });
+
+        $plsMusicFiles.click(function (e) {
+            var selectedFiles = $('#plsbgmusic_mediafile_ids option:selected');
+            selectedFiles.each(function () {
+                if ($plsMusicFiles.find('option').length > 1) {
+                    $plsMusicFiles[0].remove($plsMusicFiles[0].selectedIndex)
+                }
+            });
+        });
+    }
+
+    $('.new_plsbgmusic').submit(function() {
+        $('#plsbgmusic_device_ids option').prop('selected', true);
+        $('#plsbgmusic_mediafile_ids option').prop('selected', true);
+
+        return true; // return false to cancel form action
+    });
+
+    //plsbgimages
+    //var $devices = $('#source_device_ids');
+    var $plsImageDevices = $('#plsbgimage_device_ids');
+    if ($devices.length && $plsImageDevices.length) {
+        $devices.click(function (e) {
+            var selectedDevices = $('#source_device_ids option:selected');
+            var selectedPlsDevices = $('#plsbgimage_device_ids');
+            if (selectedDevices.length == 1) {
+                oldDevice = selectedDevices.val();
+            }
+            selectedDevices.each(function () {
+                if (selectedDevices.length > 1 && oldDevice == $(this).val()) {
+                    return true;
+                }
+
+                var device = $(this),
+                    addNewDevice = true;
+                $('#plsbgimage_device_ids option').each(function () {
+                    if ($(this).text() == device.text() && $(this).val() == device.val())
+                        addNewDevice = false;
+                });
+                if (addNewDevice) {
+                    selectedPlsDevices.append($('<option>', {
+                        value: $(this).val(),
+                        text: $(this).text()
+                    }));
+                }
+            });
+        });
+
+        $plsImageDevices.click(function (e) {
+            var selectedDevices = $('#plsbgimage_device_ids option:selected');
+            selectedDevices.each(function () {
+                if ($plsImageDevices.find('option').length > 1) {
+                    $plsImageDevices[0].remove($plsImageDevices[0].selectedIndex)
+                }
+            });
+        });
+    }
+
+    //var $files = $('#source_mediafile_ids');
+    var $plsImageFiles = $('#plsbgimage_mediafile_ids');
+    if ($files.length && $plsImageFiles.length) {
+        $files.click(function (e) {
+            var selectedFiles = $('#source_mediafile_ids option:selected');
+            var selectedPlsFiles = $('#plsbgimage_mediafile_ids');
+            if (selectedFiles.length == 1) {
+                oldFiles = selectedFiles.val();
+            }
+            selectedFiles.each(function () {
+                if (selectedFiles.length > 1 && oldFile == $(this).val()) {
+                    return true;
+                }
+
+                var file = $(this),
+                    addNewFile = true;
+                $('#plsbgimage_mediafile_ids option').each(function () {
+                    if ($(this).text() == file.text() && $(this).val() == file.val())
+                        addNewFile = false;
+                });
+                if (addNewFile) {
+                    selectedPlsFiles.append($('<option>', {
+                        value: $(this).val(),
+                        text: $(this).text()
+                    }));
+                }
+            });
+        });
+
+        $plsImageFiles.click(function (e) {
+            var selectedFiles = $('#plsbgimage_mediafile_ids option:selected');
+            selectedFiles.each(function () {
+                if ($plsImageFiles.find('option').length > 1) {
+                    $plsImageFiles[0].remove($plsImageFiles[0].selectedIndex)
+                }
+            });
+        });
+    }
+
+    $('.new_plsbgimage').submit(function() {
+        $('#plsbgimage_device_ids option').prop('selected', true);
+        $('#plsbgimage_mediafile_ids option').prop('selected', true);
+
+        return true; // return false to cancel form action
+    });
 });

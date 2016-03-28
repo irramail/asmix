@@ -16,6 +16,7 @@ class PlsbgmusicsController < ApplicationController
   # GET /plsbgmusics/new
   def new
     @plsbgmusic = Plsbgmusic.new
+    @old_order = Plsbgmusic.find(params[:old_id]) if params[:old_id]
   end
 
   # GET /plsbgmusics/1/edit
@@ -56,19 +57,6 @@ class PlsbgmusicsController < ApplicationController
   def update
     respond_to do |format|
       if @plsbgmusic.update(plsbgmusic_params)
-        tracks=""
-        @plsbgmusic.mediafiles.each do |mediafile|
-          tracks += "<TRACK><HASH>#{mediafile.md5}</HASH></TRACK>"
-        end
-
-        @plsbgmusic.devices.each do |device|
-          device.tasks.create(typeoftask_id: 14, typeofstatus_id: 1, options: "<TRACKS>#{tracks}</TRACKS>")
-          @plsbgmusic.mediafiles.each do |mediafile|
-            if device.tasks.where(mediafile_id: mediafile.id).empty?
-              device.tasks.create(typeoftask_id: 1, typeofstatus_id: 1, options: "<URLS><URL>http://192.168.0.91:3000#{mediafile.file}|#{mediafile.md5[-4..-1]}</URL></URLS>", mediafile_id: mediafile.id)
-            end
-          end
-        end
         format.html { redirect_to @plsbgmusic, notice: 'Plsbgmusic was successfully updated.' }
         format.json { render :show, status: :ok, location: @plsbgmusic }
       else
