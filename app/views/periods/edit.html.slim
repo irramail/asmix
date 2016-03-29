@@ -1,8 +1,9 @@
-h1 Editing period
+h1 = t('periods.edit')
 
 == render 'form'
 
-= link_to t('std.show'), @period
-'|
-= link_to t('std.back'), periods_path
+.col-md-12
+  = link_to t('std.show'), @period
+  '|
+  = link_to t('std.back'), periods_path
 

@@ -1,18 +1,18 @@
 .col-md-6
   p.btn-group.pull-right
     - if Typeoftask.all.count == 0
-      = link_to 'Generate', {:controller => "typeoftasks", :action => "gen"}, :method => "post", class: "glyphicon glyphicon-forward btn btn-md btn-success pull-left"
+      = link_to t('std.gen'), {:controller => "typeoftasks", :action => "gen"}, :method => "post", class: "glyphicon glyphicon-forward btn btn-md btn-success pull-left"
 
-    = link_to 'New Typeoftask', new_typeoftask_path, class: "glyphicon glyphicon-plus btn btn-md btn-primary pull-right"
+    = link_to t('tasks.add_new_type'), new_typeoftask_path, class: "glyphicon glyphicon-plus btn btn-md btn-primary pull-right"
 
-  h1 Listing typeoftasks
+  h1 = t('tasks.title_type')
 
   table.table.table-striped.table-hover.table-condensed.table-bordered
     thead
       tr
         th #
-        th Name
-        th Priority
+        th = t('tasks.thead.name')
+        th = t('tasks.thead.priority')
 
     tbody
       - @typeoftasks.each do |typeoftask|

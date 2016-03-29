@@ -1,10 +1,10 @@
-p#notice = notice
+/p#notice = notice
 
 p
-  strong Name:
+  strong = "#{t('tasks.thead.name')}:"
   = @typeoftask.name
 p
-  strong Priority:
+  strong = "#{t('tasks.thead.priority')}:"
   = @typeoftask.priority
 
 = link_to t('std.edit'), edit_typeoftask_path(@typeoftask)

@@ -1,8 +1,9 @@
-h1 Editing status
+h1 = t('statuses.edit')
 
 == render 'form'
 
-= link_to t('std.show'), @status
-'|
-= link_to t('std.back'), statuses_path
+.col-md-12
+  = link_to t('std.show'), @status
+  '|
+  = link_to t('std.back'), statuses_path
 

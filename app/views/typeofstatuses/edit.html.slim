@@ -1,8 +1,9 @@
-h1 Editing typeofstatus
+h1 = t('tasks.edit_status')
 
 == render 'form'
 
-= link_to t('std.show'), @typeofstatus
-'|
-= link_to t('std.back'), typeofstatuses_path
+.col-md-12
+  = link_to t('std.show'), @typeofstatus
+  '|
+  = link_to t('std.back'), typeofstatuses_path
 

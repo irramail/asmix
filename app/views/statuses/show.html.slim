@@ -1,9 +1,9 @@
-p#notice = notice
+/p#notice = notice
 
 p
-  strong Name:
+  strong = "#{t('statuses.thead.name')}:"
   = @status.name
-
-= link_to t('std.edit'), edit_status_path(@status)
-'|
-= link_to t('std.back'), statuses_path
+.col-md-12
+  = link_to t('std.edit'), edit_status_path(@status)
+  '|
+  = link_to t('std.back'), statuses_path

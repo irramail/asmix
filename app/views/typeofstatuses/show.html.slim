@@ -1,12 +1,13 @@
-p#notice = notice
+/p#notice = notice
 
 p
-  strong Name:
+  strong = "#{t('tasks.thead.name')}:"
   = @typeofstatus.name
 p
-  strong Priority:
+  strong = "#{t('tasks.thead.priority')}:"
   = @typeofstatus.priority
 
-= link_to t('std.edit'), edit_typeofstatus_path(@typeofstatus)
-'|
-= link_to t('std.back'), typeofstatuses_path
+.col-md-12
+  = link_to t('std.edit'), edit_typeofstatus_path(@typeofstatus)
+  '|
+  = link_to t('std.back'), typeofstatuses_path

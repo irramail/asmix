@@ -6,10 +6,10 @@
         - @typeofstatus.errors.full_messages.each do |message|
           li = message
 
-  .field
+  .field.col-md-3
     = f.label :name
     = f.text_field :name
-  .field
+  .field.col-md-3
     = f.label :priority
     = f.number_field :priority
-  .actions = f.submit
+  .actions.pull-right = f.submit t('std.save'), class: "btn btn-success btn-md"

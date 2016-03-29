@@ -1,11 +1,10 @@
-p#notice = notice
-
+/p#notice = notice
 
 p
-  strong Value:
+  strong = "#{t('periods.thead.value')}:"
   = @period.value
 p
-  strong Name:
+  strong = "#{t('periods.thead.name')}:"
   = @period.name
 
 = link_to t('std.edit'), edit_period_path(@period)

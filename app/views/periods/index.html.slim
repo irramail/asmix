@@ -2,17 +2,17 @@
 
   p.btn-group.pull-right
     - if Period.all.count == 0
-      = link_to 'Generate', {:controller => "periods", :action => "gen"}, :method => "post", class: "glyphicon glyphicon-forward btn btn-md btn-success pull-left"
+      = link_to t('std.gen'), {:controller => "periods", :action => "gen"}, :method => "post", class: "glyphicon glyphicon-forward btn btn-md btn-success pull-left"
 
-    = link_to 'New Period', new_period_path, class: "glyphicon glyphicon-plus btn btn-md btn-primary pull-right"
+    = link_to t('periods.add_new'), new_period_path, class: "glyphicon glyphicon-plus btn btn-md btn-primary pull-right"
 
-  h1 Listing periods
+  h1 = t('periods.title')
 
   table.table.table-striped.table-hover.table-condensed.table-bordered
     thead
       tr
-        th Value
-        th Name
+        th = t('periods.thead.value')
+        th = t('periods.thead.name')
 
 
     tbody

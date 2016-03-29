@@ -6,7 +6,7 @@
         - @status.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :name
+  .field.col-md-3
+    = f.label t('statuses.thead.name')
     = f.text_field :name
-  .actions = f.submit
+  .actions.pull-right = f.submit t('std.save'), class: "btn btn-success btn=md"
