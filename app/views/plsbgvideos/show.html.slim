@@ -1,16 +1,15 @@
 /p#notice = notice
 
 p
-  strong Name:
+  strong = "#{t('pls.name')}:"
   = @plsbgvideo.name
 p
-  strong Devices:
+  strong = "#{t('pls.devices')}:"
   - @plsbgvideo.devices.each do |device|
     p #{device.id}. #{device.name}
 p
-  strong Mediafiles:
+  strong = "#{t('pls.files')}:"
   - @plsbgvideo.mediafiles.each do |mediafile|
     p #{mediafile.id}. #{mediafile.filename}
-= link_to t('std.edit'), edit_plsbgvideo_path(@plsbgvideo)
-'|
+
 = link_to t('std.back'), plsbgvideos_path

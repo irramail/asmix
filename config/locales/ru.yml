@@ -7,5 +7,7 @@ ru:
     cancel: "Отменить"
     clone:  "Копировать"
     save:   "Соханить"
+    created: "Создан"
+    updated: "Обновлен"
 
     back: "Назад"

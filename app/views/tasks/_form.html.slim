@@ -8,16 +8,16 @@
             li = message
 
     .field.col-md-3.form-group
-      = f.label :device
+      = f.label t('tasks.thead.device')
       = f.collection_select :device_id, Device.order(:name), :id, :name
     .field.col-md-4.form-group
-      = f.label :typeoftask
+      = f.label t('tasks.thead.type')
       = f.collection_select :typeoftask_id, Typeoftask.all, :id, :name
     .field.col-md-3.form-group
-      = f.label :typeofstatus
+      = f.label t('tasks.thead.status')
       = f.collection_select :typeofstatus_id, Typeofstatus.all, :id, :name
-    .actions.col-md-2.form-group = f.submit class:"btn btn-primary pull-right"
+    .actions.col-md-2.form-group = f.submit t('std.save'), class:"btn btn-primary pull-right"
     .field.col-md-12.form-group
-      = f.label :options
+      = f.label t('tasks.options')
       = f.text_area :options, class:"col-md-11 pull-right"
 

@@ -6,20 +6,20 @@
         - @plsbgvideo.errors.full_messages.each do |message|
           li = message
 
-  .field.col-md-3
-    = f.label :name
+  .field.col-md-12
+    = f.label t('pls.name'), class: "col-md-1"
     = f.text_field :name
+    .actions.pull-right = f.submit t('std.save'), class: "btn btn-success btn-md"
   .col-md-12.padt20
-    .field.col-md-3
+    .field.col-md-5
       - devices = {}
       - devices = @old_order.devices.all if @old_order
-      = f.label :device
+      = f.label t('pls.devices')
       = collection_select :source, :device_ids, Device.all, :id, :name, {}, { :multiple => true }
       = f.collection_select :device_ids, devices, :id, :name, {}, { :multiple => true }
-    .field.col-md-9
+    .field.col-md-7
       - files = {}
       - files = @old_order.mediafiles.all if @old_order
-      = f.label :mediafile
+      = f.label t('pls.files')
       = collection_select :source, :mediafile_ids, Mediafile.where(:content_id => 3).all, :id, :filename, {}, { :multiple => true }
       = f.collection_select :mediafile_ids, files, :id, :filename, {}, { :multiple => true }
-  .actions = f.submit

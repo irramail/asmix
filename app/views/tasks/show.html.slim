@@ -7,22 +7,22 @@ p.col-md-12
       strong.col-md-1.pull-right Order:
 
 p.col-md-1
-  strong ID:
+  strong = "#{t('tasks.thead.id')}:"
   = @task.id
 
 p.col-md-2
-  strong Device:
+  strong = "#{t('tasks.thead.device')}:"
   = @task.device.name
 p.col-md-3
-  strong Typeoftask:
+  strong = "#{t('tasks.thead.type')}:"
   = @task.typeoftask.name
 p.col-md-3
-  strong Typeofstatus:
+  strong = "#{t('tasks.thead.status')}:"
   span.img-status.img-status-sz20.center-block.padt20.margin-bottom-m5 class="#{@task.typeofstatus.name.downcase}"
   = @task.typeofstatus.name
 
 p.col-md-12
-  strong Options:
+  strong = "#{t('tasks.options')}:"
   = @task.options
 
 .col-md-12
