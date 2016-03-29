@@ -68,6 +68,6 @@
               td = task.typeoftask.name
               td class="img-status #{task.typeofstatus.name.downcase}"
 
-/= link_to 'Edit', edit_order_path(@order)
+/= link_to t('std.edit'), edit_order_path(@order)
 /'|
 = link_to t('std.back'), orders_path

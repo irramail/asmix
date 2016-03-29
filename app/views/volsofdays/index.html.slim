@@ -19,7 +19,7 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
         td = volsofday.value
         td = volsofday.market
         td = link_to 'Show', volsofday
-        td = link_to 'Edit', edit_volsofday_path(volsofday)
+        td = link_to t('std.edit'), edit_volsofday_path(volsofday)
         td = link_to 'Destroy', volsofday, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br

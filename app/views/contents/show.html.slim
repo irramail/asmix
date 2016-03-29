@@ -27,6 +27,6 @@ h2 Files
     tbody
       = render @content.mediafiles
 
-= link_to 'Edit', edit_content_path(@content)
+= link_to t('std.edit'), edit_content_path(@content)
 '|
-= link_to 'Back', contents_path
+= link_to t('std.back'), contents_path

@@ -19,7 +19,7 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
         td = worktime_broadcasting.start
         td = worktime_broadcasting.stop
         td = link_to 'Show', worktime_broadcasting
-        td = link_to 'Edit', edit_worktime_broadcasting_path(worktime_broadcasting)
+        td = link_to t('std.edit'), edit_worktime_broadcasting_path(worktime_broadcasting)
         td = link_to 'Destroy', worktime_broadcasting, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br

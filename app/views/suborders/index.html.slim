@@ -31,7 +31,7 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
         td = suborder.startt
         td = suborder.stopt
         td = link_to 'Show', suborder
-        td = link_to 'Edit', edit_suborder_path(suborder)
+        td = link_to t('std.edit'), edit_suborder_path(suborder)
         td = link_to 'Destroy', suborder, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br

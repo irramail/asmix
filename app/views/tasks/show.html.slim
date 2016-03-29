@@ -26,6 +26,6 @@ p.col-md-12
   = @task.options
 
 .col-md-12
-  = link_to 'Edit', edit_task_path(@task)
+  = link_to t('std.edit'), edit_task_path(@task)
   '|
-  = link_to 'Back', tasks_path
+  = link_to t('std.back'), tasks_path

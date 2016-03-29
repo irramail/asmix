@@ -15,7 +15,7 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
         td = plist.suborder
         td = plist.mediafile
         td = link_to 'Show', plist
-        td = link_to 'Edit', edit_plist_path(plist)
+        td = link_to t('std.edit'), edit_plist_path(plist)
         td = link_to 'Destroy', plist, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br

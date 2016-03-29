@@ -11,6 +11,6 @@ p
   strong Mediafiles:
   - @plsbgvideo.mediafiles.each do |mediafile|
     p #{mediafile.id}. #{mediafile.filename}
-= link_to 'Edit', edit_plsbgvideo_path(@plsbgvideo)
+= link_to t('std.edit'), edit_plsbgvideo_path(@plsbgvideo)
 '|
-= link_to 'Back', plsbgvideos_path
+= link_to t('std.back'), plsbgvideos_path

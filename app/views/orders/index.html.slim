@@ -25,7 +25,7 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
         /Fixme after adde in order user_id
         td.col-md-1 = current_user.email
         td = link_to '', order, class: "glyphicon glyphicon-eye-open btn btn-sm", title: t('std.show')
-        /td = link_to 'Edit', edit_order_path(order)
+        /td = link_to t('std.edit'), edit_order_path(order)
         /td.col-md-1 = link_to '', order, data: {:confirm => 'Are you sure?'}, :method => :delete, class: "glyphicon glyphicon-remove-sign btn btn-sm btn-danger", title: ''
         - if order.status.name == 'New'
           td = link_to '', {:controller => "orders", :action => "start", :id => order.id}, :method => "post", class: "glyphicon glyphicon-play btn btn-sm btn-primary", title: t('orders.start')

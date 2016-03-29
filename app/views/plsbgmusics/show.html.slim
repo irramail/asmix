@@ -11,6 +11,6 @@ p
   strong Mediafiles:
   - @plsbgmusic.mediafiles.each do |mediafile|
     p #{mediafile.id}. #{mediafile.filename}
-= link_to 'Edit', edit_plsbgmusic_path(@plsbgmusic)
+= link_to t('std.edit'), edit_plsbgmusic_path(@plsbgmusic)
 '|
-= link_to 'Back', plsbgmusics_path
+= link_to t('std.back'), plsbgmusics_path

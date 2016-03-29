@@ -18,7 +18,7 @@
           td.btn-group role="group"
             = link_to '', plsbgmusic, class: "glyphicon glyphicon-eye-open btn btn-sm btn-default", title: t('std.show')
             = link_to '', {:controller => "plsbgmusics", :action => "new", :old_id => plsbgmusic.id}, :method => "get", class: "glyphicon glyphicon-copy btn btn-sm btn-success", title: 'Clone'
-          /td = link_to 'Edit', edit_plsbgmusic_path(plsbgmusic)
+          /td = link_to t('std.edit'), edit_plsbgmusic_path(plsbgmusic)
           /td = link_to 'Destroy', plsbgmusic, data: {:confirm => 'Are you sure?'}, :method => :delete
 .col-md-12 = paginate @plsbgmusics
 
