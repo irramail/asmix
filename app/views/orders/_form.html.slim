@@ -19,37 +19,49 @@
   = "#{worktimes[0..-2]}"
   | ];</script>
 
-  .field
-    = f.label :name
-    = f.text_field :name
+  .field.col-md-12
+    .actions = f.submit t('orders.save'), class: "btn btn-primary pull-right"
+    .col-md-3.pull-right
 
-    = f.label :status
-    / but Disabled doing not sending status in params, set in controller after Order.new in create
-    = f.collection_select :status_id, Status.all, :id, :name, {}, { disabled: true }
+    .col-md-3.pull-right
 
-    = f.label :sun
-    = f.check_box :sun, {checked: true}
 
-    = f.label :mon
-    = f.check_box :mon, {checked: true}
+  .field.col-md-12
+    .col-md-3
+      = f.label t('orders.name')
+      = f.text_field :name
 
-    = f.label :tue
-    = f.check_box :tue, {checked: true}
+    .col-md-2
+      = f.label t('orders.status')
+      / but Disabled doing not sending status in params, set in controller after Order.new in create
+      = f.collection_select :status_id, Status.all, :id, :name, {}, { disabled: true }
 
-    = f.label :wed
-    = f.check_box :wed, {checked: true}
+    .col-md-5
+      = f.label :sun
+      = f.check_box :sun, {checked: true}
 
-    = f.label :thu
-    = f.check_box :thu, {checked: true}
+      = f.label :mon
+      = f.check_box :mon, {checked: true}
 
-    = f.label :fri
-    = f.check_box :fri, {checked: true}
+      = f.label :tue
+      = f.check_box :tue, {checked: true}
 
-    = f.label :sat
-    = f.check_box :sat, {checked: true}
-  .field
-    = f.label :contents
-    = collection_select :contents, :content_id, Mediafile.all, :id, :filename, {}, {:multiple => true}
+      = f.label :wed
+      = f.check_box :wed, {checked: true}
+
+      = f.label :thu
+      = f.check_box :thu, {checked: true}
+
+      = f.label :fri
+      = f.check_box :fri, {checked: true}
+
+      = f.label :sat
+      = f.check_box :sat, {checked: true}
+  .field.col-md-6.padt20
+    .col-md-12.padb20
+      button.btn.btn-danger.pull-right id="cleanAllFiles" = t('orders.clean_files')
+    = f.label t('orders.contents')
+    = collection_select :contents, :content_id, Mediafile.where(:content_id => 2).all + Mediafile.where(:content_id => 4).all, :id, :filename, {}, {:multiple => true}
     /= f.label :plist_ids
     - collection_files = {}
     - if @old_order.present?
@@ -57,8 +69,11 @@
       - @old_order.suborders.each { |suborder| suborder.plists.each { |plist| array << plist.mediafile} }
       - collection_files = array.uniq.flat_map { |i| i }
     = collection_select :plist_ids, :plist_id, collection_files, :id, :filename, {}, {:multiple => true}
-  .field
-    = f.label :devices
+
+  .field.col-md-6.padt20
+    .col-md-12.padb20
+      button.btn.btn-danger.pull-right id="cleanAllDevices" = t('orders.clean_devices')
+    = f.label t('orders.devices')
     = collection_select :devices, :device_id, Device.all, :id, :name, {}, {:multiple => true}
 
     /= f.label :device_ids
@@ -66,8 +81,11 @@
     - if @old_order.present?
       - collection_devices = Device.where(id: Suborder.where(order: @old_order.id).pluck(:device_id))
     = collection_select :device_ids, :device_id, collection_devices, :id, :name, {}, {:multiple => true}
-    = f.label :periods
+
+  .field.col-md-12
+    = f.label t('orders.periods')
     = collection_select :periods, :period_id, Period.all, :id, :name
+
   .field hidden="hidden"
     /= f.label :startdt
     = datetime_select :startdatetime, :startdt, { :minute_step => 5, :default => {:hour => '00', :minute => '00'} }
@@ -79,17 +97,17 @@
     /= f.label :stopt
     = time_select :stoptime, :stopt, :default => {:hour => '23', :minute => '59'}
 
-  table id="suborders_list" class="table table-striped table-hover"
+  table.table.table-striped.table-hover.col-md-12 id="suborders_list"
     thead
       tr
-        th ID device
-        th Device
-        th Period
-        th Start date
-        th Stop date
-        th Start time
-        th Stop time
-        th Files
+        th = t('orders.id_device')
+        th = t('orders.device')
+        th = t('orders.period')
+        th = t('orders.start_date')
+        th = t('orders.stop_date')
+        th = t('orders.start_time')
+        th = t('orders.stop_time')
+        th = t('orders.files')
     tbody id="suborders_body"
       -if @old_order.present?
         - if @old_order.suborders.present?
@@ -105,8 +123,3 @@
               td = time_select "suborders[#{suborder.device.id}]", 'startt', default: suborder.startt
               td = time_select "suborders[#{suborder.device.id}]", 'stopt', default: suborder.stopt
               td = collection_select :select, "files4device#{suborder.device.id}", Mediafile.where(id: Plist.where(suborder: suborder.id).pluck(:mediafile_id)), :id, :filename, {}, { multiple: true, class: "files4device", name: "suborders[#{suborder.device.id}][files][]"}
-  .actions = f.submit
-.field
-  button onclick="cleanAllDevices()" Clean all devices
-.field
-  button onclick="cleanAllFiles()" Clean all files

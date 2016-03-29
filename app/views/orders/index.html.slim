@@ -1,4 +1,4 @@
-p.btn-group.pull-right = link_to 'New Order', new_order_path, class: "glyphicon glyphicon-plus btn btn-md btn-primary"
+p.btn-group.pull-right = link_to t('orders.new'), new_order_path, class: "glyphicon glyphicon-plus btn btn-md btn-primary"
 
 table.table.table-striped.table-hover.table-condensed.table-bordered
   thead
@@ -28,9 +28,9 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
         /td = link_to 'Edit', edit_order_path(order)
         /td.col-md-1 = link_to '', order, data: {:confirm => 'Are you sure?'}, :method => :delete, class: "glyphicon glyphicon-remove-sign btn btn-sm btn-danger", title: ''
         - if order.status.name == 'New'
-          td.col-md-1 = link_to '', {:controller => "orders", :action => "start", :id => order.id}, :method => "post", class: "glyphicon glyphicon-play btn btn-sm btn-primary", title: 'Start'
-        td = link_to '', {:controller => "orders", :action => "new", :old_id => order.id}, :method => "get", class: "glyphicon glyphicon-copy btn btn-sm btn-success", title: 'Clone'
+          td = link_to '', {:controller => "orders", :action => "start", :id => order.id}, :method => "post", class: "glyphicon glyphicon-play btn btn-sm btn-primary", title: t('orders.start')
+        td = link_to '', {:controller => "orders", :action => "new", :old_id => order.id}, :method => "get", class: "glyphicon glyphicon-copy btn btn-sm btn-success", title: t('std.clone')
         - unless order.status.name == 'Cancel'
-          td.col-md-1 = link_to '', {controller: "orders", action: "cancel", id: order}, :method => "post", class: "glyphicon glyphicon-remove btn btn-sm btn-danger", title: 'Cancel'
+          td = link_to '', {controller: "orders", action: "cancel", id: order}, :method => "post", class: "glyphicon glyphicon-remove btn btn-sm btn-danger", title: t('std.cancel')
 
 = paginate @orders

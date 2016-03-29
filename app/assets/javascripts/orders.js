@@ -1,13 +1,3 @@
-function cleanAllDevices() {
-        $('#device_ids_device_id').find('option').remove().end();
-        $('#suborders_body').find('tr').remove().end();
-};
-
-function cleanAllFiles() {
-    $('#plist_ids_plist_id').find('option').remove().end();
-    $('.files4device').find('option').remove().end();
-};
-
 function addToPlist() {
     $('#plist_ids_plist_id').find('option').remove().end();
     var filename = document.getElementById('contents_content_id');

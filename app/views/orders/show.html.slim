@@ -2,14 +2,14 @@
 
 .col-md-12
   - if @order.status.name == 'New'
-    p.btn-group.col-md-1.pull-right = link_to "Start", {:controller => "orders", :action => "start", :id => @order.id}, :method => "post", class: "glyphicon glyphicon-play btn btn-md btn-primary"
+    p.btn-group.col-md-1.pull-right = link_to t('orders.start'), {:controller => "orders", :action => "start", :id => @order.id}, :method => "post", class: "glyphicon glyphicon-play btn btn-md btn-primary"
 
   p.col-md-2
-    strong Name:
+    strong = t('orders.name')
     = @order.name
 
   p.col-md-2
-    strong Status:
+    strong = t('orders.status')
     span.img-status.img-status-sz20.center-block.padt20.margin-bottom-m5 class="#{@order.status.name.downcase}"
     = @order.status.name
   p.col-md-7
@@ -32,14 +32,14 @@
   table.table.table-striped.table-hover.table-condensed.table-bordered id="suborders_list"
     thead
       tr
-        th ID device
-        th Device
-        th Period
-        th Start date
-        th Stop date
-        th Start time
-        th Stop time
-        th Files
+        th = t('orders.id_device')
+        th = t('orders.device')
+        th = t('orders.period')
+        th = t('orders.start_date')
+        th = t('orders.stop_date')
+        th = t('orders.start_time')
+        th = t('orders.stop_time')
+        th = t('orders.files')
     tbody id="suborders_body"
       - @order.suborders.each do |order|
         tr
@@ -70,4 +70,4 @@
 
 /= link_to 'Edit', edit_order_path(@order)
 /'|
-= link_to 'Back', orders_path
+= link_to t('std.back'), orders_path

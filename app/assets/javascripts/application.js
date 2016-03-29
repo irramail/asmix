@@ -160,6 +160,21 @@ jQuery(document).ready(function($){
         return true; // return false to cancel form action
     });
 
+    //clean all contents in new order
+    $('#cleanAllFiles').click(function() {
+        $('#plist_ids_plist_id').find('option').remove().end();
+        $('.files4device').find('option').remove().end();
+
+        return false; // return false to cancel form action
+    });
+
+    //clean all devices in new order
+    $('#cleanAllDevices').click(function() {
+        $('#device_ids_device_id').find('option').remove().end();
+        $('#suborders_body').find('tr').remove().end();
+        return false;
+    });
+
     /*menu handler*/
     function stripTrailingSlash(str) {
         if(str.substr(-1) == '/') {
