@@ -1,5 +1,5 @@
 p
-  strong Title:
+  strong.col-md-12 = t('contents.show.title')
   = @content.title
 
 - @content.mediafiles.each do |mediafile|
@@ -10,10 +10,10 @@ p
         - mediafile.errors.full_messages.each do |message|
           li = message
 
-h2 Choice new files and upload:
+h2.col-md-12 = t('contents.new.title')
 = render 'mediafiles/form'
 
-h2 Files
+h2.col-md-12 = t('contents.show.files')
 - if @content.mediafiles.count > 0
   table.table.table-striped.table-hover.table-condensed.table-bordered
     thead

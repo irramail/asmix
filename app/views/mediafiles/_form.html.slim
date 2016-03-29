@@ -1,5 +1,5 @@
 = form_for([@content, @content.mediafiles.build], :html => { :multipart => true } ) do |f|
-  .field
-    = f.label :file
-    = f.file_field :file, :multiple => true, name: "mediafile[file][]"
-  .actions = f.submit
+  .field.col-md-12
+    = f.label t('contents.show.file'), class: "pull-left"
+    = f.file_field :file, :multiple => true, name: "mediafile[file][]", class: "col-md-9"
+    .actions.pull-right = f.submit t('contents.new.upload'), class: "btn btn-primary col-md-12"

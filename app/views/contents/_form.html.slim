@@ -6,7 +6,7 @@
         - @content.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :title
-    = f.text_field :title
-  .actions = f.submit
+  .field.col-md-12
+    = f.label t('contents.edit.title'), class: "pull-left"
+    = f.text_field :title, class: "col-md-5"
+    .actions = f.submit t('std.save'), class: "btn btn-success btn-md"

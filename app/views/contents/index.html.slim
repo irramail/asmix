@@ -4,7 +4,7 @@
     - if Content.all.count == 0
       = link_to 'Generate', {:controller => "contents", :action => "gen"}, :method => "post", class: "glyphicon glyphicon-forward btn btn-md btn-success pull-left"
 
-  h1 All categories of files
+  h1 = t('contents.title')
 
   table.table.table-striped.table-hover.table-condensed.table-bordered
     thead
