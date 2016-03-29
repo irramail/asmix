@@ -2,10 +2,10 @@
   tr
     td = volsofday.time
     /td = volsofday.value
-    td.col-md-7
+    td.col-md-12
       = form_for([volsofday.market, volsofday], remote: true) do |f|
         .input-group
           = f.number_field :value, min: 0, max:100, class: "form-control"
           .input-group-btn
-            = f.submit 'Save', class: "btn btn-md btn-success"
+            = f.submit t('std.save'), class: "btn btn-md btn-success"
     /td = link_to '', [volsofday.market, volsofday], method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-remove btn btn-md btn-danger pull-right", title: t('std.destroy')

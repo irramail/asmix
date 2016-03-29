@@ -1,10 +1,10 @@
 /p#notice = notice
 
 p.col-md-2
-  strong Name:
+  strong = "#{t('markets.thead.name')}:"
   = @market.name
 p.com-md-1
-  strong Period:
+  strong = "#{t('markets.thead.period')}:"
   = @market.period
 
 - @market.volsofdays.each do |volsofday|
@@ -16,34 +16,34 @@ p.com-md-1
             li = message
 
 #market-show.col-md-12
-  #volsofdays.col-md-5
+  #volsofdays.col-md-4
     /#volsofdays-new.col-md-4
       h2 New time/value
       = render 'volsofdays/form'
 
-    #volsofdays-list.col-md-8
-      h2 Volsofdays
+    #volsofdays-list.col-md-10
+      h2 = t('markets.volsofdays')
       - if @market.volsofdays.count > 0
         table.table.table-striped.table-hover.table-condensed.table-bordered
           thead
             tr
-              th Time
-              th Value
-              th [colspan="1"]
+              th = t('markets.volsofday.time')
+              th = t('markets.volsofday.value')
+              /th [colspan="1"]
           tbody
             = render @market.volsofdays.order(:time)
 
-  #worktime.col-md-7
+  #worktime.col-md-5
     #worktime-broadcastings
-      h2 Worktime broadcastings
+      h2 = t('markets.worktimes')
       - if @market.worktime_broadcastings.count > 0
-        #worktime-show.col-md-6
+        #worktime-show.col-md-12
           table.table.table-striped.table-hover.table-condensed.table-bordered
             thead
               tr
-                th Day
-                th Start
-                th Stop
+                th = t('markets.wirktime.day')
+                th = t('markets.wirktime.start')
+                th = t('markets.wirktime.stop')
                 /th [colspan="1"]
             tbody
               = render @market.worktime_broadcastings.order(:wday)

@@ -6,10 +6,11 @@
         - @market.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :period
-    = f.number_field :period
-  .actions = f.submit
+  .col-md-12
+    .field.col-md-3.pull-left
+      = f.label t('markets.thead.name')
+      = f.text_field :name
+    .field.col-md-3
+      = f.label t('markets.thead.period')
+      = f.number_field :period
+    .actions.col-md-2.pull-right = f.submit t('std.save'), class: "btn btn-success btn-md"

@@ -1,0 +1,20 @@
+ru:
+  markets:
+    add_new: "Добавить магазин"
+    new: "Новый магазин"
+    edit: "Редактирование магазина"
+    title: "Магазины"
+
+    thead:
+      name: "Имя"
+      period: "Период"
+
+    volsofdays: "Громкость по часам"
+    worktimes: "Время работы по дням"
+    volsofday:
+      time: "Время"
+      value: "Значение"
+    wirktime:
+      day: "День"
+      start: "Начало"
+      stop:  "Окончание"

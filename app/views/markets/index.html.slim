@@ -1,23 +1,23 @@
 .col-md-6
-  h1.col-md-8.pull-left  Listing markets
-  = link_to 'New Market', new_market_path, class:"glyphicon glyphicon-plus btn btn-md btn-primary pull-right"
+  h1.col-md-8.pull-left = t('markets.title')
+  = link_to t('markets.add_new'), new_market_path, class:"glyphicon glyphicon-plus btn btn-md btn-primary pull-right col-md-4"
 
   table.table.table-striped.table-hover.table-condensed.table-bordered
     thead
       tr
         th #
-        th Name
-        th Period
+        th = t('markets.thead.name')
+        th = t('markets.thead.period')
 
     tbodys
       - @markets.each do |market|
         tr
           td = market.id
-          td.col-md-8 = market.name
+          td.col-md-7 = market.name
           td = market.period
           td.btn-group role="group"
             = link_to '', market, class: "glyphicon glyphicon-eye-open btn btn-md btn-default", title: t('std.show')
-            = link_to '', edit_device_path(market), class: "glyphicon glyphicon-edit btn btn-md btn-default", title: t('std.edit')
+            = link_to '', edit_market_path(market), class: "glyphicon glyphicon-edit btn btn-md btn-default", title: t('std.edit')
           /td = link_to 'Destroy', market, data: {:confirm => 'Are you sure?'}, :method => :delete
   = paginate @markets
 
