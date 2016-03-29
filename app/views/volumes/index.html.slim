@@ -18,7 +18,7 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
         td = volume.description
         td = volume.name
         td = volume.value
-        td = link_to 'Show', volume
+        td = link_to t('std.show'), volume
         td = link_to t('std.edit'), edit_volume_path(volume)
         td = link_to 'Destroy', volume, data: {:confirm => 'Are you sure?'}, :method => :delete
 

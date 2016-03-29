@@ -14,7 +14,7 @@ table
       tr
         td = plsbgmusic_device.plsbgmusic
         td = plsbgmusic_device.device
-        td = link_to 'Show', plsbgmusic_device
+        td = link_to t('std.show'), plsbgmusic_device
         td = link_to t('std.edit'), edit_plsbgmusic_device_path(plsbgmusic_device)
         td = link_to 'Destroy', plsbgmusic_device, data: {:confirm => 'Are you sure?'}, :method => :delete
 

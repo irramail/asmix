@@ -1,8 +1,9 @@
-h1 Editing device
+h1 = t('devices.edit')
 
 == render 'form'
 
-= link_to 'Show', @device
-'|
-= link_to t('std.back'), devices_path
+.col-md-12
+  = link_to t('std.show'), @device
+  '|
+  = link_to t('std.back'), devices_path
 

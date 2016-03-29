@@ -11,45 +11,45 @@
 
 .col-md-6
   p
-    strong Market:
+    strong = "#{t('devices.thead.market')}:"
     = @device.market.name
-    strong -> Device:
+    strong = "-> #{t('devices.device')}:"
     = "#{@device.id} - #{@device.name}"
 
-  h2 Volumes
+  h2 = t('devices.volumes')
 
   - if @device.volumes.count > 0
     table.table.table-striped.col-md-12.table-hover.table-condensed.table-bordered
       thead
         tr
-          th Description
-          th Name
-          th Volume
+          th = t('devices.thead.description')
+          th = t('devices.thead.name')
+          th = t('devices.thead.volume')
           th [colspan="1"]
       tbody
         == render @device.volumes
 
-  h2 Create new volume of volume
+  h2 = t('devices.add_new_volume')
   == render 'volumes/form'
 
 p.col-md-6
   p
-    strong Ping:
+    strong = "#{t('devices.thead.ping')}:"
     = @device.ping
   p
-    strong Tzdate:
+    strong = "#{t('devices.thead.tzdate')}:"
     = @device.tzdate
   p
-    strong Sn:
+    strong = "#{t('devices.thead.sn')}:"
     = @device.sn
   p
-    strong Active:
+    strong = "#{t('devices.thead.active')}:"
     = check_box 'Active', 'Active', checked: @device.active, :disabled => true, :readonly => true
   p
-    strong Equalizer:
+    strong = "#{t('devices.thead.equalizer')}:"
     = " #{@device.eq0}:#{@device.eq1}:#{@device.eq2}:#{@device.eq3}:#{@device.eq4}:#{@device.eq5}:#{@device.eq6}:#{@device.eq7}:#{@device.eq8}:#{@device.eq9}"
   p
-    strong Comment:
+    strong = "#{t('devices.thead.comment')}:"
     = @device.comment
 
 .col-md-12
