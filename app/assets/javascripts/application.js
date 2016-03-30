@@ -67,6 +67,7 @@ jQuery(document).ready(function($){
         var qwe = $('#devices_device_id option:selected');
         var asd = $('#device_ids_device_id');
         var suborders_list = $('#suborders_list > tbody:last-child');
+        oldvalue = '';
         if (qwe.size() == 1) {
             oldvalue = qwe.val();
         }
