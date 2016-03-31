@@ -18,14 +18,14 @@ h2.col-md-12 = t('contents.show.files')
   table.table.table-striped.table-hover.table-condensed.table-bordered
     thead
       tr
-        th ID
-        th Name
+        th #
+        th = t('contents.show.name')
         th Md5
         / th File
-        th Play
+        th = t('contents.show.play')
         /th [colspan="1"]
     tbody
-      = render @content.mediafiles
+      = render @content.mediafiles.search(params[:contents_search])
 
 = link_to t('std.edit'), edit_content_path(@content)
 '|

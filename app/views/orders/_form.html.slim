@@ -57,30 +57,32 @@
 
       = f.label :sat
       = f.check_box :sat, {checked: true}
-  .field.col-md-6.padt20
+  .field.col-md-6.padt20.padb20
     .col-md-12.padb20
+      = f.label t('orders.contents'), class: "col-md-2"
+      = text_field_tag 'contents_search', nil
       button.btn.btn-danger.pull-right id="cleanAllFiles" = t('orders.clean_files')
-    = f.label t('orders.contents')
-    = collection_select :contents, :content_id, Mediafile.where(:content_id => 2).all + Mediafile.where(:content_id => 4).all, :id, :filename, {}, {:multiple => true}
+    = collection_select :contents, :content_id, Mediafile.where(:content_id => 2).all + Mediafile.where(:content_id => 4).all, :id, :filename, {}, {:multiple => true, class: "col-md-6"}
     /= f.label :plist_ids
     - collection_files = {}
     - if @old_order.present?
       - array = []
       - @old_order.suborders.each { |suborder| suborder.plists.each { |plist| array << plist.mediafile} }
       - collection_files = array.uniq.flat_map { |i| i }
-    = collection_select :plist_ids, :plist_id, collection_files, :id, :filename, {}, {:multiple => true}
+    = collection_select :plist_ids, :plist_id, collection_files, :id, :filename, {}, {:multiple => true, class: "col-md-6"}
 
-  .field.col-md-6.padt20
+  .field.col-md-6.padt20.padb20
     .col-md-12.padb20
+      = f.label t('orders.devices'), class: "pull-left"
+      = text_field_tag 'devices_search', nil, class: "col-md-4"
       button.btn.btn-danger.pull-right id="cleanAllDevices" = t('orders.clean_devices')
-    = f.label t('orders.devices')
-    = collection_select :devices, :device_id, Device.all, :id, :name, {}, {:multiple => true}
+    = collection_select :devices, :device_id, Device.all, :id, :name, {}, {:multiple => true, class: "col-md-6"}
 
     /= f.label :device_ids
     - collection_devices = {}
     - if @old_order.present?
       - collection_devices = Device.where(id: Suborder.where(order: @old_order.id).pluck(:device_id))
-    = collection_select :device_ids, :device_id, collection_devices, :id, :name, {}, {:multiple => true}
+    = collection_select :device_ids, :device_id, collection_devices, :id, :name, {}, {:multiple => true, class: "col-md-6"}
 
   .field.col-md-12
     = f.label t('orders.periods')

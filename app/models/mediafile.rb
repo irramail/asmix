@@ -17,6 +17,14 @@ class Mediafile < ActiveRecord::Base
   validate :file_uniqueness, :on => [:create]
   before_save :update_file_attributes
 
+  def self.search(search)
+    if search
+      where('filename LIKE ?', "%#{search}%")
+    else
+      all
+    end
+  end
+
   private
     def file_uniqueness
       #tmp_md5 = Mediafile.where(:md5 => self.file.md5).first

@@ -452,4 +452,53 @@ jQuery(document).ready(function($){
 
         return true; // return false to cancel form action
     });
+
+    $("#devices_search").keyup(function (e) {
+        $.ajax({
+            url: '/devices?devices_search=' + $('#devices_search').val(),
+            type: 'GET',
+            dataType: 'json'
+        }).done(function(r) {
+            console.log(r);
+            $('#devices_device_id').empty();
+            $.each(r, function(lid, device) {
+                $('#devices_device_id')
+                    .append($('<option>', { value : device.id })
+                        .text(device.name));
+            });
+        });
+    });
+
+    $("#contents_search").keyup(function (e) {
+        var $flagEmptyList = 0;
+        $.ajax({
+            url: '/contents/2?contents_search=' + $('#contents_search').val(),
+            type: 'GET',
+            dataType: 'json'
+        }).done(function(r) {
+            $flagEmptyList = 1;
+
+            $('#contents_content_id').empty();
+            $.each(r, function(lid, item) {
+                $('#contents_content_id')
+                    .append($('<option>', { value : item.id })
+                        .text(item.filename));
+            });
+        });
+
+        $.ajax({
+            url: '/contents/4?contents_search=' + $('#contents_search').val(),
+            type: 'GET',
+            dataType: 'json'
+        }).done(function(r) {
+            if ($flagEmptyList == 0) {
+                $('#contents_content_id').empty();
+            }
+            $.each(r, function(lid, item) {
+                $('#contents_content_id')
+                    .append($('<option>', { value : item.id })
+                        .text(item.filename));
+            });
+        });
+    });
 });

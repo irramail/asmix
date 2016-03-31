@@ -6,6 +6,7 @@ class ContentsController < ApplicationController
 
   def show
     @content = Content.find(params[:id])
+    @mediafiles = @content.mediafiles.search(params[:contents_search])
   end
 
   def new
