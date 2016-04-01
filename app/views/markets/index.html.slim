@@ -1,6 +1,8 @@
 .col-md-6
   h1.col-md-8.pull-left = t('markets.title')
-  = link_to t('markets.add_new'), new_market_path, class:"glyphicon glyphicon-plus btn btn-md btn-primary pull-right col-md-4"
+  = link_to new_market_path, class:"btn btn-md btn-primary pull-right col-md-4"
+    span.glyphicon.glyphicon-plus
+    = t('markets.add_new')
 
   table.table.table-striped.table-hover.table-condensed.table-bordered
     thead

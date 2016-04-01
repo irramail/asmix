@@ -1,6 +1,9 @@
 .col-md-6
   h1.col-md-8.pull-left = t('pls.i_title')
-  = link_to t('pls.i_new'), new_plsbgimage_path, class:"glyphicon glyphicon-plus btn btn-md btn-primary pull-right"
+  = link_to new_plsbgimage_path, class:"btn btn-md btn-primary pull-right"
+    span.glyphicon.glyphicon-plus
+    = t('pls.i_new')
+
   table.table.table-striped.table-hover.table-condensed.table-bordered
     thead
       tr

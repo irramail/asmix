@@ -1,4 +1,7 @@
-p.btn-group.pull-right = link_to t('orders.new'), new_order_path, class: "glyphicon glyphicon-plus btn btn-md btn-primary"
+p.btn-group.pull-right
+  = link_to new_order_path, class: "btn btn-md btn-primary"
+    span.glyphicon.glyphicon-plus
+    = t('orders.new')
 
 table.table.table-striped.table-hover.table-condensed.table-bordered
   thead

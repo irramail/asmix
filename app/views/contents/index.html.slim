@@ -2,7 +2,9 @@
 
   p.btn-group.pull-right
     - if Content.all.count == 0
-      = link_to 'Generate', {:controller => "contents", :action => "gen"}, :method => "post", class: "glyphicon glyphicon-forward btn btn-md btn-success pull-left"
+      = link_to nil, :controller => "contents", :action => "gen", :method => "post", class: "btn btn-md btn-success pull-left"
+        span.glyphicon.glyphicon-forward
+        = t('std.gen')
 
   h1 = t('contents.title')
 

@@ -2,9 +2,13 @@
 
   p.btn-group.pull-right
     - if Period.all.count == 0
-      = link_to t('std.gen'), {:controller => "periods", :action => "gen"}, :method => "post", class: "glyphicon glyphicon-forward btn btn-md btn-success pull-left"
+      = link_to nil, :controller => "periods", :action => "gen", :method => "post", class: "btn btn-md btn-success pull-left"
+        span.glyphicon.glyphicon-forward
+        = t('std.gen')
 
-    = link_to t('periods.add_new'), new_period_path, class: "glyphicon glyphicon-plus btn btn-md btn-primary pull-right"
+    = link_to new_period_path, class: "btn btn-md btn-primary pull-right"
+      span.glyphicon.glyphicon-plus
+      = t('periods.add_new')
 
   h1 = t('periods.title')
 

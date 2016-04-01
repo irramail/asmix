@@ -1,11 +1,16 @@
 .col-md-6
   p.btn-group.pull-right
     - if Status.all.count == 0
-      = link_to t('std.gen'), {:controller => "statuses", :action => "gen"}, :method => "post", class: "glyphicon glyphicon-forward btn btn-md btn-success pull-left"
+      = link_to nil, :controller => "statuses", :action => "gen", :method => "post", class: "btn btn-md btn-success pull-left"
+        span.glyphicon.glyphicon-forward
+        = t('std.gen')
 
-    = link_to t('statuses.add_new'), new_status_path, class:"glyphicon glyphicon-plus btn btn-md btn-primary pull-right"
+    = link_to new_status_path, class:"btn btn-md btn-primary pull-right"
+      span.glyphicon.glyphicon-plus
+      = t('statuses.add_new')
 
-  h1 = t('statuses.title')
+    h1 = t('statuses.title')
+
   table.table.table-striped.table-hover.table-condensed.table-bordered
     thead
       tr

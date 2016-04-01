@@ -1,9 +1,13 @@
 .col-md-6
   p.btn-group.pull-right
     - if Typeoftask.all.count == 0
-      = link_to t('std.gen'), {:controller => "typeoftasks", :action => "gen"}, :method => "post", class: "glyphicon glyphicon-forward btn btn-md btn-success pull-left"
+      = link_to nil, :controller => "typeoftasks", :action => "gen", :method => "post", class: "btn btn-md btn-success pull-left"
+        span.glyphicon.glyphicon-forward
+        = t('std.gen')
 
-    = link_to t('tasks.add_new_type'), new_typeoftask_path, class: "glyphicon glyphicon-plus btn btn-md btn-primary pull-right"
+    = link_to new_typeoftask_path, class: "btn btn-md btn-primary pull-right"
+      span.glyphicon.glyphicon-plus
+      = t('tasks.add_new_type')
 
   h1 = t('tasks.title_type')
 

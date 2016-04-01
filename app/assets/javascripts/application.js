@@ -446,6 +446,7 @@ jQuery(document).ready(function($){
         });
     }
 
+    //orders search
     $('.new_plsbgimage').submit(function() {
         $('#plsbgimage_device_ids option').prop('selected', true);
         $('#plsbgimage_mediafile_ids option').prop('selected', true);
@@ -459,7 +460,6 @@ jQuery(document).ready(function($){
             type: 'GET',
             dataType: 'json'
         }).done(function(r) {
-            console.log(r);
             $('#devices_device_id').empty();
             $.each(r, function(lid, device) {
                 $('#devices_device_id')
@@ -498,6 +498,67 @@ jQuery(document).ready(function($){
                 $('#contents_content_id')
                     .append($('<option>', { value : item.id })
                         .text(item.filename));
+            });
+        });
+    });
+
+    //bgPlsSearch
+    $("#bgVideoPlsFilesSearch").keyup(function (e) {
+        $.ajax({
+            url: '/contents/3?contents_search=' + $('#bgVideoPlsFilesSearch').val(),
+            type: 'GET',
+            dataType: 'json'
+        }).done(function(r) {
+            $('#source_mediafile_ids').empty();
+            $.each(r, function(lid, item) {
+                $('#source_mediafile_ids')
+                    .append($('<option>', { value : item.id })
+                        .text(item.filename));
+            });
+        });
+    });
+
+    $("#bgMusicPlsFilesSearch").keyup(function (e) {
+        $.ajax({
+            url: '/contents/1?contents_search=' + $('#bgMusicPlsFilesSearch').val(),
+            type: 'GET',
+            dataType: 'json'
+        }).done(function(r) {
+            $('#source_mediafile_ids').empty();
+            $.each(r, function(lid, item) {
+                $('#source_mediafile_ids')
+                    .append($('<option>', { value : item.id })
+                        .text(item.filename));
+            });
+        });
+    });
+
+    $("#bgImagePlsFilesSearch").keyup(function (e) {
+        $.ajax({
+            url: '/contents/5?contents_search=' + $('#bgImagePlsFilesSearch').val(),
+            type: 'GET',
+            dataType: 'json'
+        }).done(function(r) {
+            $('#source_mediafile_ids').empty();
+            $.each(r, function(lid, item) {
+                $('#source_mediafile_ids')
+                    .append($('<option>', { value : item.id })
+                        .text(item.filename));
+            });
+        });
+    });
+
+    $("#bgPlsDevicesSearch").keyup(function (e) {
+        $.ajax({
+            url: '/devices?devices_search=' + $('#bgPlsDevicesSearch').val(),
+            type: 'GET',
+            dataType: 'json'
+        }).done(function(r) {
+            $('#source_device_ids').empty();
+            $.each(r, function(lid, item) {
+                $('#source_device_ids')
+                    .append($('<option>', { value : item.id })
+                        .text(item.name));
             });
         });
     });
