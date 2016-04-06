@@ -23,6 +23,6 @@ class MediafilesController < ApplicationController
 
   private
     def mediafile_params
-      params.require(:mediafile).permit(:file => [])
+      params.require(:mediafile).permit(:md5, :filename, :file => [])
     end
 end

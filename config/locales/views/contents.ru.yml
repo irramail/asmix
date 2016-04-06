@@ -6,6 +6,8 @@ ru:
     show:
       title: "Заголовок:"
       file: "Файл"
+      link: "Ссылка"
+      md5: "Md5"
       files: "Файлы"
       name: "Имя"
       play: "Проиграть"
