@@ -13,9 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require moment
+//= require moment/ru.js
+//= require bootstrap-datetimepicker.min
 //= require_tree .
 
 jQuery(document).ready(function($){
+
     var filename = document.getElementById('contents_content_id');
     var playlist = document.getElementById('plist_ids_plist_id');
 
@@ -88,53 +92,75 @@ jQuery(document).ready(function($){
                     text: $(this).text()
                 }));
 
+                wtStart = worktimes[($(this).val()-1)*4].toString().slice(1);
+                wtStart += ':' + worktimes[($(this).val()-1)*4+1].toString().slice(1);
+                wtStop = worktimes[($(this).val()-1)*4+2].toString().slice(1);
+                wtStop += ':' + worktimes[($(this).val()-1)*4+3].toString().slice(1);
+
                 suborders_list.append('<tr id="line4divice' + $(this).val() + '">'
                     + '<td>'+$(this).val() + '<input name="suborders['+ $(this).val() +'][device_id]" type="hidden" value="'+ $(this).val() + '" /></td>'
                     + '<td>' + $(this).text() + '</td>'
                     + '<td><select id="device_period_' + $(this).val() + '" name="suborders['+ $(this).val() +'][period_id]">' + $('#periods_period_id').html() + '</select></td>'
-                    + '<td><select name="suborders['+ $(this).val() +'][startdt(1i)]">' + $('#startdatetime_startdt_1i').html()
-                    + '</select> '
-                    + '<select name="suborders['+ $(this).val() +'][startdt(2i)]">' + $('#startdatetime_startdt_2i').html()
-                    + '</select> '
-                    + '<select name="suborders['+ $(this).val() +'][startdt(3i)]">' + $('#startdatetime_startdt_3i').html()
-                    + '</select> — '
-                    + '<select name="suborders['+ $(this).val() +'][startdt(4i)]">' + $('#startdatetime_startdt_4i').html()
-                    + '</select> : '
-                    + '<select name="suborders['+ $(this).val() +'][startdt(5i)]">' + $('#startdatetime_startdt_5i').html()
-                    + '</select></td>'
-                    + '<td><select name="suborders['+ $(this).val() +'][stopdt(1i)]">' + $('#stopdatetime_stopdt_1i').html()
-                    + '</select> '
-                    + '<select name="suborders['+ $(this).val() +'][stopdt(2i)]">' + $('#stopdatetime_stopdt_2i').html()
-                    + '</select> '
-                    + '<select name="suborders['+ $(this).val() +'][stopdt(3i)]">' + $('#stopdatetime_stopdt_3i').html()
-                    + '</select> — '
-                    + '<select name="suborders['+ $(this).val() +'][stopdt(4i)]">' + $('#stopdatetime_stopdt_4i').html()
-                    + '</select> : '
-                    + '<select name="suborders['+ $(this).val() +'][stopdt(5i)]">' + $('#stopdatetime_stopdt_5i').html()
-                    + '</select></td>'
-                    + '<td><select id="device_wt_start_h_' + $(this).val() + '" name="suborders['+ $(this).val() +'][startt(4i)]">' + $('#starttime_startt_4i').html()
-                    + '</select> : '
-                    + '<select id="device_wt_start_m_' + $(this).val() + '" name="suborders['+ $(this).val() +'][startt(5i)]">' + $('#starttime_startt_5i').html()
-                    + '</select></td>'
-                    + '<td><select id="device_wt_stop_h_' + $(this).val() + '" name="suborders['+ $(this).val() +'][stopt(4i)]">' + $('#stoptime_stopt_4i').html()
-                    + '</select> : '
-                    + '<select id="device_wt_stop_m_' + $(this).val() + '" name="suborders['+ $(this).val() +'][stopt(5i)]">' + $('#stoptime_stopt_5i').html()
-                    + '</select></td>'
+
+                    + '<td class="col-md-2">'
+                    + '<div class="form-group">'
+                        + '<div id="suborders_' + $(this).val() + '_dtpicker_start" class="input-group date">'
+                            + '<input id="suborders_' + $(this).val() + '_startdt" class="form-control" name="suborders['+ $(this).val() +'][startdt]" type="datetime" />'
+                            + '<span class="input-group-addon" style="">'
+                                + '<span class="glyphicon glyphicon-calendar"></span>'
+                            + '</span>'
+                        + '</div>'
+                    + '</div>'
+                    + '</td>'
+
+                    + '<td class="col-md-2">'
+                    + '<div class="form-group">'
+                        + '<div id="suborders_' + $(this).val() + '_dtpicker_stop" class="input-group date">'
+                            + '<input id="suborders_' + $(this).val() + '_stopdt" class="form-control" name="suborders['+ $(this).val() +'][stopdt]" type="datetime" />'
+                            + '<span class="input-group-addon" style="">'
+                                + '<span class="glyphicon glyphicon-calendar"></span>'
+                            + '</span>'
+                        + '</div>'
+                    + '</div>'
+                    + '</td>'
+
+                    + '<td>'
+                      + '<div class="input-group bootstrap-timepicker timepicker"><input id="suborders_'+ $(this).val()
+                        + '_startt" class="form-control input-small" name="suborders['
+                        + $(this).val() + '][startt]" value="' + wtStart + '" type="time"'
+                        + ' /><span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>'
+                      + '</div>'
+                    + '</td>'
+
+                    + '<td><div class="input-group bootstrap-timepicker timepicker"><input id="suborders_'+ $(this).val()
+                    + '_stopt" class="form-control input-small" name="suborders['
+                    + $(this).val() + '][stopt]" value="' + wtStop + '" type="time"'
+                    + ' /><span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span></div>'
+                    + '</td>'
                     + '<td><select name="suborders['+ $(this).val() +'][files][]" id="select_files4device' + $(this).val() + '" class="files4device" multiple="multiple">'
                     + $('#plist_ids_plist_id').html()
                     + '</select></td>'
                     + '</tr>');
+
+                $('#suborders_'+ $(this).val() + '_dtpicker_start').datetimepicker({
+                    defaultDate: new Date(),
+                    format: 'YYYY-MM-DD HH:mm'
+                });
+
+                $('#suborders_'+ $(this).val() + '_dtpicker_stop').datetimepicker({
+                    defaultDate: (new Date()).setMonth((new Date()).getMonth() + 1),
+                    format: 'YYYY-MM-DD HH:mm'
+                });
+
+                $('#suborders_'+ $(this).val() + '_startt').timepicker({
+                    showMeridian: false
+                });
+                $('#suborders_'+ $(this).val()+ '_stopt').timepicker({
+                    showMeridian: false
+                });
+
                 var device_period = document.getElementById('device_period_'+ $(this).val());
                 device_period.value = periods[$(this).val()-1];
-
-                var device_wt_start_h = document.getElementById('device_wt_start_h_'+ $(this).val());
-                device_wt_start_h.value = worktimes[($(this).val()-1)*4].toString().slice(1);
-                var device_wt_start_m = document.getElementById('device_wt_start_m_'+ $(this).val());
-                device_wt_start_m.value = worktimes[($(this).val()-1)*4 + 1].toString().slice(1);
-                var device_wt_stop_h = document.getElementById('device_wt_stop_h_'+ $(this).val());
-                device_wt_stop_h.value = worktimes[($(this).val()-1)*4 + 2].toString().slice(1);
-                var device_wt_stop_m = document.getElementById('device_wt_stop_m_'+ $(this).val());
-                device_wt_stop_m.value = worktimes[($(this).val()-1)*4 + 3].toString().slice(1);
             }
         });
     });
@@ -560,6 +586,18 @@ jQuery(document).ready(function($){
                     .append($('<option>', { value : item.id })
                         .text(item.name));
             });
+        });
+    });
+
+    $('.timepicker input').each(function(a, b){
+        $(b).timepicker({
+            showMeridian: false
+        });
+    });
+
+    $('.date').each(function(a, b){
+        $(b).datetimepicker({
+            format: 'YYYY-MM-DD HH:mm'
         });
     });
 });

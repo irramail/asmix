@@ -18,7 +18,7 @@ p.col-md-3
   = @task.typeoftask.name
 p.col-md-3
   strong = "#{t('tasks.thead.status')}:"
-  span.img-status.img-status-sz20.center-block.padt20.margin-bottom-m5 class="#{@task.typeofstatus.name.downcase}"
+  span.img-status.img-status-sz20.center-block.padt20.margin-bottom-m5 class="status-#{@task.typeofstatus.name.downcase}"
   = @task.typeofstatus.name
 
 p.col-md-12

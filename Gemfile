@@ -6,7 +6,8 @@ gem 'bootstrap-sass'
 gem 'kaminari'
 gem 'devise'
 gem 'font-awesome-sass', '~> 4.5.0'
-
+gem 'momentjs-rails'
+gem 'bootstrap3-datetimepicker-rails'
 # Localization
 gem 'rails-i18n'
 

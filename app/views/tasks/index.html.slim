@@ -19,7 +19,7 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
         td = task.id
         td.col-md-5 = task.device.name
         td = task.typeoftask.name
-        td class="img-status #{task.typeofstatus.name.downcase}"
+        td class="img-status status-#{task.typeofstatus.name.downcase}"
         /td = task.options[0..30]+'...'
         td = (task.updated_at + 3600 * task.device.tzdate).to_s[0..18]
         td = (task.created_at + 3600 * task.device.tzdate).to_s[0..18]

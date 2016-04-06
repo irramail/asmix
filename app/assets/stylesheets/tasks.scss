@@ -12,30 +12,30 @@
   display: inline-block;
 }
 
-.wait {
+.status-wait {
   background-image: url("wait.png");
 }
 
-.new {
+.status-new {
   background-image: url("wait.png");
 }
 
-.received {
+.status-received {
   background-image: url("received.png");
 }
 
-.progress {
+.status-progress {
   background-image: url("progress.png");
 }
 
-.play {
+.status-play {
   background-image: url("progress.png");
 }
 
-.completed {
+.status-completed {
   background-image: url("completed.png");
 }
 
-.cancel {
+.status-cancel {
   background-image: url("cancel.png");
 }

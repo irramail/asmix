@@ -23,7 +23,7 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
       tr
         td = order.id
         td.col-md-6 = order.name
-        td class="img-status #{order.status.name.downcase}"
+        td class="img-status status-#{order.status.name.downcase}"
         td.col-md-2 = order.created_at.to_s[0..18]
         /Fixme after adde in order user_id
         td.col-md-1 = current_user.email

@@ -10,7 +10,7 @@
 
   p.col-md-2
     strong = t('orders.status')
-    span.img-status.img-status-sz20.center-block.padt20.margin-bottom-m5 class="#{@order.status.name.downcase}"
+    span.img-status.img-status-sz20.center-block.padt20.margin-bottom-m5 class="status-#{@order.status.name.downcase}"
     = @order.status.name
   p.col-md-7
     strong Sun:

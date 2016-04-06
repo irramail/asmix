@@ -110,10 +110,14 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.status_id = 1
     params['suborders'].each do |a, b|
-      startdt = (b['startdt(1i)'] + '-' +b['startdt(2i)'] + '-' +b['startdt(3i)']+' ' +b['startdt(4i)']+':' +b['startdt(5i)']).to_time(:utc)
-      stopdt = (b['stopdt(1i)']+ '-' +b['stopdt(2i)'] + '-' +b['stopdt(3i)']+' ' +b['stopdt(4i)']+':' +b['stopdt(5i)']).to_time(:utc)
-      startt = ('0-1-1 ' + b['startt(4i)'] + ':' + b['startt(5i)']).to_time(:utc)
-      stopt = ('0-1-1 ' + b['stopt(4i)']+':' +b['stopt(5i)']).to_time(:utc)
+      startdt = (b['startdt']).to_time(:utc)
+      stopdt = (b['stopdt']).to_time(:utc)
+      #startdt = (b['startdt(1i)'] + '-' +b['startdt(2i)'] + '-' +b['startdt(3i)']+' ' +b['startdt(4i)']+':' +b['startdt(5i)']).to_time(:utc)
+      #stopdt = (b['stopdt(1i)']+ '-' +b['stopdt(2i)'] + '-' +b['stopdt(3i)']+' ' +b['stopdt(4i)']+':' +b['stopdt(5i)']).to_time(:utc)
+      wtStart = (b['startt']).to_time(:utc)
+      wtStop = (b['stopt']).to_time(:utc)
+      #startt = ('0-1-1 ' + b['startt(4i)'] + ':' + b['startt(5i)']).to_time(:utc)
+      #stopt = ('0-1-1 ' + b['stopt(4i)']+':' +b['stopt(5i)']).to_time(:utc)
 
       @order.suborders.new(
           order_id: @order.id,
@@ -121,8 +125,8 @@ class OrdersController < ApplicationController
           period_id: b[:period_id],
           startdt: startdt,
           stopdt: stopdt,
-          startt: startt,
-          stopt: stopt
+          startt: wtStart,
+          stopt: wtStop
       );
       b [:files].each do |c|
         @order.suborders.last.plists.new(mediafile_id: c.to_i) unless c == ''

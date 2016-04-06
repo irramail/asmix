@@ -21,10 +21,6 @@
 
   .field.col-md-12
     .actions = f.submit t('orders.save'), class: "btn btn-primary pull-right"
-    .col-md-3.pull-right
-
-    .col-md-3.pull-right
-
 
   .field.col-md-12
     .col-md-3
@@ -94,6 +90,7 @@
     /= f.label :stopdt
     = datetime_select :stopdatetime, :stopdt, :minute_step => 5, default: Time.now.utc.change(hour:23, min: 55)+1.months
 
+    = time_field :starttime, :start_text, value: "00:00"
     /= f.label :startt
     = time_select :starttime, :startt, :default => {:hour => '00', :minute => '00'}
     /= f.label :stopt
@@ -120,8 +117,33 @@
                 input name="suborders[#{suborder.device.id}][device_id]" type="hidden" value="#{suborder.device.id}"
               td = suborder.device.name
               td = collection_select "suborders[#{suborder.device.id}]", 'period_id', Period.all, :id, :name, selected: suborder.period.value
-              td = datetime_select "suborders[#{suborder.device.id}]", 'startdt', default: suborder.startdt
-              td = datetime_select "suborders[#{suborder.device.id}]", 'stopdt', default: suborder.stopdt
-              td = time_select "suborders[#{suborder.device.id}]", 'startt', default: suborder.startt
-              td = time_select "suborders[#{suborder.device.id}]", 'stopt', default: suborder.stopt
+              td.col-md-2
+                .form-group
+                  .input-group.date id="suborders[#{suborder.device.id}]_dtpicker_start"
+                    = datetime_field "suborders[#{suborder.device.id}]", 'startdt', class: "form-control", value: suborder.startdt
+                    span.input-group-addon
+                      span.glyphicon.glyphicon-calendar
+                /= datetime_select "suborders[#{suborder.device.id}]", 'startdt', default: suborder.startdt
+              td.col-md-2
+                .form-group
+                  .input-group.date id="suborders[#{suborder.device.id}]_dtpicker_stop"
+                    = datetime_field "suborders[#{suborder.device.id}]", 'stopdt', class: "form-control", value: suborder.stopdt
+                    span.input-group-addon
+                      span.glyphicon.glyphicon-calendar
+                /= datetime_select "suborders[#{suborder.device.id}]", 'stopdt', default: suborder.stopdt
+              td
+                .input-group.bootstrap-timepicker.timepicker
+                  = time_field "suborders[#{suborder.device.id}]", 'startt', value: suborder.startt.to_s[11..15], class: "form-control input-small"
+                  span.input-group-addon
+                    i.glyphicon.glyphicon-time
+              td
+                .input-group.bootstrap-timepicker.timepicker
+                  = time_field "suborders[#{suborder.device.id}]", 'stopt', value: suborder.stopt.to_s[11..15], class: "form-control input-small"
+                  span.input-group-addon
+                    i.glyphicon.glyphicon-time
+              /td = time_select "suborders[#{suborder.device.id}]", 'startt', default: suborder.startt
+              /td = time_select "suborders[#{suborder.device.id}]", 'stopt', default: suborder.stopt
               td = collection_select :select, "files4device#{suborder.device.id}", Mediafile.where(id: Plist.where(suborder: suborder.id).pluck(:mediafile_id)), :id, :filename, {}, { multiple: true, class: "files4device", name: "suborders[#{suborder.device.id}][files][]"}
+
+  .row
+    .col-sm-6
