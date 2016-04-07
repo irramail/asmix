@@ -81,10 +81,11 @@
     = collection_select :device_ids, :device_id, collection_devices, :id, :name, {}, {:multiple => true, class: "col-md-6"}
 
   .field.col-md-12
+
+  .field hidden="hidden"
     = f.label t('orders.periods')
     = collection_select :periods, :period_id, Period.all, :id, :name
 
-  .field hidden="hidden"
     /= f.label :startdt
     = datetime_select :startdatetime, :startdt, { :minute_step => 5, :default => {:hour => '00', :minute => '00'} }
     /= f.label :stopdt
