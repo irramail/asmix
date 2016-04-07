@@ -480,113 +480,180 @@ jQuery(document).ready(function($){
         return true; // return false to cancel form action
     });
 
+    var devicesTimer = {};
+
     $("#devices_search").keyup(function (e) {
-        $.ajax({
-            url: '/devices?devices_search=' + $('#devices_search').val(),
-            type: 'GET',
-            dataType: 'json'
-        }).done(function(r) {
-            $('#devices_device_id').empty();
-            $.each(r, function(lid, device) {
-                $('#devices_device_id')
-                    .append($('<option>', { value : device.id })
-                        .text(device.name));
+
+        var cid = $(this).prop('id');
+
+        if ( devicesTimer[cid] !== undefined ) {
+            clearTimeout( devicesTimer[cid] );
+        }
+
+        devicesTimer[cid] = setTimeout(function(){
+            devicesTimer[cid] = undefined;
+
+            $.ajax({
+                url: '/devices?devices_search=' + $('#devices_search').val(),
+                type: 'GET',
+                dataType: 'json'
+            }).done(function(r) {
+                $('#devices_device_id').empty();
+                $.each(r, function(lid, device) {
+                    $('#devices_device_id')
+                        .append($('<option>', { value : device.id })
+                            .text(device.name));
+                });
             });
-        });
+
+        }, 1000);
     });
 
+    contentsTimer = {};
+
     $("#contents_search").keyup(function (e) {
-        var $flagEmptyList = 0;
-        $.ajax({
-            url: '/contents/2?contents_search=' + $('#contents_search').val(),
-            type: 'GET',
-            dataType: 'json'
-        }).done(function(r) {
-            $flagEmptyList = 1;
 
-            $('#contents_content_id').empty();
-            $.each(r, function(lid, item) {
-                $('#contents_content_id')
-                    .append($('<option>', { value : item.id })
-                        .text(item.filename));
-            });
-        });
+        var cid = $(this).prop('id');
 
-        $.ajax({
-            url: '/contents/4?contents_search=' + $('#contents_search').val(),
-            type: 'GET',
-            dataType: 'json'
-        }).done(function(r) {
-            if ($flagEmptyList == 0) {
+        if ( contentsTimer[cid] !== undefined ) {
+            clearTimeout( contentsTimer[cid] );
+        }
+
+        contentsTimer[cid] = setTimeout(function(){
+            contentsTimer[cid] = undefined;
+
+            var $flagEmptyList = 0;
+            $.ajax({
+                url: '/contents/2?contents_search=' + $('#contents_search').val(),
+                type: 'GET',
+                dataType: 'json'
+            }).done(function(r) {
+                $flagEmptyList = 1;
+
                 $('#contents_content_id').empty();
-            }
-            $.each(r, function(lid, item) {
-                $('#contents_content_id')
-                    .append($('<option>', { value : item.id })
-                        .text(item.filename));
+                $.each(r, function(lid, item) {
+                    $('#contents_content_id')
+                        .append($('<option>', { value : item.id })
+                            .text(item.filename));
+                });
             });
-        });
+
+            $.ajax({
+                url: '/contents/4?contents_search=' + $('#contents_search').val(),
+                type: 'GET',
+                dataType: 'json'
+            }).done(function(r) {
+                if ($flagEmptyList == 0) {
+                    $('#contents_content_id').empty();
+                }
+                $.each(r, function(lid, item) {
+                    $('#contents_content_id')
+                        .append($('<option>', { value : item.id })
+                            .text(item.filename));
+                });
+            });
+        }, 1000);
     });
 
     //bgPlsSearch
     $("#bgVideoPlsFilesSearch").keyup(function (e) {
-        $.ajax({
+        var cid = $(this).prop('id');
+
+        if ( contentsTimer[cid] !== undefined ) {
+            clearTimeout( contentsTimer[cid] );
+        }
+
+        contentsTimer[cid] = setTimeout(function(){
+            contentsTimer[cid] = undefined;
+
+            $.ajax({
             url: '/contents/3?contents_search=' + $('#bgVideoPlsFilesSearch').val(),
             type: 'GET',
             dataType: 'json'
-        }).done(function(r) {
-            $('#source_mediafile_ids').empty();
-            $.each(r, function(lid, item) {
-                $('#source_mediafile_ids')
-                    .append($('<option>', { value : item.id })
-                        .text(item.filename));
+            }).done(function(r) {
+                $('#source_mediafile_ids').empty();
+                $.each(r, function(lid, item) {
+                    $('#source_mediafile_ids')
+                        .append($('<option>', { value : item.id })
+                            .text(item.filename));
+                });
             });
-        });
+        }, 1000);
     });
 
     $("#bgMusicPlsFilesSearch").keyup(function (e) {
-        $.ajax({
-            url: '/contents/1?contents_search=' + $('#bgMusicPlsFilesSearch').val(),
-            type: 'GET',
-            dataType: 'json'
-        }).done(function(r) {
-            $('#source_mediafile_ids').empty();
-            $.each(r, function(lid, item) {
-                $('#source_mediafile_ids')
-                    .append($('<option>', { value : item.id })
-                        .text(item.filename));
+        var cid = $(this).prop('id');
+
+        if ( contentsTimer[cid] !== undefined ) {
+            clearTimeout( contentsTimer[cid] );
+        }
+
+        contentsTimer[cid] = setTimeout(function(){
+            contentsTimer[cid] = undefined;
+
+            $.ajax({
+                url: '/contents/1?contents_search=' + $('#bgMusicPlsFilesSearch').val(),
+                type: 'GET',
+                dataType: 'json'
+            }).done(function(r) {
+                $('#source_mediafile_ids').empty();
+                $.each(r, function(lid, item) {
+                    $('#source_mediafile_ids')
+                        .append($('<option>', { value : item.id })
+                            .text(item.filename));
+                });
             });
-        });
+        }, 1000);
     });
 
     $("#bgImagePlsFilesSearch").keyup(function (e) {
-        $.ajax({
+        var cid = $(this).prop('id');
+
+        if ( contentsTimer[cid] !== undefined ) {
+            clearTimeout( contentsTimer[cid] );
+        }
+
+        contentsTimer[cid] = setTimeout(function(){
+            contentsTimer[cid] = undefined;
+
+            $.ajax({
             url: '/contents/5?contents_search=' + $('#bgImagePlsFilesSearch').val(),
             type: 'GET',
             dataType: 'json'
-        }).done(function(r) {
-            $('#source_mediafile_ids').empty();
-            $.each(r, function(lid, item) {
-                $('#source_mediafile_ids')
-                    .append($('<option>', { value : item.id })
-                        .text(item.filename));
+            }).done(function(r) {
+                $('#source_mediafile_ids').empty();
+                $.each(r, function(lid, item) {
+                    $('#source_mediafile_ids')
+                        .append($('<option>', { value : item.id })
+                            .text(item.filename));
+                });
             });
-        });
+        }, 1000);
     });
 
     $("#bgPlsDevicesSearch").keyup(function (e) {
-        $.ajax({
-            url: '/devices?devices_search=' + $('#bgPlsDevicesSearch').val(),
-            type: 'GET',
-            dataType: 'json'
-        }).done(function(r) {
-            $('#source_device_ids').empty();
-            $.each(r, function(lid, item) {
-                $('#source_device_ids')
-                    .append($('<option>', { value : item.id })
-                        .text(item.name));
+        var cid = $(this).prop('id');
+
+        if ( devicesTimer[cid] !== undefined ) {
+            clearTimeout( devicesTimer[cid] );
+        }
+
+        devicesTimer[cid] = setTimeout(function(){
+            devicesTimer[cid] = undefined;
+
+            $.ajax({
+                url: '/devices?devices_search=' + $('#bgPlsDevicesSearch').val(),
+                type: 'GET',
+                dataType: 'json'
+            }).done(function(r) {
+                $('#source_device_ids').empty();
+                $.each(r, function(lid, item) {
+                    $('#source_device_ids')
+                        .append($('<option>', { value : item.id })
+                            .text(item.name));
+                });
             });
-        });
+        }, 1000);
     });
 
     $('.timepicker input').each(function(a, b){
