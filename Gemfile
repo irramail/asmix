@@ -10,6 +10,7 @@ gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 # Localization
 gem 'rails-i18n'
+gem 'devise-i18n'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.rc2'
