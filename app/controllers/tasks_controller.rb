@@ -5,7 +5,11 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all.page params[:page]
+    if params[:device_id]
+      @tasks = Task.where(device_id: params[:device_id]).page params[:page]
+    else
+      @tasks = Task.all.page params[:page]
+    end
   end
 
   # GET /tasks/1

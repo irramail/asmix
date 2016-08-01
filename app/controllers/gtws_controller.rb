@@ -50,17 +50,28 @@ class GtwsController < ApplicationController
           not_found
         end
       when 'setStatus'
-        id = hash['TASKS']['ID'].to_i
-        not_found if Device.where(:id => id, :active => true).blank?
-        Device.where(:id => id).first.touch
-        task_id = hash['TASKS']['TASK']['TASK_ID'].to_i
-        status = hash['TASKS']['TASK']['STATUS']
-        lstatus = Typeofstatus.where(:name => status).first
+	if hash['TASKS']
+          id = hash['TASKS']['ID'].to_i
+          not_found if Device.where(:id => id, :active => true).blank?
+          Device.where(:id => id).first.touch
+          task_id = hash['TASKS']['TASK']['TASK_ID'].to_i
+          status = hash['TASKS']['TASK']['STATUS']
+          lstatus = Typeofstatus.where(:name => status).first
 
-        if (status.present? && lstatus.present?)
-          #priority = lstatus.priority
-          #Task.find(task_id).update(typeofstatus: priority) if ( status == 'RECEIVED' || status == 'PROGRESS' || status == 'COMPLETED')
-          Task.update(task_id, :typeofstatus_id => lstatus.priority) if ( status == 'RECEIVED' || status == 'PROGRESS' || status == 'COMPLETED')
+          if (status.present? && lstatus.present?)
+            #priority = lstatus.priority
+            #Task.find(task_id).update(typeofstatus: priority) if ( status == 'RECEIVED' || status == 'PROGRESS' || status == 'COMPLETED')
+            Task.update(task_id, :typeofstatus_id => lstatus.priority) if ( status == 'RECEIVED' || status == 'PROGRESS' || status == 'COMPLETED')
+          end
+	end
+
+        if hash['STATUS']
+          id = hash['STATUS']['ID']
+          msgs = hash['STATUS']['MSGS']['MSG']
+          msgs.each do |msg|
+            #p msg['RUNTIME']
+            #p msg['TEXT']
+	  end
         end
 
         render xml: done_status1

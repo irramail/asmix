@@ -28,5 +28,11 @@ module Asmix
     config.i18n.available_locales = [:ru, :en]
     config.i18n.default_locale = :ru
     config.i18n.enforce_available_locales = false
+    #config.assets.enabled = true
+    #config.assets.compile = true
+    #config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
+    #config.assets.precompile =  ['*.js', '*.scss', '*.css.erb', '*.css', '*.sass']
+    #config.assets.precompile.inspect
+    #config.assets.precompile = %w( * )
   end
 end

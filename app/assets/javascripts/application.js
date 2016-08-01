@@ -16,7 +16,7 @@
 //= require moment
 //= require moment/ru.js
 //= require bootstrap-datetimepicker.min
-//= require_tree .
+//= require bootstrap-timepicker
 
 jQuery(document).ready(function($){
 

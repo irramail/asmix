@@ -8,12 +8,13 @@ gem 'devise'
 gem 'font-awesome-sass', '~> 4.5.0'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
+gem 'bootstrap-timepicker-rails'
 # Localization
 gem 'rails-i18n'
 gem 'devise-i18n'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5.rc2'
+gem 'rails', '4.2.6'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -47,9 +48,6 @@ group :development, :test do
 end
 
 group :development do
-  # Mutes assets pipeline log messages.
-  gem 'quiet_assets'
-
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 

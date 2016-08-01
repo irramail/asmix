@@ -14,8 +14,12 @@ class Mediafile < ActiveRecord::Base
   default_scope { order("created_at DESC") }
   #mount_uploader :file, FileUploader
 
-  validate :file_uniqueness, :on => [:create]
-  before_save :update_file_attributes
+  before_validation(on: :create) do
+    self.file = file.gsub('https://drive.google.com/open?id=', 'https://drive.google.com/uc?id=') if attribute_present?("file")
+  end
+
+#  validate :file_uniqueness, :en => [:create]
+#  before_save :update_file_attributes
 
   def self.search(search)
     if search

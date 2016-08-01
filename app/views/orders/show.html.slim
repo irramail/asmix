@@ -66,7 +66,7 @@
               td
               td = link_to task.id.to_s, task
               td = task.typeoftask.name
-              td class="img-status #{task.typeofstatus.name.downcase}"
+              td class="img-status status-#{task.typeofstatus.name.downcase}"
 
 /= link_to t('std.edit'), edit_order_path(@order)
 /'|
