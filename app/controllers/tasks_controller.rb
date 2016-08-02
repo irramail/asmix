@@ -187,13 +187,36 @@ class TasksController < ApplicationController
     create_reboot
   end
 
+  # CANCEL.ALL
+  def create_cancelall
+    tasks = Task.where(device_id: task_params[:device_id], typeofstatus_id: 1)
+    tasks += Task.where(device_id: task_params[:device_id], typeofstatus_id: 2, typeoftask_id: 1) #downloads RECEIVED
+    tasks += Task.where(device_id: task_params[:device_id], typeofstatus_id: 3, typeoftask_id: 1) #downloads PROGRESS
+
+    success = true
+
+    tasks.each do |task|
+      success = false unless task.update(typeofstatus_id: 5)
+    end
+
+    respond_to do |format|
+      if success
+        format.html { redirect_to devices_path, notice: 'Task was successfully created.' }
+        format.json { render :index, status: :created, location: @task.devices }
+      else
+        format.html { render :index, location: @task.devices }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
 
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        format.html { redirect_to tasks_url, notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }

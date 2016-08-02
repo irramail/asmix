@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   post "/tasks/create_worktime" => "tasks#create_worktime"
   post "/tasks/create_update" => "tasks#create_update"
   post "/tasks/create_delall" => "tasks#create_delall"
+  post "/tasks/create_cancelall" => "tasks#create_cancelall"
 
   post "/orders/start" => "orders#start"
   post "/orders/cancel" => "orders#cancel"
