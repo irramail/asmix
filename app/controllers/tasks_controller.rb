@@ -201,7 +201,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if success
-        format.html { redirect_to devices_path, notice: 'Task was successfully created.' }
+        format.html { redirect_to devices_path, notice: 'Tasks was successfully canceled.' }
         format.json { render :index, status: :created, location: @task.devices }
       else
         format.html { render :index, location: @task.devices }

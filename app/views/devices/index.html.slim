@@ -45,7 +45,7 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
           = link_to '', {:controller => "tasks", :action => "create_worktime", :task => {:device_id => device.id, :typeoftask_id => 13, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-calendar btn btn-md btn-default", title: 'Worktime'
           = link_to '', {:controller => "tasks", :action => "create_update", :task => {:device_id => device.id, :typeoftask_id => 15, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-wrench btn btn-md btn-default", title: 'Update'
           = link_to '', {:controller => "tasks", :action => "create_delall", :task => {:device_id => device.id, :typeoftask_id => 17, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-floppy-remove btn btn-md btn-default", title: 'Del.all on device'
-          = link_to '', {:controller => "tasks", :action => "create_cancelall", :task => {:device_id => device.id, :options => ''}}, :method => "post", class: "glyphicon glyphicon-floppy-remove btn btn-md btn-default", title: 'Cancel.all on server'
+          = link_to '', {:controller => "tasks", :action => "create_cancelall", :task => {:device_id => device.id, :options => ''}}, :method => "post", class: "glyphicon glyphicon-fire btn btn-md btn-default", title: 'Cancel.all on server'
 
   = paginate @devices
 
