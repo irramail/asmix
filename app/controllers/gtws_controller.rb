@@ -69,6 +69,7 @@ class GtwsController < ApplicationController
           id = hash['STATUS']['ID']
           msgs = hash['STATUS']['MSGS']['MSG']
           msgs.each do |msg|
+
             #p msg['RUNTIME']
             #p msg['TEXT']
 	  end
