@@ -29,6 +29,7 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
           = link_to '', device, class: "glyphicon glyphicon-eye-open btn btn-md btn-default", title: t('std.show')
           = link_to '', edit_device_path(device), class: "glyphicon glyphicon-edit btn btn-md btn-default", title: t('std.edit')
           = link_to '', {:controller => "tasks", :action => "index", :device_id => device.id }, :method => "get", class: "glyphicon glyphicon-list btn btn-md btn-default", title: t('nav.tasks')
+          = link_to '', {:controller => "messages", :action => "index", :device_id => device.id }, :method => "get", class: "glyphicon glyphicon-list btn btn-md btn-default", title: t('nav.messages')
           /td = link_to 'Destroy', device, data: {:confirm => 'Are you sure?'}, :method => :delete
         td.btn-group role="group"
           = link_to '', {:controller => "tasks", :action => "create_setvol", :task => { :device_id => device.id, :typeoftask_id => 3, :typeofstatus_id => 1, :options => ''} }, :method => "post", class: "glyphicon glyphicon-volume-up btn btn-md btn-default", title: 'Setvol'

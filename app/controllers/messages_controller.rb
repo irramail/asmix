@@ -4,7 +4,11 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.all
+    if params[:device_id]
+      @messages = Message.where(device_id: params[:device_id]).page params[:page]
+    else
+      @messages = Message.all.page params[:page]
+    end
   end
 
   # GET /messages/1
