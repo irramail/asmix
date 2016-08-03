@@ -1,15 +1,31 @@
 p#notice = notice
 
 p
-  strong Device:
-  = @message.device
+  strong = t('devices.thead.id')
+  = t('nav.messages')
+  |:
+  = @message.id
+
+p
+  strong = t('devices.thead.id')
+  = t('nav.devices')
+  |:
+  = @message.device.id
+
+p
+  strong = t('devices.thead.name')
+  |:
+  = @message.device.name
 p
   strong Runtime:
   = @message.runtime
 p
   strong Text:
   = @message.text
+p
+  strong Created_at:
+  = @message.created_at
 
-= link_to 'Edit', edit_message_path(@message)
-'|
+/= link_to 'Edit', edit_message_path(@message)
+/'|
 = link_to 'Back', messages_path
