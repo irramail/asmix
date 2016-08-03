@@ -68,10 +68,15 @@ class GtwsController < ApplicationController
         if hash['STATUS']
           id = hash['STATUS']['ID']
           msgs = hash['STATUS']['MSGS']['MSG']
-          msgs.each do |msg|
-            message = Message.new(device_id: id, runtime: msg['RUNTIME'], text: msg['TEXT'])
+          if msgs.kind_of?(Array)
+            msgs.each do |msg|
+              message = Message.new(device_id: id, runtime: msg['RUNTIME'], text: msg['TEXT'])
+              message.save!
+	    end
+          else
+            message = Message.new(device_id: id, runtime: msgs['RUNTIME'], text: msgs['TEXT'])
             message.save!
-	  end
+          end
         end
 
         render xml: done_status1

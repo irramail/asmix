@@ -29,7 +29,7 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
           = link_to '', device, class: "glyphicon glyphicon-eye-open btn btn-md btn-default", title: t('std.show')
           = link_to '', edit_device_path(device), class: "glyphicon glyphicon-edit btn btn-md btn-default", title: t('std.edit')
           = link_to '', {:controller => "tasks", :action => "index", :device_id => device.id }, :method => "get", class: "glyphicon glyphicon-list btn btn-md btn-default", title: t('nav.tasks')
-          = link_to '', {:controller => "messages", :action => "index", :device_id => device.id }, :method => "get", class: "glyphicon glyphicon-list btn btn-md btn-default", title: t('nav.messages')
+          = link_to '', {:controller => "messages", :action => "index", :device_id => device.id }, :method => "get", class: "glyphicon glyphicon-comment btn btn-md btn-default", title: t('nav.messages')
           /td = link_to 'Destroy', device, data: {:confirm => 'Are you sure?'}, :method => :delete
         td.btn-group role="group"
           = link_to '', {:controller => "tasks", :action => "create_setvol", :task => { :device_id => device.id, :typeoftask_id => 3, :typeofstatus_id => 1, :options => ''} }, :method => "post", class: "glyphicon glyphicon-volume-up btn btn-md btn-default", title: 'Setvol'
@@ -39,7 +39,8 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
           = link_to '', {:controller => "tasks", :action => "create_reboot", :task => {:device_id => device.id, :typeoftask_id => 9, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-repeat btn btn-md btn-default", title: 'Reboot'
           = link_to '', {:controller => "tasks", :action => "create_getver", :task => {:device_id => device.id, :typeoftask_id => 7, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-tag btn btn-md btn-default", title: 'Getver'
           /cmd.two
-          = link_to '', {:controller => "tasks", :action => "create_getinfo", :task => {:device_id => device.id, :typeoftask_id => 10, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-tags btn btn-md btn-default", title: 'Getinfo'
+          = link_to '', {:controller => "tasks", :action => "create_getinfo", :task => {:device_id => device.id, :typeoftask_id => 10, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-info-sign btn btn-md btn-default", title: 'Getinfo'
+          = link_to '', {:controller => "tasks", :action => "create_gettrack", :task => {:device_id => device.id, :typeoftask_id => 8, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-question-sign btn btn-md btn-default", title: 'Что проигрывает?'
           /cmd.one
           = link_to '', {:controller => "tasks", :action => "create_ssh", :task => {:device_id => device.id, :typeoftask_id => 11, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-console btn btn-md btn-default", title: 'SSH'
           = link_to '', {:controller => "tasks", :action => "create_setvolsofday", :task => {:device_id => device.id, :typeoftask_id => 12, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-headphones btn btn-md btn-default", title: 'VolsOfDay'

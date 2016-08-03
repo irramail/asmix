@@ -211,6 +211,10 @@ class TasksController < ApplicationController
 
   end
 
+  def create_gettrack
+    create_reboot
+  end
+
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
