@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  device_id: 
+  runtime: 2016-08-03 18:18:13
+  text: MyText
+
+two:
+  device_id: 
+  runtime: 2016-08-03 18:18:13
+  text: MyText

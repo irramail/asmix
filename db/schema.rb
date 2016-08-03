@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160209125443) do
+ActiveRecord::Schema.define(version: 20160803111813) do
 
   create_table "contents", force: :cascade do |t|
     t.string   "title"
@@ -61,6 +61,16 @@ ActiveRecord::Schema.define(version: 20160209125443) do
   end
 
   add_index "mediafiles", ["content_id"], name: "index_mediafiles_on_content_id"
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "device_id"
+    t.datetime "runtime"
+    t.text     "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "messages", ["device_id"], name: "index_messages_on_device_id"
 
   create_table "orders", force: :cascade do |t|
     t.string   "name"
