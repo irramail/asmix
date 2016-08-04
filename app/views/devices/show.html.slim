@@ -20,15 +20,15 @@
   h2 = t('devices.volumes')
 
   - if @device.volumes.count > 0
-    table.table.table-striped.col-md-12.table-hover.table-condensed.table-bordered
-      thead
-        tr
-          th = t('devices.thead.description')
-          th = t('devices.thead.name')
-          th = t('devices.thead.volume')
-          th [colspan="1"]
-      tbody
-        == render @device.volumes
+    /table.table.table-striped.col-md-12.table-hover.table-condensed.table-bordered
+    /  thead
+    /    tr
+    /      th = t('devices.thead.description')
+    /      th = t('devices.thead.name')
+    /      th = t('devices.thead.volume')
+    /      th [colspan="1"]
+    /  tbody
+    == render 'volumes/volume'
 
   h2 = t('devices.add_new_volume')
   == render 'volumes/form'

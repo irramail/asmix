@@ -1,15 +1,14 @@
 = form_for [@device, @device.volumes.build] do |f|
   .col-md-12
     .field.col-md-3
-      = f.label t('devices.thead.description')
+      = f.label :description, t('devices.thead.description')
       = f.text_field :description, placeholder: t('devices.description.placeholder'), class: "col-md-12"
     .field.col-md-3
-      = f.label t('devices.thead.name')
+      = f.label :name, t('devices.thead.name')
       = f.text_field :name, placeholder: 'Master/R/L/RR/RL', class: "col-md-12"
     .field.col-md-3
-      = f.label t('devices.thead.volume')
+      = f.label :value, t('devices.thead.volume')
       = f.number_field :value, value: 60, min: 0, max:100, class: "col-md-12"
     .actions.col-md-3
       = f.label '*'
       = f.submit t('std.add'), class: "btn btn-md btn-primary pull-left col-md-12"
-
