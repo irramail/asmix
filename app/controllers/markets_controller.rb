@@ -1,4 +1,4 @@
-Bclass MarketsController < ApplicationController
+class MarketsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_market, only: [:show, :edit, :update, :destroy]
 
