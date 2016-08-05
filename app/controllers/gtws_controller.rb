@@ -93,6 +93,9 @@ class GtwsController < ApplicationController
           device.version = version
           device.save
         end
+
+        Task.create(device_id: id, typeoftask_id: 5, typeofstatus_id: 1) if hash['JOB'].has_key?('SYNCTIME')
+
         render xml: done_status
       when 'sendwave'
         render xml: done_status
