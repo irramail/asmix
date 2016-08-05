@@ -16,7 +16,7 @@
         tr
           td = market.id
           td.col-md-7 = market.name
-          td = market.period
+          td = Period.where(id: market.period.to_i).first.name
           td.btn-group role="group"
             = link_to '', market, class: "glyphicon glyphicon-eye-open btn btn-md btn-default", title: t('std.show')
             = link_to '', edit_market_path(market), class: "glyphicon glyphicon-edit btn btn-md btn-default", title: t('std.edit')

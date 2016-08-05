@@ -12,5 +12,6 @@
       = f.text_field :name
     .field.col-md-3
       = f.label t('markets.thead.period')
-      = f.number_field :period
+      = f.collection_select :period, Period.all, :id, :name
+      /= f.number_field :period
     .actions.col-md-2.pull-right = f.submit t('std.save'), class: "btn btn-success btn-md"
