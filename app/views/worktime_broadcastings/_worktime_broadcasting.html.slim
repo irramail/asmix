@@ -1,17 +1,29 @@
-- if worktime_broadcasting.wday.present?
-  tr
-    - stringdays = "SUNMONTUEWEDTHUFRISAT"
-    td.col-md-1 = stringdays[worktime_broadcasting.wday*3..worktime_broadcasting.wday*3+2]
-    td.col-md-3
-      = form_for([worktime_broadcasting.market, worktime_broadcasting], remote: true) do |f|
-        .input-group
-          = f.text_field :start, class: "form-control"
-          .input-group-btn
-            = f.submit t('std.save'), class: "btn btn-md btn-success"
-    td.col-md-3
-      = form_for([worktime_broadcasting.market, worktime_broadcasting], remote: true) do |f|
-        .input-group
-          = f.text_field :stop, class: "form-control"
-          .input-group-btn
-            = f.submit t('std.save'), class: "btn btn-md btn-success"
-    /td.col-md-1 = link_to '', [worktime_broadcasting.market, worktime_broadcasting], method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-remove btn btn-md btn-danger pull-right", title: t('std.destroy')
+- stringdays = t('SUNMONTUEWEDTHUFRISAT')
+= form_for @market, remote:true do |market_form|
+  .col-md-12.padb20
+    - @market.worktime_broadcastings.each do |wtday|
+      = market_form.fields_for wtday, index: wtday.id do |wtday_form|
+        .field.col-md-2.padt20
+          = wtday_form.label :start, stringdays[wtday.wday*3..wtday.wday*3+2]
+          = wtday_form.text_field :start, class: "form-control text-center" if wtday.id.present?
+          = wtday_form.text_field :stop, class: "form-control text-center" if wtday.id.present?
+    .col-md-12.padt20
+      = market_form.submit t('std.save'), class: "btn btn-md btn-success pull-left col-md-12"
+
+/- if worktime_broadcasting.wday.present?
+/  tr
+/    - stringdays = "SUNMONTUEWEDTHUFRISAT"
+/    td.col-md-1 = stringdays[worktime_broadcasting.wday*3..worktime_broadcasting.wday*3+2]
+/    td.col-md-3
+/      = form_for([worktime_broadcasting.market, worktime_broadcasting], remote: true) do |f|
+/        .input-group
+/          = f.text_field :start, class: "form-control"
+/          .input-group-btn
+/            = f.submit t('std.save'), class: "btn btn-md btn-success"
+/    td.col-md-3
+/      = form_for([worktime_broadcasting.market, worktime_broadcasting], remote: true) do |f|
+/        .input-group
+/          = f.text_field :stop, class: "form-control"
+/          .input-group-btn
+/            = f.submit t('std.save'), class: "btn btn-md btn-success"
+/    /td.col-md-1 = link_to '', [worktime_broadcasting.market, worktime_broadcasting], method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-remove btn btn-md btn-danger pull-right", title: t('std.destroy')

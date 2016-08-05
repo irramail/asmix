@@ -37,16 +37,16 @@ p.com-md-1
     #worktime-broadcastings
       h2 = t('markets.worktimes')
       - if @market.worktime_broadcastings.count > 0
-        #worktime-show.col-md-12
-          table.table.table-striped.table-hover.table-condensed.table-bordered
-            thead
-              tr
-                th = t('markets.wirktime.day')
-                th = t('markets.wirktime.start')
-                th = t('markets.wirktime.stop')
-                /th [colspan="1"]
-            tbody
-              = render @market.worktime_broadcastings.order(:wday)
+        /#worktime-show.col-md-12
+        /  table.table.table-striped.table-hover.table-condensed.table-bordered
+        /    thead
+        /      tr
+        /        th = t('markets.wirktime.day')
+        /        th = t('markets.wirktime.start')
+        /        th = t('markets.wirktime.stop')
+        /        /th [colspan="1"]
+        /    tbody
+        = render 'worktime_broadcastings/worktime_broadcasting'
 
     /#worktime-new.col-md-6
       h2 Create work's time/wday of

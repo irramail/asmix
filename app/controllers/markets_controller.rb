@@ -59,20 +59,53 @@ class MarketsController < ApplicationController
   # PATCH/PUT /markets/1
   # PATCH/PUT /markets/1.json
   def update
-    params[:market][:volsofday].each do |volume|
-      @market.volsofdays.where(id: volume.first).first.update(value: volume.second[:value])
+    if params[:market][:volsofday].present?
+      params[:market][:volsofday].each do |volume|
+        @market.volsofdays.where(id: volume.first).first.update(value: volume.second[:value])
+      end
     end
+
+    if params[:market][:worktime_broadcasting].present?
+      params[:market][:worktime_broadcasting].each do |wtday|
+        @market.worktime_broadcastings.where(id: wtday.first).first.update(start: wtday.second[:start], stop: wtday.second[:stop])
+      end
+    end
+
     respond_to do |format|
       if @market.update(market_params)
-        vols = ""
-        @market.volsofdays.each { |vol| vols = vols + "#{vol.value}:" }
+        if params[:market][:volsofday].present?
+          vols = ""
+          @market.volsofdays.each { |vol| vols = vols + "#{vol.value}:" }
 
-        @market.devices.each do |device|
-          task = device.tasks.where({ typeofstatus_id: 1, typeoftask_id: 12}).first
-          if task.present?
-            task.update(typeofstatus_id: 1, options: "<VOLSOFDAY>#{vols[0..-2]}</VOLSOFDAY>")
-          else
-            device.tasks.create(typeoftask_id: 12, typeofstatus_id: 1, options: "<VOLSOFDAY>#{vols[0..-2]}</VOLSOFDAY>")
+          @market.devices.each do |device|
+            task = device.tasks.where({ typeofstatus_id: 1, typeoftask_id: 12}).first
+            if task.present?
+              task.update(typeofstatus_id: 1, options: "<VOLSOFDAY>#{vols[0..-2]}</VOLSOFDAY>")
+            else
+              device.tasks.create(typeoftask_id: 12, typeofstatus_id: 1, options: "<VOLSOFDAY>#{vols[0..-2]}</VOLSOFDAY>")
+            end
+          end
+        end
+
+        if params[:market][:worktime_broadcasting].present?
+          day = ""
+          stringdays = "SUNMONTUEWEDTHUFRISAT"
+          worktime = ""
+          i = 0
+
+          @market.worktime_broadcastings.each do |wt|
+            day = stringdays[i*3..i*3+2]
+            worktime += "<#{day}><BEGIN>#{wt.start}:00</BEGIN><END>#{wt.stop}:00</END></#{day}>"
+            i+=1
+          end
+
+          @market.devices.each do |device|
+            task = device.tasks.where({ typeofstatus_id: 1, typeoftask_id: 13}).first
+            if task.present?
+              task.update(typeofstatus_id: 1, options: "<DAYS>#{worktime}</DAYS>")
+            else
+              device.tasks.create(typeoftask_id: 13, typeofstatus_id: 1, options: "<DAYS>#{worktime}</DAYS>")
+            end
           end
         end
 
