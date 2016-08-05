@@ -1,4 +1,4 @@
-class MarketsController < ApplicationController
+Bclass MarketsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_market, only: [:show, :edit, :update, :destroy]
 
@@ -59,8 +59,23 @@ class MarketsController < ApplicationController
   # PATCH/PUT /markets/1
   # PATCH/PUT /markets/1.json
   def update
+    params[:market][:volsofday].each do |volume|
+      @market.volsofdays.where(id: volume.first).first.update(value: volume.second[:value])
+    end
     respond_to do |format|
       if @market.update(market_params)
+        vols = ""
+        @market.volsofdays.each { |vol| vols = vols + "#{vol.value}:" }
+
+        @market.devices.each do |device|
+          task = device.tasks.where({ typeofstatus_id: 1, typeoftask_id: 12}).first
+          if task.present?
+            task.update(typeofstatus_id: 1, options: "<VOLSOFDAY>#{vols[0..-2]}</VOLSOFDAY>")
+          else
+            device.tasks.create(typeoftask_id: 12, typeofstatus_id: 1, options: "<VOLSOFDAY>#{vols[0..-2]}</VOLSOFDAY>")
+          end
+        end
+
         format.html { redirect_to @market, notice: 'Market was successfully updated.' }
         format.json { render :show, status: :ok, location: @market }
       else

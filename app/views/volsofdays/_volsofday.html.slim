@@ -1,11 +1,21 @@
-- if volsofday.value.present?
-  tr
-    td = volsofday.time
-    /td = volsofday.value
-    td.col-md-12
-      = form_for([volsofday.market, volsofday], remote: true) do |f|
-        .input-group
-          = f.number_field :value, min: 0, max:100, class: "form-control"
-          .input-group-btn
-            = f.submit t('std.save'), class: "btn btn-md btn-success"
-    /td = link_to '', [volsofday.market, volsofday], method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-remove btn btn-md btn-danger pull-right", title: t('std.destroy')
+= form_for @market, remote:true do |market_form|
+  .col-md-12.padb20
+    - @market.volsofdays.each do |volumes|
+      = market_form.fields_for volumes, index: volumes.id do |volumes_form|
+        .field.col-md-2.padt20
+          = market_form.label volumes.time
+          = volumes_form.number_field :value, min: 0, max:100, class: "form-control" if volumes.id.present?
+    .col-md-12.padt20
+      = market_form.submit t('std.save'), class: "btn btn-md btn-success pull-left col-md-12"
+
+/- if volsofday.value.present?
+/  tr
+/    td = volsofday.time
+/    /td = volsofday.value
+/    td.col-md-12
+/      = form_for([volsofday.market, volsofday], remote: true) do |f|
+/        .input-group
+/          = f.number_field :value, min: 0, max:100, class: "form-control"
+/          .input-group-btn
+/            = f.submit t('std.save'), class: "btn btn-md btn-success"
+/    /td = link_to '', [volsofday.market, volsofday], method: :delete, data: { confirm: 'Are you sure?' }, class: "glyphicon glyphicon-remove btn btn-md btn-danger pull-right", title: t('std.destroy')
