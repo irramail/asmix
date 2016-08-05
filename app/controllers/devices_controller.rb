@@ -48,19 +48,18 @@ class DevicesController < ApplicationController
   # PATCH/PUT /devices/1
   # PATCH/PUT /devices/1.json
   def update
-    params[:device][:volume].each do |volume|
-      @device.volumes.where(id: volume.first).first.update(value: volume.second[:value])
-    end
     respond_to do |format|
       if @device.update(device_params)
-        vols = ""
-        @device.volumes.each { |vol| vols = vols + "<#{vol.name.upcase}>#{vol.value}</#{vol.name.upcase}>" }
+        if device_params.has_key?('volumes_attributes')
+          vols = ""
+          @device.volumes.each { |vol| vols = vols + "<#{vol.name.upcase}>#{vol.value}</#{vol.name.upcase}>" }#FIXME take from volumes_attributes
 
-        task = @device.tasks.where({ typeofstatus_id: 1, typeoftask_id: 3}).first
-        if task.present?
-          task.update(typeofstatus_id: 1, options: "<VOLUMES>#{vols}</VOLUMES>")
-        else
-          @device.tasks.create(typeoftask_id: 3, typeofstatus_id: 1, options: "<VOLUMES>#{vols}</VOLUMES>")
+          task = @device.tasks.where({ typeofstatus_id: 1, typeoftask_id: 3}).first
+          if task.present?
+            task.update(typeofstatus_id: 1, options: "<VOLUMES>#{vols}</VOLUMES>")
+          else
+            @device.tasks.create(typeoftask_id: 3, typeofstatus_id: 1, options: "<VOLUMES>#{vols}</VOLUMES>")
+          end
         end
 
         format.html { redirect_to @device, notice: 'Device was successfully updated.' }
@@ -90,6 +89,6 @@ class DevicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def device_params
-      params.require(:device).permit(:market_id, :name, :ping, :tzdate, :sn, :comment, :active, :eq0, :eq1, :eq2, :eq3, :eq4, :eq5, :eq6, :eq7, :eq8, :eq9, :version)
+      params.require(:device).permit(:market_id, :name, :ping, :tzdate, :sn, :comment, :active, :eq0, :eq1, :eq2, :eq3, :eq4, :eq5, :eq6, :eq7, :eq8, :eq9, :version, volumes_attributes: [:id, :value])
     end
 end
