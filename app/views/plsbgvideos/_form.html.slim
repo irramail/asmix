@@ -21,8 +21,8 @@
         = text_field_tag 'bgVideoPlsFilesSearch', nil
       - files = {}
       - files = @old_order.mediafiles.all if @old_order
-      = collection_select :source, :mediafile_ids, Mediafile.where(:content_id => 3).all, :id, :filename, {}, { :multiple => true }
-      = f.collection_select :mediafile_ids, files, :id, :filename, {}, { :multiple => true }
+      = collection_select :source, :mediafile_ids, Mediafile.where(:content_id => 3).all, :id, :filename, {}, { :multiple => true, class: "col-md-6", size: 20 }
+      = f.collection_select :mediafile_ids, files, :id, :filename, {}, { :multiple => true, class: "col-md-6", size: 20 }
 
     .field.col-md-4
       .col-md-12.padb20
@@ -30,6 +30,6 @@
         = text_field_tag 'bgPlsDevicesSearch', nil
       - devices = {}
       - devices = @old_order.devices.all if @old_order
-      = collection_select :source, :device_ids, Device.all, :id, :name, {}, { :multiple => true }
-      = f.collection_select :device_ids, devices, :id, :name, {}, { :multiple => true }
+      = collection_select :source, :device_ids, Device.all, :id, :name, {}, { :multiple => true, class: "col-md-6", size: 20 }
+      = f.collection_select :device_ids, devices, :id, :name, {}, { :multiple => true, class: "col-md-6", size: 20 }
 

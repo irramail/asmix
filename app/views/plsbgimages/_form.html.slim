@@ -17,13 +17,13 @@
       .col-md-12.padb20
         = f.label t('pls.files')
         = text_field_tag 'bgImagePlsFilesSearch', nil
-      = collection_select :source, :mediafile_ids, Mediafile.where(:content_id => 5).all, :id, :filename, {}, {:multiple => true}
-      = f.collection_select :mediafile_ids, files, :id, :filename, {}, { :multiple => true}
+      = collection_select :source, :mediafile_ids, Mediafile.where(:content_id => 5).all, :id, :filename, {}, {:multiple => true, class: "col-md-6", size: 20}
+      = f.collection_select :mediafile_ids, files, :id, :filename, {}, { :multiple => true, class: "col-md-6", size: 20}
     .field.col-md-5
       - devices = {}
       - devices = @old_order.devices.all if @old_order
       .col-md-12.padb20
         = f.label t('pls.devices')
         = text_field_tag 'bgPlsDevicesSearch', nil
-      = collection_select :source, :device_ids, Device.all, :id, :name, {}, {:multiple => true}
-      = f.collection_select :device_ids, devices, :id, :name, {}, {:multiple => true}
+      = collection_select :source, :device_ids, Device.all, :id, :name, {}, {:multiple => true, class: "col-md-6", size: 20}
+      = f.collection_select :device_ids, devices, :id, :name, {}, {:multiple => true, class: "col-md-6", size: 20}
