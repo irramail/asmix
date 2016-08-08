@@ -1,10 +1,9 @@
 = form_for @market, remote:true do |market_form|
   .col-md-12.padb20
-    - @market.volsofdays.each do |volumes|
-      = market_form.fields_for volumes, index: volumes.id do |volumes_form|
-        .field.col-md-2.padt20
-          = market_form.label volumes.time
-          = volumes_form.number_field :value, min: 0, max:100, class: "form-control" if volumes.id.present?
+    = market_form.fields_for :volsofdays do |f|
+      .field.col-md-2.padt20
+        = f.text_field :time, size: 5, readonly:true, style: "border:none; font-weight: bold;" 
+        = f.number_field :value, min: 0, max:100, class: "form-control"
     .col-md-12.padt20
       = market_form.submit t('std.save'), class: "btn btn-md btn-success pull-left col-md-12"
 
