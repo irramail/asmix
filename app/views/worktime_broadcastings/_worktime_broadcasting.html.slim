@@ -1,12 +1,13 @@
 - stringdays = t('SUNMONTUEWEDTHUFRISAT')
 = form_for @market, remote:true do |market_form|
   .col-md-12.padb20
-    - @market.worktime_broadcastings.each do |wtday|
-      = market_form.fields_for wtday, index: wtday.id do |wtday_form|
-        .field.col-md-2.padt20
-          = wtday_form.label :start, stringdays[wtday.wday*3..wtday.wday*3+2]
-          = wtday_form.text_field :start, class: "form-control text-center" if wtday.id.present?
-          = wtday_form.text_field :stop, class: "form-control text-center" if wtday.id.present?
+    - i = 0
+    = market_form.fields_for :worktime_broadcastings do |wtday_form|
+      .field.col-md-2.padt20
+        = wtday_form.label :start, stringdays[i*3..i*3+2]
+        - i = i + 1
+        = wtday_form.text_field :start, class: "form-control text-center"
+        = wtday_form.text_field :stop, class: "form-control text-center"
     .col-md-12.padt20
       = market_form.submit t('std.save'), class: "btn btn-md btn-success pull-left col-md-12"
 

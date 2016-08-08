@@ -59,15 +59,9 @@ class MarketsController < ApplicationController
   # PATCH/PUT /markets/1
   # PATCH/PUT /markets/1.json
   def update
-    if params[:market][:worktime_broadcasting].present?
-      params[:market][:worktime_broadcasting].each do |wtday|
-        @market.worktime_broadcastings.where(id: wtday.first).first.update(start: wtday.second[:start], stop: wtday.second[:stop])
-      end
-    end
-
     respond_to do |format|
       if @market.update(market_params)
-	if market_params.has_key?('volsofdays_attributes')
+        if market_params.has_key?('volsofdays_attributes')
           vols = ""
           @market.volsofdays.each { |vol| vols = vols + "#{vol.value}:" }
 
@@ -81,7 +75,7 @@ class MarketsController < ApplicationController
           end
         end
 
-        if params[:market][:worktime_broadcasting].present?
+        if market_params.has_key?('worktime_broadcastings_attributes')
           day = ""
           stringdays = "SUNMONTUEWEDTHUFRISAT"
           worktime = ""
@@ -130,6 +124,6 @@ class MarketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def market_params
-      params.require(:market).permit(:name, :period, volsofdays_attributes: [:id, :value])
+      params.require(:market).permit(:name, :period, volsofdays_attributes: [:id, :value], worktime_broadcastings_attributes: [:id, :start, :stop])
     end
 end
