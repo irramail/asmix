@@ -271,7 +271,7 @@ jQuery(document).ready(function($){
                 oldFiles = selectedFiles.val();
             }
             selectedFiles.each(function () {
-                if (selectedFiles.length > 1 && oldFile == $(this).val()) {
+                if (selectedFiles.length > 1 && oldFiles == $(this).val()) {
                     return true;
                 }
 
@@ -353,11 +353,11 @@ jQuery(document).ready(function($){
         $files.click(function (e) {
             var selectedFiles = $('#source_mediafile_ids option:selected');
             var selectedPlsFiles = $('#plsbgmusic_mediafile_ids');
-            if (selectedFiles.length == 1) {
+	    if (selectedFiles.length == 1) {
                 oldFiles = selectedFiles.val();
             }
             selectedFiles.each(function () {
-                if (selectedFiles.length > 1 && oldFile == $(this).val()) {
+                if (selectedFiles.length > 1 && oldFiles == $(this).val()) {
                     return true;
                 }
 
@@ -443,7 +443,7 @@ jQuery(document).ready(function($){
                 oldFiles = selectedFiles.val();
             }
             selectedFiles.each(function () {
-                if (selectedFiles.length > 1 && oldFile == $(this).val()) {
+                if (selectedFiles.length > 1 && oldFiles == $(this).val()) {
                     return true;
                 }
 
