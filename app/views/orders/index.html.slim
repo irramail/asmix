@@ -3,6 +3,10 @@ p.btn-group.pull-right
     span.glyphicon.glyphicon-plus
     = t('orders.new')
 
+= form_tag orders_path, method: 'get' do
+  = text_field_tag :search, params[:search]
+  = submit_tag t('orders.search'), name: nil
+
 table.table.table-striped.table-hover.table-condensed.table-bordered
   thead
     tr

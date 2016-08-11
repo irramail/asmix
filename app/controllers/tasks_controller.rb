@@ -6,9 +6,9 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     if params[:device_id]
-      @tasks = Task.where(device_id: params[:device_id]).page params[:page]
+      @tasks = Task.where(device_id: params[:device_id]).search(params[:search]).page params[:page]
     else
-      @tasks = Task.all.page params[:page]
+      @tasks = Task.search(params[:search]).all.page params[:page]
     end
   end
 
@@ -48,7 +48,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 
     vols = ""
-    @task.device.volumes.each { |vol| vols = vols + "<#{vol.name.upcase}>#{vol.value}</#{vol.name.upcase}>" }
+    @task.device.volumes.each { |vol| vols = vols + "<#{vol.name.upcase.delete(' ')}>#{vol.value}</#{vol.name.upcase.delete(' ')}>" }
 
     @task.options="<VOLUMES>#{vols}</VOLUMES>"
 

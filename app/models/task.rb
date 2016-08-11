@@ -9,4 +9,11 @@ class Task < ActiveRecord::Base
 
   default_scope { order("created_at DESC") }
 
+  def self.search(search)
+    if search
+      where('typeofstatus_id LIKE ?', "%#{search}%")
+    else
+      all
+    end
+  end
 end
