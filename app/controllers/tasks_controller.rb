@@ -49,8 +49,6 @@ class TasksController < ApplicationController
 
     vols = ""
     @task.device.volumes.each { |vol| vols = vols + "<#{vol.name.upcase.delete(' ')}>#{vol.value}</#{vol.name.upcase.delete(' ')}>" }
-    p vols
-    p '---------------------------------------------------------------------------------------------'
     @task.options="<VOLUMES>#{vols}</VOLUMES>"
 
     respond_to do |format|

@@ -15,10 +15,10 @@ class Device < ActiveRecord::Base
   end
 
   def self.okping(now)
-    where('? - updated_at > ping', now)
+    where('strftime(\'%s\', ?) - strftime(\'%s\', updated_at) < ping * 2', now)
   end
 
   def self.badping(now)
-    where('? - updated_at < ping', now)
+    where('strftime(\'%s\', ?) - strftime(\'%s\', updated_at) > ping * 2', now)
   end
 end
