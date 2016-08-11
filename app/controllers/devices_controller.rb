@@ -52,7 +52,7 @@ class DevicesController < ApplicationController
       if @device.update(device_params)
         if device_params.has_key?('volumes_attributes')
           vols = ""
-          @device.volumes.each { |vol| vols = vols + "<#{vol.name.upcase}>#{vol.value}</#{vol.name.upcase}>" }#FIXME take from volumes_attributes
+          @device.volumes.each { |vol| vols = vols + "<#{vol.name.upcase.delete(' ')}>#{vol.value}</#{vol.name.upcase.delete(' ')}>" }#FIXME take from volumes_attributes
 
           task = @device.tasks.where({ typeofstatus_id: 1, typeoftask_id: 3}).first
           if task.present?
