@@ -8,6 +8,16 @@ class DevicesController < ApplicationController
     @devices = Device.search(params[:devices_search]).page params[:page]
   end
 
+  def okping
+    @devices = Device.okping(Time.now.utc).page params[:page]
+    render 'index'
+  end
+
+  def badping
+    @devices = Device.badping(Time.now.utc).page params[:page]
+    render 'index'
+  end
+
   # GET /devices/1
   # GET /devices/1.json
   def show

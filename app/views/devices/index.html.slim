@@ -1,4 +1,7 @@
-p.btn-group.pull-right
+p.col-md-12
+  .btn-group
+    = link_to '', { controller: 'devices', action: 'okping' }, class: "glyphicon glyphicon-ok-sign btn btn-md btn-success pull-left"
+    = link_to '', { controller: 'devices', action: 'badping' }, class: "glyphicon glyphicon-minus-sign btn btn-md btn-danger pull-left"
   = link_to new_device_path, class: "btn btn-md btn-primary pull-right"
     span.glyphicon.glyphicon-plus
     = t('devices.new')

@@ -13,4 +13,12 @@ class Device < ActiveRecord::Base
       all
     end
   end
+
+  def self.okping(now)
+    where('? - updated_at > ping', now)
+  end
+
+  def self.badping(now)
+    where('? - updated_at < ping', now)
+  end
 end

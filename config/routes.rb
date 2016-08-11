@@ -16,6 +16,9 @@ Rails.application.routes.draw do
 
   post '/' => 'gtws#index'
 
+  get '/devices/okping' => 'devices#okping'
+  get '/devices/badping' => 'devices#badping'
+
   post "/tasks/create_setvol" => "tasks#create_setvol"
   post "/tasks/create_synctime" => "tasks#create_synctime"
   post "/tasks/create_setinterval" => "tasks#create_setinterval"
