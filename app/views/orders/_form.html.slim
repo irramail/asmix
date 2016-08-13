@@ -20,9 +20,6 @@
   | ];</script>
 
   .field.col-md-12
-    .actions = f.submit t('orders.save'), class: "btn btn-primary pull-right"
-
-  .field.col-md-12
     .col-md-3
       = f.label t('orders.name')
       = f.text_field :name
@@ -53,6 +50,9 @@
 
       = f.label :sat
       = f.check_box :sat, {checked: true}
+
+    .actions = f.submit t('orders.save'), class: "btn btn-primary pull-right"
+
   .field.col-md-6.padt20.padb20
     .col-md-12.padb20
       = f.label t('orders.contents'), class: "col-md-2"
