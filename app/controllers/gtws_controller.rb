@@ -19,7 +19,7 @@ class GtwsController < ApplicationController
         Device.where(:id => id).first.touch
 
         if Task.where(:device_id => id, :typeofstatus_id => 1).present?
-          render plain: '<STATUS><TASKS/></STATUS>'
+          render plain: '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<STATUS><TASKS/></STATUS>'
         else
           render xml: done_status
         end
