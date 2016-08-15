@@ -3,6 +3,7 @@ class Task < ActiveRecord::Base
   belongs_to :typeoftask
   belongs_to :typeofstatus
   belongs_to :mediafile
+  belongs_to :user
 
   has_many :suborders_tasks
   has_many :suborders, through: :suborders_tasks

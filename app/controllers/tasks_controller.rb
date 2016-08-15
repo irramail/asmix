@@ -50,6 +50,7 @@ class TasksController < ApplicationController
     vols = ""
     @task.device.volumes.each { |vol| vols = vols + "<#{vol.name.upcase.delete(' ')}>#{vol.value}</#{vol.name.upcase.delete(' ')}>" }
     @task.options="<VOLUMES>#{vols}</VOLUMES>"
+    @task.user_id = current_user.id
 
     respond_to do |format|
       if @task.save
@@ -67,6 +68,7 @@ class TasksController < ApplicationController
   def create_setinterval
     @task = Task.new(task_params)
     @task.options="<INTERVAL>#{@task.device.ping}</INTERVAL>"
+    @task.options = current_user.id
 
     respond_to do |format|
       if @task.save
@@ -86,6 +88,7 @@ class TasksController < ApplicationController
     #<0>0</0><1>0</1><2>0</2><3>0</3><4>0</4><5>0</5><6>0</6><7>0</7><8>0</8><9>0</9>
     eq = "<0>#{@task.device.eq0}</0><1>#{@task.device.eq1}</1><2>#{@task.device.eq2}</2><3>#{@task.device.eq3}</3><4>#{@task.device.eq4}</4><5>#{@task.device.eq5}</5><6>#{@task.device.eq6}</6><7>#{@task.device.eq7}</7><8>#{@task.device.eq8}</8><9>#{@task.device.eq9}</9>"
     @task.options="<EQUALIZER>#{eq}</EQUALIZER>"
+    @task.user_id = current_user.id
 
     respond_to do |format|
       if @task.save
@@ -102,6 +105,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create_reboot
     @task = Task.new(task_params)
+    @task.user_id = current_user.id
     #
 
     respond_to do |format|
@@ -137,6 +141,7 @@ class TasksController < ApplicationController
     volsofday = ""
     @task.device.market.volsofdays.order(:time).each  { |vol| volsofday += "#{vol.value}:" }
     @task.options="<VOLSOFDAY>#{volsofday[0..-2]}</VOLSOFDAY>"
+    @task.user_id = current_user.id
 
     respond_to do |format|
       if @task.save
@@ -152,6 +157,7 @@ class TasksController < ApplicationController
   def create_worktime
     @task = Task.new(task_params)
     #<DAYS><MON><BEGIN>09:00:00</BEGIN><END>18:00:00</END></MON><TUE><BEGIN>09:00:00</BEGIN><END>18:00:00</END></TUE><WED><BEGIN>09:00:00</BEGIN><END>18:00:00</END></WED><THU><BEGIN>09:00:00</BEGIN><END>18:00:00</END></THU><FRI><BEGIN>09:00:00</BEGIN><END>18:00:00</END></FRI><SAT><BEGIN>09:00:00</BEGIN><END>18:00:00</END></SAT><SUN><BEGIN>09:00:00</BEGIN><END>18:00:00</END></SUN></DAYS>
+    @task.user_id = current_user.id
 
     day = ""
     stringdays = "SUNMONTUEWEDTHUFRISAT"
@@ -195,7 +201,7 @@ class TasksController < ApplicationController
     success = true
 
     tasks.each do |task|
-      success = false unless task.update(typeofstatus_id: 5)
+      success = false unless task.update(typeofstatus_id: 5, user_id: current_user.id)
     end
 
     respond_to do |format|
@@ -246,6 +252,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:device_id, :typeoftask_id, :typeofstatus_id, :options)
+      params.require(:task).permit(:device_id, :typeoftask_id, :typeofstatus_id, :user_id, :options)
     end
 end

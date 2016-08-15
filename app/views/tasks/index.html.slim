@@ -13,6 +13,7 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
       th = t('tasks.thead.device')
       th = t('tasks.thead.type')
       th = t('tasks.thead.status')
+      th
       /th Options
       th
       th
@@ -27,6 +28,7 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
         /td = task.options[0..30]+'...'
         td = (task.updated_at + 3600 * task.device.tzdate).to_s[0..18]
         td = (task.created_at + 3600 * task.device.tzdate).to_s[0..18]
+        td = task.user.present? ? task.user.email : '-'
         td.btn-group role="group"
           = link_to '', task, class: "glyphicon glyphicon-eye-open btn btn-md btn-default", title: t('std.show')
           = link_to '', edit_task_path(task), class: "glyphicon glyphicon-edit btn btn-md btn-default", title: t('std.edit')
