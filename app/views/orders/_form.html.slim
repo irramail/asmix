@@ -145,4 +145,4 @@
               /td = time_select "suborders[#{suborder.device.id}]", 'startt', default: suborder.startt
               /td = time_select "suborders[#{suborder.device.id}]", 'stopt', default: suborder.stopt
               td = collection_select :select, "files4device#{suborder.device.id}", Mediafile.where(id: Plist.where(suborder: suborder.id).pluck(:mediafile_id)), :id, :filename, {}, { multiple: true, class: "files4device", name: "suborders[#{suborder.device.id}][files][]"}
-OBB
+

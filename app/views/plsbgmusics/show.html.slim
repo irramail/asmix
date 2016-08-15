@@ -1,15 +1,42 @@
 /p#notice = notice
+.col-md-12
+  h2.panel.panel-primary
+    .panel-heading
+      = "#{t('pls.title')}: "
+      - if @plsbgmusic.name.length > 0
+        = @plsbgmusic.name
+      - else
+        = "#{t('std.empty')}"
 
-p
-  strong = "#{t('pls.name')}:"
-  = @plsbgmusic.name
-p
-  strong = "#{t('pls.devices')}:"
-  - @plsbgmusic.devices.each do |device|
-    p #{device.id}. #{device.name}
-p
-  strong = "#{t('pls.files')}:"
-  - @plsbgmusic.mediafiles.each do |mediafile|
-    p #{mediafile.id}. #{mediafile.filename}
+  .col-md-6
+    h4= "#{t('devices.few')}:"
+    table.table.table-striped.table-hover.table-condensed
+      thead
+        tr
+          th #
+          th = t('pls.name')
+      tbodys
+        - @plsbgmusic.devices.each do |device|
+          tr
+            td.col-md-1 = device.id
+            td = device.name
+
+  .col-md-6
+    h4= "#{t('contents.show.files')}:"
+    table.table.table-striped.table-hover.table-condensed
+      thead
+        tr
+          th #
+          th = t('pls.name')
+      tbodys
+        - @plsbgmusic.mediafiles.each do |mediafile|
+          tr
+            td = mediafile.id
+            td = mediafile.filename
+            td
+              - if mediafile.filename.length > 4 && mediafile.filename[-4..-1] == '.mp3'
+                audio controls=true
+                  source src="#{mediafile.file}" type="audio/mpeg"
+                  | Your browser does not support the audio tag.
 
 = link_to t('std.back'), plsbgmusics_path
