@@ -30,7 +30,7 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
         td class="img-status status-#{order.status.name.downcase}"
         td.col-md-2 = order.created_at.to_s[0..18]
         /Fixme after adde in order user_id
-        td.col-md-1 = current_user.email
+        td.col-md-1 = order.user.present? ? order.user.email : '-'
         td = link_to '', order, class: "glyphicon glyphicon-eye-open btn btn-sm", title: t('std.show')
         /td = link_to t('std.edit'), edit_order_path(order)
         /td.col-md-1 = link_to '', order, data: {:confirm => 'Are you sure?'}, :method => :delete, class: "glyphicon glyphicon-remove-sign btn btn-sm btn-danger", title: ''

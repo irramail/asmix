@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
       suborder.tasks.each do |task|
         if task.typeoftask_id == 2
           if task.typeofstatus_id > 1
-            suborder.tasks.create(device_id: suborder.device.id, typeoftask_id: 24, typeofstatus_id: 1, options: "<DELETE><DEL_ID>#{task.id}</DEL_ID></DELETE>")
+            suborder.tasks.create(device_id: suborder.device.id, typeoftask_id: 24, typeofstatus_id: 1, user_id: current_user.id, options: "<DELETE><DEL_ID>#{task.id}</DEL_ID></DELETE>")
           end
           task.update(typeofstatus_id: 5)
         end
@@ -65,19 +65,19 @@ class OrdersController < ApplicationController
         tracks += "<TRACK><HASH>#{file.mediafile.md5}</HASH></TRACK>" if file.mediafile.present?
       end
 
-      order.tasks.create(device_id: order.device.id, typeoftask_id: 2, typeofstatus_id: 1, options: "#{begindate}#{enddate}#{begintime}#{endtime}#{days}#{period}<TRACKS>#{tracks}</TRACKS>")
+      order.tasks.create(device_id: order.device.id, typeoftask_id: 2, typeofstatus_id: 1, user_id: current_user.id, options: "#{begindate}#{enddate}#{begintime}#{endtime}#{days}#{period}<TRACKS>#{tracks}</TRACKS>")
 
       order.plists.each do |file|
         if file.mediafile.present?
           if order.device.tasks.where(mediafile_id: file.mediafile.id).empty?
-            order.tasks.create(device_id: order.device.id, typeoftask_id: 1, typeofstatus_id: 1, options: "<URLS><URL>#{file.mediafile.file}|#{file.mediafile.md5[-4..-1]}</URL><NAME>#{file.mediafile.filename}</NAME></URLS>", mediafile_id: file.mediafile.id)
-            #order.tasks.create(device_id: order.device.id, typeoftask_id: 1, typeofstatus_id: 1, options: "<URLS><URL>http://192.168.0.91:3000#{file.mediafile.file}|#{file.mediafile.md5[-4..-1]}</URL></URLS>", mediafile_id: file.mediafile.id)
+            order.tasks.create(device_id: order.device.id, typeoftask_id: 1, typeofstatus_id: 1, user_id: current_user.id, options: "<URLS><URL>#{file.mediafile.file}|#{file.mediafile.md5[-4..-1]}</URL><NAME>#{file.mediafile.filename}</NAME></URLS>", mediafile_id: file.mediafile.id)
+            #order.tasks.create(device_id: order.device.id, typeoftask_id: 1, typeofstatus_id: 1, user_id: current_user.id, options: "<URLS><URL>http://192.168.0.91:3000#{file.mediafile.file}|#{file.mediafile.md5[-4..-1]}</URL></URLS>", mediafile_id: file.mediafile.id)
           end
         end
       end
     end
     #Play
-    @order.update(status_id: 2)
+    @order.update(status_id: 2, user_id: current_user.id)
 
     respond_to do |format|
       format.html { render :show }
@@ -99,6 +99,7 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @old_order = Order.find(params[:old_id]) if params[:old_id]
+    @old_order.user_id = current_user.id
   end
 
   # GET /orders/1/edit
@@ -110,6 +111,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.status_id = 1
+    @order.user_id = current_user.id
     params['suborders'].each do |a, b|
       startdt = (b['startdt']).to_time(:utc)
       stopdt = (b['stopdt']).to_time(:utc)
