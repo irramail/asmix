@@ -36,10 +36,10 @@ class PlsbgmusicsController < ApplicationController
         end
 
         @plsbgmusic.devices.each do |device|
-          device.tasks.create(typeoftask_id: 14, typeofstatus_id: 1, options: "<TRACKS>#{tracks}</TRACKS>")
+          device.tasks.create(typeoftask_id: 14, typeofstatus_id: 1, user_id: current_user.id,  options: "<TRACKS>#{tracks}</TRACKS>")
           @plsbgmusic.mediafiles.each do |mediafile|
             if device.tasks.where(mediafile_id: mediafile.id).empty?
-              device.tasks.create(typeoftask_id: 1, typeofstatus_id: 1, options: "<URLS><URL>#{mediafile.file}|#{mediafile.md5[-4..-1]}</URL><NAME>#{mediafile.filename}</NAME></URLS>", mediafile_id: mediafile.id)
+              device.tasks.create(typeoftask_id: 1, typeofstatus_id: 1, user_id: current_user.id, options: "<URLS><URL>#{mediafile.file}|#{mediafile.md5[-4..-1]}</URL><NAME>#{mediafile.filename}</NAME></URLS>", mediafile_id: mediafile.id)
               #device.tasks.create(typeoftask_id: 1, typeofstatus_id: 1, options: "<URLS><URL>http://192.168.0.91:3000#{mediafile.file}|#{mediafile.md5[-4..-1]}</URL></URLS>", mediafile_id: mediafile.id)
             end
           end
