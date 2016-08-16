@@ -33,7 +33,17 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
           = link_to '', edit_device_path(device), class: "glyphicon glyphicon-edit btn btn-md btn-default", title: t('std.edit')
           = link_to '', {:controller => "tasks", :action => "index", :device_id => device.id }, :method => "get", class: "glyphicon glyphicon-list btn btn-md btn-default", title: t('nav.tasks')
           = link_to '', {:controller => "messages", :action => "index", :device_id => device.id }, :method => "get", class: "glyphicon glyphicon-comment btn btn-md btn-default", title: t('nav.messages')
-          /td = link_to 'Destroy', device, data: {:confirm => 'Are you sure?'}, :method => :delete
+          = button_tag '', type: 'button', class:"glyphicon glyphicon-cd btn btn-md btn-default dropdown-toggle", data: {toggle:"dropdown"}
+            span.caret
+          ul.dropdown-menu
+            li= link_to Content.find(1).title, content_path(id: 1, device_id: device.id), :method => "get"
+            li= link_to Content.find(2).title, content_path(id: 2, device_id: device.id), :method => "get"
+            li= link_to Content.find(3).title, content_path(id: 3, device_id: device.id), :method => "get"
+            li= link_to Content.find(4).title, content_path(id: 4, device_id: device.id), :method => "get"
+            li= link_to Content.find(5).title, content_path(id: 5, device_id: device.id), :method => "get"
+            li= link_to Content.find(6).title, content_path(id: 6, device_id: device.id), :method => "get"
+
+        /td = link_to 'Destroy', device, data: {:confirm => 'Are you sure?'}, :method => :delete
         td.btn-group role="group"
           = link_to '', {:controller => "tasks", :action => "create_setvol", :task => { :device_id => device.id, :typeoftask_id => 3, :typeofstatus_id => 1, :options => ''} }, :method => "post", class: "glyphicon glyphicon-volume-up btn btn-md btn-default", title: 'Setvol'
           = link_to '', {:controller => "tasks", :action => "create_synctime", :task => { :device_id => device.id, :typeoftask_id => 4, :typeofstatus_id => 1, :options => ''} }, :method => "post", class: "glyphicon glyphicon-hourglass btn btn-md btn-default", title: 'Synctime'

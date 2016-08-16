@@ -25,7 +25,8 @@ h2.col-md-12 = t('contents.show.files')
         th = t('contents.show.play')
         /th [colspan="1"]
     tbody
-      = render @content.mediafiles.search(params[:contents_search])
+      = render @mediafiles
+      / @content.mediafiles.search(params[:contents_search])
 
 = link_to t('std.edit'), edit_content_path(@content)
 '|

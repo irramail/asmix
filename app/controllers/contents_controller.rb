@@ -7,6 +7,11 @@ class ContentsController < ApplicationController
   def show
     @content = Content.find(params[:id])
     @mediafiles = @content.mediafiles.search(params[:contents_search])
+    @device_id = params[:device_id]
+    if @device_id.present?
+      @mediafiles.clear
+      @content.mediafiles.each { |x| x.tasks.where(device_id: params[:device_id]).each {|t| @mediafiles << t.mediafile }}
+    end
   end
 
   def new
@@ -58,6 +63,6 @@ class ContentsController < ApplicationController
 
   private
     def content_params
-      params.require(:content).permit(:title)
+      params.require(:content).permit(:title, :device_id)
     end
 end

@@ -99,7 +99,7 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @old_order = Order.find(params[:old_id]) if params[:old_id]
-    @old_order.user_id = current_user.id
+    @old_order.user_id = current_user.id if @old_order.present?
   end
 
   # GET /orders/1/edit
