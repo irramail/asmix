@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   post "/tasks/create_delall" => "tasks#create_delall"
   post "/tasks/create_cancelall" => "tasks#create_cancelall"
   post "/tasks/create_gettrack" => "tasks#create_gettrack"
+  post "/tasks/create_delfile" => "tasks#create_delfile"
 
   post "/orders/start" => "orders#start"
   post "/orders/cancel" => "orders#cancel"

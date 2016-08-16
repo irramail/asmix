@@ -3,10 +3,11 @@
     td = mediafile.id
     td = mediafile.filename
     td = mediafile.md5
+    td = mediafile.created_at
     / td = mediafile.file
     td
       - if mediafile.filename.length > 4 && mediafile.filename[-4..-1] == '.mp3'
-        audio controls=true
+        audio controls=true style="width:100px"
           source src="#{mediafile.file}" type="audio/mpeg"
           | Your browser does not support the audio tag.
 
@@ -20,5 +21,5 @@
 
     - if @device_id.present?
       td class="col-md-1 img-status status-#{Task.where(mediafile_id: mediafile.id, device_id: @device_id).first.typeofstatus.name.downcase}"
-
+      td= link_to '', {controller: "tasks", action: "create_delfile", task: {device_id: @device_id, mediafile_id: mediafile.id} }, :method => "post", class:"glyphicon glyphicon-trash btn btn-md btn-danger",  title: 'Del'
     /td = link_to 'Destroy Mediafile', [mediafile.content, mediafile], method: :delete, data: { confirm: 'Are you sure?' }

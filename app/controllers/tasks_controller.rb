@@ -220,6 +220,21 @@ class TasksController < ApplicationController
     create_reboot
   end
 
+  def create_delfile
+    task = Task.where(device_id: task_params[:device_id], mediafile_id: task_params[:mediafile_id]).first
+    if task.typeofstatus_id < 5
+
+      new_task = Task.new(user_id: current_user.id, device_id: task.device_id, typeofstatus_id: 1, typeoftask_id: 33, options: "<HASHS><HASH>#{task.mediafile.md5}</HASH></HASHS>")
+      new_task.save
+
+      task.typeofstatus_id = 5
+      task.mediafile_id = nil
+      task.save
+    end
+
+    redirect_to request.referer
+  end
+
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
@@ -252,6 +267,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:device_id, :typeoftask_id, :typeofstatus_id, :user_id, :options)
+      params.require(:task).permit(:device_id, :typeoftask_id, :typeofstatus_id, :user_id, :mediafile_id, :options)
     end
 end
