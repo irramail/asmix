@@ -26,7 +26,7 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
         /td = device.ping
         td class=('danger' if (Time.now.utc - device.updated_at > device.ping * 2))
           = (device.updated_at + 3600 * device.tzdate).to_s[0..18]
-        td = device.version
+        /td = device.version
         /td = check_box 'Active', 'Active', checked: device.active, :disabled => true, :readonly => true
         td.btn-group role="group"
           = link_to '', device, class: "glyphicon glyphicon-eye-open btn btn-md btn-default", title: t('std.show')
