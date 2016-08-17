@@ -68,9 +68,9 @@ class MarketsController < ApplicationController
           @market.devices.each do |device|
             task = device.tasks.where({ typeofstatus_id: 1, typeoftask_id: 12}).first
             if task.present?
-              task.update(typeofstatus_id: 1, options: "<VOLSOFDAY>#{vols[0..-2]}</VOLSOFDAY>")
+              task.update(typeofstatus_id: 1, user_id: current_user.id, options: "<VOLSOFDAY>#{vols[0..-2]}</VOLSOFDAY>")
             else
-              device.tasks.create(typeoftask_id: 12, typeofstatus_id: 1, options: "<VOLSOFDAY>#{vols[0..-2]}</VOLSOFDAY>")
+              device.tasks.create(typeoftask_id: 12, typeofstatus_id: 1, user_id: current_user.id, options: "<VOLSOFDAY>#{vols[0..-2]}</VOLSOFDAY>")
             end
           end
         end
@@ -90,9 +90,9 @@ class MarketsController < ApplicationController
           @market.devices.each do |device|
             task = device.tasks.where({ typeofstatus_id: 1, typeoftask_id: 13}).first
             if task.present?
-              task.update(typeofstatus_id: 1, options: "<DAYS>#{worktime}</DAYS>")
+              task.update(typeofstatus_id: 1, user_id: current_user.id, options: "<DAYS>#{worktime}</DAYS>")
             else
-              device.tasks.create(typeoftask_id: 13, typeofstatus_id: 1, options: "<DAYS>#{worktime}</DAYS>")
+              device.tasks.create(typeoftask_id: 13, typeofstatus_id: 1, user_id: current_user.id, options: "<DAYS>#{worktime}</DAYS>")
             end
           end
         end

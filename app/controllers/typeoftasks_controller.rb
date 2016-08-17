@@ -71,6 +71,7 @@ class TypeoftasksController < ApplicationController
     Typeoftask.create!(name: "TIMAGEGET", priority: "30")
     Typeoftask.create!(name: "TIMAGEVIEW", priority: "31")
     Typeoftask.create!(name: "EXTDOWNLOADS", priority: "32")
+    Typeoftask.create!(name: "DEL.FILES", priority: "33")
 
     respond_to do |format|
       format.html { redirect_to typeoftasks_url, notice: 'Typeoftask was successfully generated.' }

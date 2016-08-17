@@ -66,9 +66,9 @@ class DevicesController < ApplicationController
 
           task = @device.tasks.where({ typeofstatus_id: 1, typeoftask_id: 3}).first
           if task.present?
-            task.update(typeofstatus_id: 1, options: "<VOLUMES>#{vols}</VOLUMES>")
+            task.update(typeofstatus_id: 1, user_id: current_user.id, options: "<VOLUMES>#{vols}</VOLUMES>")
           else
-            @device.tasks.create(typeoftask_id: 3, typeofstatus_id: 1, options: "<VOLUMES>#{vols}</VOLUMES>")
+            @device.tasks.create(typeoftask_id: 3, typeofstatus_id: 1, user_id: current_user.id, options: "<VOLUMES>#{vols}</VOLUMES>")
           end
         end
 
