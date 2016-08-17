@@ -36,6 +36,7 @@ class PlsbgvideosController < ApplicationController
         end
 
         @plsbgvideo.devices.each do |device|
+          device.tasks.where("typeoftask_id = 18 AND typeofstatus_id < 5").each { |t| t.update(typeofstatus_id: 5, user_id: current_user.id) }
           device.tasks.create(typeoftask_id: 18, typeofstatus_id: 1, user_id: current_user.id, options: "<TRACKS>#{tracks}</TRACKS>")
           @plsbgvideo.mediafiles.each do |mediafile|
             if device.tasks.where(mediafile_id: mediafile.id).empty?
