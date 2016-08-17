@@ -1,15 +1,42 @@
 /p#notice = notice
+.col-md-12
+  h2.panel.panel-success
+    .panel-heading
+      = "#{t('pls.title')}: "
+      - if @plsbgvideo.name.length > 0
+        = @plsbgvideo.name
+      - else
+        = "#{t('std.empty')}"
 
-p
-  strong = "#{t('pls.name')}:"
-  = @plsbgvideo.name
-p
-  strong = "#{t('pls.devices')}:"
-  - @plsbgvideo.devices.each do |device|
-    p #{device.id}. #{device.name}
-p
-  strong = "#{t('pls.files')}:"
-  - @plsbgvideo.mediafiles.each do |mediafile|
-    p #{mediafile.id}. #{mediafile.filename}
+  .col-md-6
+    h4= "#{t('devices.few')}:"
+    table.table.table-striped.table-hover.table-condensed
+      thead
+        tr
+          th.col-md-1 #
+          th = t('pls.name')
+      tbodys
+        - @plsbgvideo.devices.each do |device|
+          tr
+            td = device.id
+            td = device.name
+
+  .col-md-6
+    h4= "#{t('contents.show.files')}:"
+    table.table.table-striped.table-hover.table-condensed
+      thead
+        tr
+          th.col-md-1 #
+          th = t('pls.name')
+      tbodys
+        - @plsbgvideo.mediafiles.each do |mediafile|
+          tr
+            td = mediafile.id
+            td = mediafile.filename
+            td
+              - if mediafile.filename.length > 4 && mediafile.filename[-4..-1] == '.mp4'
+                video width="50" controls=true
+                  source src="#{mediafile.file}" type="video/mp4"
+                  | Your browser does not support HTML5 video.
 
 = link_to t('std.back'), plsbgvideos_path

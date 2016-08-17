@@ -29,6 +29,8 @@ h2.col-md-12 = t('contents.show.files')
       = render @mediafiles
       / @content.mediafiles.search(params[:contents_search])
 
-= link_to t('std.edit'), edit_content_path(@content)
-'|
-= link_to t('std.back'), contents_path
+= paginate @mediafiles
+.col-md-12
+  = link_to t('std.edit'), edit_content_path(@content)
+  '|
+  = link_to t('std.back'), contents_path

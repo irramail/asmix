@@ -21,7 +21,7 @@ class GtwsController < ApplicationController
         if Task.where(:device_id => id, :typeofstatus_id => 1).present?
           render plain: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<STATUS><TASKS/></STATUS>"
         else
-          render xml: done_status
+          render xml: done_status1
         end
       when 'getJob'
         id = hash['STATUS']['ID'].to_i

@@ -6,7 +6,7 @@ class ContentsController < ApplicationController
 
   def show
     @content = Content.find(params[:id])
-    @mediafiles = @content.mediafiles.search(params[:contents_search])
+    @mediafiles = @content.mediafiles.search(params[:contents_search]).page params[:page]
     @device_id = params[:device_id]
     if @device_id.present?
       @mediafiles.clear
