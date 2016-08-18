@@ -21,11 +21,13 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
     - @devices.each do |device|
       tr
         td = device.id
-        td = device.name
+        td
+          = device.name
+          = image_tag('online.png', hspace: '10') if (Time.now.utc - device.updated_at < device.ping + 5)
         td = device.market.name
         /td = device.ping
-        td class=('danger' if (Time.now.utc - device.updated_at > device.ping * 2))
-          = (device.updated_at + 3600 * device.tzdate).to_s[0..18]
+        /td class=('danger' if (Time.now.utc - device.updated_at > device.ping * 2))
+        td = (device.updated_at + 3600 * device.tzdate).to_s[0..18]
         /td = device.version
         /td = check_box 'Active', 'Active', checked: device.active, :disabled => true, :readonly => true
         td.btn-group role="group"
