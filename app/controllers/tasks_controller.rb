@@ -235,6 +235,28 @@ class TasksController < ApplicationController
     redirect_to request.referer
   end
 
+  def create_setweight
+    @task = Task.new(task_params)
+    hashs_with_weights = ""
+    Task.where(device_id: 1).where("mediafile_id > ?", 0).each do |t|
+      file = t.mediafile
+      hashs_with_weights += "<HASH weight=\"#{file.weight}\">#{file.md5}<HASH>" if file.present? && file.content_id % 2 == 0 && file.weight.present?
+    end
+
+    @task.options = "<FILES>#{hashs_with_weights}</FILES>"
+    @task.user_id = current_user.id
+
+    respond_to do |format|
+      if @task.save
+        format.html { redirect_to devices_path, notice: 'Task was successfully created.' }
+        format.json { render :index, status: :created, location: @task.devices }
+      else
+        format.html { render :index, location: @task.devices }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
