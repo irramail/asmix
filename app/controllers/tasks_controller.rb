@@ -240,7 +240,7 @@ class TasksController < ApplicationController
     hashs_with_weights = ""
     Task.where(device_id: 1).where("mediafile_id > ?", 0).each do |t|
       file = t.mediafile
-      hashs_with_weights += "<HASH weight=\"#{file.weight}\">#{file.md5}<HASH>" if file.present? && file.content_id % 2 == 0 && file.weight.present?
+      hashs_with_weights += "<HASH weight=\"#{file.weight}\">#{file.md5}</HASH>" if file.present? && file.content_id % 2 == 0 && file.weight.present?
     end
 
     @task.options = "<FILES>#{hashs_with_weights}</FILES>"
