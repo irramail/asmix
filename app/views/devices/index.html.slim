@@ -14,7 +14,7 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
       th = t('devices.thead.market')
       /th = t('devices.thead.ping')
       th = t('devices.thead.updated')
-      th = t('devices.thead.version')
+      /th = t('devices.thead.version')
       /th = t('thead.active')
 
   tbody
@@ -57,6 +57,8 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
           = link_to '', {:controller => "tasks", :action => "create_getinfo", :task => {:device_id => device.id, :typeoftask_id => 10, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-info-sign btn btn-md btn-default", title: 'Getinfo'
           = link_to '', {:controller => "tasks", :action => "create_gettrack", :task => {:device_id => device.id, :typeoftask_id => 8, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-question-sign btn btn-md btn-default", title: 'Что проигрывает?'
           = link_to '', {:controller => "tasks", :action => "create_setweight", :task => {:device_id => device.id, :typeoftask_id => 34, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-sort btn btn-md btn-default", title: 'Установить вес всем'
+          = link_to '', {:controller => "tasks", :action => "create_sendbgpls", :task => {:device_id => device.id, :typeoftask_id => 36, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon glyphicon-tree-conifer btn btn-md btn-default", title: 'Запросить фоновый плейлист'
+          = link_to '', {:controller => "tasks", :action => "create_sendadpls", :task => {:device_id => device.id, :typeoftask_id => 37, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon glyphicon-tree-deciduous btn btn-md btn-default", title: 'Запросить плейлисты рекламы'
           /cmd.one
           = link_to '', {:controller => "tasks", :action => "create_ssh", :task => {:device_id => device.id, :typeoftask_id => 11, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-console btn btn-md btn-default", title: 'SSH'
           = link_to '', {:controller => "tasks", :action => "create_setvolsofday", :task => {:device_id => device.id, :typeoftask_id => 12, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-headphones btn btn-md btn-default", title: 'VolsOfDay'

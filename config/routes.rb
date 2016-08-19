@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   post "/tasks/create_gettrack" => "tasks#create_gettrack"
   post "/tasks/create_delfile" => "tasks#create_delfile"
   post "/tasks/create_setweight" => "tasks#create_setweight"
+  post "/tasks/create_sendbgpls" => "tasks#create_sendbgpls"
+  post "/tasks/create_sendadpls" => "tasks#create_sendadpls"
 
   post "/orders/start" => "orders#start"
   post "/orders/cancel" => "orders#cancel"

@@ -99,6 +99,30 @@ class GtwsController < ApplicationController
         render xml: done_status
       when 'sendwave'
         render xml: done_status
+      when 'sendbgpls'
+        id = hash['JOB']['ID'].to_i
+        not_found if Device.where(:id => id, :active => true).blank?
+
+        device = Device.where(:id => id).first
+        device.touch
+
+        render xml: done_status
+      when 'sendadpls'
+        id = hash['JOB']['ID'].to_i
+        not_found if Device.where(:id => id, :active => true).blank?
+
+        device = Device.where(:id => id).first
+        device.touch
+
+        render xml: done_status
+      when 'sendpls'
+        id = hash['JOB']['ID'].to_i
+        not_found if Device.where(:id => id, :active => true).blank?
+
+        device = Device.where(:id => id).first
+        device.touch
+
+        render xml: done_status
       else
         not_found
     end

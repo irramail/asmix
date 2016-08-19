@@ -15,7 +15,10 @@
     = @device.market.name
     strong = "-> #{t('devices.device')}:"
     = "#{@device.id} - #{@device.name}"
+    - status = 'completed'
+    - status = @device.tasks.where(typeoftask_id: 3).first.typeofstatus.name.downcase
     = image_tag('online.png', hspace: '10') if (Time.now.utc - @device.updated_at < @device.ping + 5)
+    = link_to '', {:controller => "tasks", :action => "index", :device_id => @device.id }, :method => "get", class: "btn img-status status-#{status}", title: t('nav.tasks')
     = link_to '', {:controller => "tasks", :action => "index", :device_id => @device.id }, :method => "get", class: "glyphicon glyphicon-list btn btn-md btn-default pull-right", title: t('nav.tasks')
 
   h2 = t('devices.volumes')
@@ -35,6 +38,12 @@
   /== render 'volumes/form'
 
 p.col-md-6
+  p
+    strong = "#{t('devices.thead.version')}:"
+    = @device.version
+    - status = 'completed'
+    - status = @device.tasks.where(typeoftask_id: 7).first.typeofstatus.name.downcase
+    = link_to '', {:controller => "tasks", :action => "index", :device_id => @device.id }, :method => "get", class: "btn img-status status-#{status}", title: t('nav.tasks')
   p
     strong = "#{t('devices.thead.ping')}:"
     = @device.ping

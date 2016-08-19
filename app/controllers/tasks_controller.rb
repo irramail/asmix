@@ -257,6 +257,14 @@ class TasksController < ApplicationController
     end
   end
 
+  def create_sendbgpls
+    create_reboot
+  end
+
+  def create_sendadpls
+    create_reboot
+  end
+
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
