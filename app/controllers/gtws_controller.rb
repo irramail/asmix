@@ -116,7 +116,7 @@ class GtwsController < ApplicationController
         else
           files << Mediafile(md5: bgpls['MD5'])
         end
-        p fliles
+        p files
 
         render xml: done_status
       when 'sendadpls'
