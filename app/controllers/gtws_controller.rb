@@ -106,6 +106,18 @@ class GtwsController < ApplicationController
         device = Device.where(:id => id).first
         device.touch
 
+        files = Mediafile.limit(2)
+        files.clear
+        bgpls = hash['JOB']['BGPLS']['MD5']
+        if bgpls.kind_of?(Array)
+          bgpls.each do |md5|
+            files << Mediafile.where(md5: md5)
+          end
+        else
+          files << Mediafile(md5: bgpls['MD5'])
+        end
+        p fliles
+
         render xml: done_status
       when 'sendadpls'
         id = hash['JOB']['ID'].to_i
