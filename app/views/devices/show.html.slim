@@ -15,6 +15,7 @@
     = @device.market.name
     strong = "-> #{t('devices.device')}:"
     = "#{@device.id} - #{@device.name}"
+    = image_tag('online.png', hspace: '10') if (Time.now.utc - @device.updated_at < @device.ping + 5)
     = link_to '', {:controller => "tasks", :action => "index", :device_id => @device.id }, :method => "get", class: "glyphicon glyphicon-list btn btn-md btn-default pull-right", title: t('nav.tasks')
 
   h2 = t('devices.volumes')
