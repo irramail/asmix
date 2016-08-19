@@ -116,6 +116,8 @@ class GtwsController < ApplicationController
         else
           files << Mediafile(md5: bgpls['MD5'])
         end
+        files.each { |file| p file.filename}
+
         p files
 
         render xml: done_status
