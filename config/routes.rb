@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :playlists
   resources :messages
   resources :periods
   resources :statuses

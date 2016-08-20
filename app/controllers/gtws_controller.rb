@@ -116,9 +116,10 @@ class GtwsController < ApplicationController
         else
           files << Mediafile(md5: bgpls['MD5'])
         end
-        files.each { |file| p file.filename}
 
-        p files
+        task_id = hash['JOB']['TASK_ID'].to_i if hash['JOB']['TASK_ID'].present?
+
+        files.each { |file|  Playlist.create(mediafile_id: file.id, task_id: task_id }
 
         render xml: done_status
       when 'sendadpls'
