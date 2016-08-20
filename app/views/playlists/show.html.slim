@@ -1,7 +1,8 @@
 /p#notice = notice
 
 - Playlist.where(task_id: @playlist.task_id).each do |id|
-  id.mediafile.filename
+  span
+    = id.mediafile.filename
 p
   strong Mediafile:
   = @playlist.mediafile.filename
