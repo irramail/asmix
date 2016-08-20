@@ -12,7 +12,7 @@ table
       th
 
   tbody
-    - @playlists.pluck(:task_id).each do |id|
+    - @playlists.pluck(:task_id).unic.each do |id|
       tr
         /td = playlist.mediafile
         td = Playlist.where(task_id: id).first.task.device.name
