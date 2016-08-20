@@ -12,15 +12,15 @@ table
       th
 
   tbody
-    - @playlists.each do |playlist|
+    - @playlists.pluck(:task_id).each do |id|
       tr
         /td = playlist.mediafile
-        td = playlist.task.device.name
-        td = playlist.task_id
-        td = playlist.created_at
-        td = link_to 'Show', playlist
-        td = link_to 'Edit', edit_playlist_path(playlist)
-        td = link_to 'Destroy', playlist, data: { confirm: 'Are you sure?' }, method: :delete
+        td = Playlist.where(task_id: id).first.task.device.name
+        td = Playlist.where(task_id: id).first.task_id
+        td = Playlist.where(task_id: id).first.created_at
+        td = link_to 'Show', Playlist.where(task_id: id).first
+        td = link_to 'Edit', edit_playlist_path(Playlist.where(task_id: id).first)
+        td = link_to 'Destroy', Playlist.where(task_id: id).first, data: { confirm: 'Are you sure?' }, method: :delete
 
 br
 
