@@ -1,6 +1,6 @@
 h1 Listing playlists
 
-table.table-striped.table-hover.table-condensed.table-bordered
+table.table.table-striped.table-hover.table-condensed.table-bordered
   thead
     tr
       /th Mediafile
@@ -19,9 +19,5 @@ table.table-striped.table-hover.table-condensed.table-bordered
         td = Playlist.where(task_id: id).first.task.typeoftask.name
         td = Playlist.where(task_id: id).first.created_at
         td = link_to 'Show', Playlist.where(task_id: id).first
-        td = link_to 'Edit', edit_playlist_path(Playlist.where(task_id: id).first)
+        /td = link_to 'Edit', edit_playlist_path(Playlist.where(task_id: id).first)
         td = link_to 'Destroy', Playlist.where(task_id: id).first, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Playlist', new_playlist_path
