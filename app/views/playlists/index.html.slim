@@ -16,7 +16,7 @@ table
       tr
         /td = playlist.mediafile
         td = Playlist.where(task_id: id).first.task.device.name
-        td = Playlist.where(task_id: id).first.task_id
+        td = Playlist.where(task_id: id).first.task.typeoftask.title
         td = Playlist.where(task_id: id).first.created_at
         td = link_to 'Show', Playlist.where(task_id: id).first
         td = link_to 'Edit', edit_playlist_path(Playlist.where(task_id: id).first)
