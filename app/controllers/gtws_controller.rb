@@ -119,7 +119,7 @@ class GtwsController < ApplicationController
 
         task_id = hash['JOB']['TASK_ID'].to_i if hash['JOB']['TASK_ID'].present?
 
-        files.each { |file|  Playlist.create(mediafile_id: file.id, task_id: task_id }
+        files.each { |file|  Playlist.create(mediafile_id: file.id, task_id: task_id) }
 
         render xml: done_status
       when 'sendadpls'
