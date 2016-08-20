@@ -9,11 +9,12 @@ table.table-striped.table-hover.table-condensed.table-bordered
     tr
       th Filename
   tbody
-    - cntr = 1
+    - cntr = 0
     - Playlist.where(task_id: @playlist.task_id).each do |id|
       tr
         td
+          = cntr += 1
+        td
           = id.mediafile.filename
-          - cntr += 1
 
 = link_to 'Back', playlists_path
