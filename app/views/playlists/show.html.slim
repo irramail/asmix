@@ -1,8 +1,13 @@
 /p#notice = notice
-
-- Playlist.where(task_id: @playlist.task_id).each do |id|
-  span
-    = id.mediafile.filename
+table
+  thead
+    tr
+      th Filename
+  tbody
+    - Playlist.where(task_id: @playlist.task_id).each do |id|
+      tr
+        td
+          = id.mediafile.filename
 p
   strong Mediafile:
   = @playlist.mediafile.filename
