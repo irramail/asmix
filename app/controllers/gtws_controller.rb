@@ -137,6 +137,24 @@ class GtwsController < ApplicationController
         device = Device.where(:id => id).first
         device.touch
 
+
+        files = Mediafile.limit(2)
+        files.clear
+        adpls = hash['JOB']['ADPLS']['LINE']
+        if adpls.kind_of?(Array)
+          adpls.each do |line|
+            files << Mediafile.where(md5: line['MD5']).first
+          end
+        else
+          files << Mediafile(md5: adpls['LINE']['MD5'])
+        end
+
+        task_id = hash['JOB']['TASK_ID'].to_i if hash['JOB']['TASK_ID'].present?
+
+        files.each { |file|  Playlist.create(mediafile_id: file.id, task_id: task_id) }
+
+
+
         render xml: done_status
       else
         not_found
