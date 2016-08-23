@@ -114,10 +114,12 @@ class GtwsController < ApplicationController
             files << Mediafile.where(md5: md5).first
           end
         else
-          files << Mediafile(md5: bgpls['MD5'])
+          files << Mediafile.where(md5: bgpls['MD5'])
         end
 
         task_id = hash['JOB']['TASK_ID'].to_i if hash['JOB']['TASK_ID'].present?
+
+        Playlist.where(task_id: task_id).delete_all
 
         files.each { |file|  Playlist.create(mediafile_id: file.id, task_id: task_id) }
 
@@ -129,6 +131,23 @@ class GtwsController < ApplicationController
         device = Device.where(:id => id).first
         device.touch
 
+        adpls = hash['JOB']['ADPLS']['LINE']
+
+        task_id = hash['JOB']['TASK_ID'].to_i if hash['JOB']['TASK_ID'].present?
+        day_id = hash['JOB']['ADPLS']['DAY_ID']
+        Playlist.where(task_id: task_id, day_id: day_id).delete_all
+
+        if adpls.kind_of?(Array)
+          adpls.each do |line|
+            Playlist.create(mediafile_id: Mediafile.where(md5: line['MD5']).first.id, task_id: task_id, runtime: line['RUNTIME'], runtask_id: line['TASK_ID'], day_id: day_id)
+          end
+        else
+          #files << Mediafile.where(md5: adpls['LINE']['MD5']) #FIXME if empty pls
+          Playlist.create(mediafile_id: Mediafile.where(md5: adpls['LINE']['MD5']).first.id, task_id: task_id, runtime: line['RUNTIME'], runtask_id: line['TASK_ID'], day_id: day_id)
+        end
+
+        #files.each { |file|  Playlist.create(mediafile_id: file.id, task_id: task_id) }
+
         render xml: done_status
       when 'sendpls'
         id = hash['JOB']['ID'].to_i
@@ -136,24 +155,6 @@ class GtwsController < ApplicationController
 
         device = Device.where(:id => id).first
         device.touch
-
-
-        files = Mediafile.limit(2)
-        files.clear
-        adpls = hash['JOB']['ADPLS']['LINE']
-        if adpls.kind_of?(Array)
-          adpls.each do |line|
-            files << Mediafile.where(md5: line['MD5']).first
-          end
-        else
-          files << Mediafile(md5: adpls['LINE']['MD5'])
-        end
-
-        task_id = hash['JOB']['TASK_ID'].to_i if hash['JOB']['TASK_ID'].present?
-
-        files.each { |file|  Playlist.create(mediafile_id: file.id, task_id: task_id) }
-
-
 
         render xml: done_status
       else

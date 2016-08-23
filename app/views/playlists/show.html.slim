@@ -8,14 +8,44 @@ table.table-striped.table-hover.table-condensed
   thead
     tr
       th #
+      th
       th Filename
+      th
+      th
   tbody
     - cntr = 0
-    - Playlist.where(task_id: @playlist.task_id).each do |id|
+    - old_day_id = 100
+    - old_runtime = "--:--:--"
+    - Playlist.where(task_id: @playlist.task_id).reorder(day_id: :asc, runtime: :asc).each do |id|
+      - if (old_day_id != id.day_id) && id.day_id
+        - old_day_id = id.day_id
+        tr
+          td
+          td
+          td
+          td
+          td
+          td.pull-right = t("pls.day#{id.day_id}")
       tr
         td
           = cntr += 1
+        - if id.runtime && id.runtime.strftime("%H:%M") != old_runtime
+          - old_runtime = id.runtime.strftime("%H:%M")
+          td
+            = old_runtime
+        - else
+          td
         td
           = id.mediafile.filename
+        - if id.runtask_id
+          td = Task.find(id.runtask_id).suborders.first.startdt.to_s[0..18]
+          td = Task.find(id.runtask_id).suborders.first.stopdt.to_s[0..18]
+          td
+            - title = ''
+            - if Task.find(id.runtask_id).suborders.first.order.name.length > 0
+              - title = Task.find(id.runtask_id).suborders.first.order.name
+            - else
+              - title = Task.find(id.runtask_id).suborders.first.order_id
+            = link_to title, Task.find(id.runtask_id).suborders.first.order if id.runtask_id
 
 = link_to 'Back', playlists_path

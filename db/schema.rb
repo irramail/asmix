@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160820052525) do
+ActiveRecord::Schema.define(version: 20160822180338) do
 
   create_table "contents", force: :cascade do |t|
     t.string   "title"
@@ -104,6 +104,9 @@ ActiveRecord::Schema.define(version: 20160820052525) do
     t.integer  "task_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.datetime "runtime"
+    t.integer  "runtask_id"
+    t.integer  "day_id"
   end
 
   add_index "playlists", ["mediafile_id"], name: "index_playlists_on_mediafile_id"
