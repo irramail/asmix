@@ -3,7 +3,9 @@
     td = mediafile.id
     td = mediafile.filename
     td = mediafile.md5
-    td = mediafile.weight
+    td
+      - weight = mediafile.weight.present? ? "#{mediafile.weight}": "50"
+      = number_field_tag "mediafile[weight][#{mediafile.id}]", weight, min: 1, max:99, style:"width:40px", class: "mediafiles_weight"
     td = mediafile.created_at
     / td = mediafile.file
     td

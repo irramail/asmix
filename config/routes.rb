@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   post "/typeofstatuses/gen" => "typeofstatuses#gen"
   post "/typeoftasks/gen" => "typeoftasks#gen"
   post "/contents/gen" => "contents#gen"
+  patch "/mediafiles/:id(.:format)" => "mediafiles#update"
 
   resources :tasks
   resources :typeofstatuses

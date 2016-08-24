@@ -14,6 +14,17 @@ class MediafilesController < ApplicationController
     end
   end
 
+  def update
+    @mediafile = Mediafile.find(params[:id])
+    respond_to do |format|
+      if @mediafile.update(mediafile_params)
+        format.json { render json: @mediafile, status: 200 }
+      else
+        format.json { render json: {error: @mediafile.errors} }
+      end
+    end
+  end
+
   def destroy
     @content = Content.find(params[:content_id])
     @mediafile = @content.mediafiles.find(params[:id])

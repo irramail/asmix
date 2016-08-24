@@ -656,6 +656,50 @@ jQuery(document).ready(function($){
         }, 1000);
     });
 
+    $(".mediafiles_weight").keyup(function (e) {
+        var cid = $(this).prop('id');
+        var id = cid.substring(17, 19);
+        var val = $(this).val();
+
+        if ( devicesTimer[cid] !== undefined ) {
+            clearTimeout( devicesTimer[cid] );
+        }
+
+        devicesTimer[cid] = setTimeout(function(){
+            devicesTimer[cid] = undefined;
+
+            $.ajax({
+                url: '/mediafiles/' + id,
+                type: 'PATCH',
+                data: { mediafile: { weight: val }, id: id },
+                dataType: 'json'
+            }).done(function(r) {
+            });
+        }, 1000);
+    });
+
+    $(".mediafiles_weight").mouseup(function (e) {
+        var cid = $(this).prop('id');
+        var id = cid.substring(17, 19);
+        var val = $(this).val();
+
+        if ( devicesTimer[cid] !== undefined ) {
+            clearTimeout( devicesTimer[cid] );
+        }
+
+        devicesTimer[cid] = setTimeout(function(){
+            devicesTimer[cid] = undefined;
+
+            $.ajax({
+                url: '/mediafiles/' + id,
+                type: 'PATCH',
+                data: { mediafile: { weight: val }, id: id },
+                dataType: 'json'
+            }).done(function(r) {
+            });
+        }, 1000);
+    });
+
     $('.timepicker input').each(function(a, b){
         $(b).timepicker({
             showMeridian: false
