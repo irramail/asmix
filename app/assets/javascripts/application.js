@@ -658,7 +658,7 @@ jQuery(document).ready(function($){
 
     $(".mediafiles_weight").keyup(function (e) {
         var cid = $(this).prop('id');
-        var id = cid.substring(17, 19);
+        var id = cid.substring(17, cid.length);
         var val = $(this).val();
 
         if ( devicesTimer[cid] !== undefined ) {
@@ -680,7 +680,7 @@ jQuery(document).ready(function($){
 
     $(".mediafiles_weight").mouseup(function (e) {
         var cid = $(this).prop('id');
-        var id = cid.substring(17, 19);
+        var id = cid.substring(17, cid.length);
         var val = $(this).val();
 
         if ( devicesTimer[cid] !== undefined ) {
