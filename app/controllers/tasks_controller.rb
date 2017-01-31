@@ -68,7 +68,7 @@ class TasksController < ApplicationController
   def create_setinterval
     @task = Task.new(task_params)
     @task.options="<INTERVAL>#{@task.device.ping}</INTERVAL>"
-    @task.options = current_user.id
+    @task.user_id = current_user.id
 
     respond_to do |format|
       if @task.save
