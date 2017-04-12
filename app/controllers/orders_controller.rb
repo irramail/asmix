@@ -70,7 +70,7 @@ class OrdersController < ApplicationController
       order.plists.each do |file|
         if file.mediafile.present?
           if order.device.tasks.where(mediafile_id: file.mediafile.id).empty?
-            order.tasks.create(device_id: order.device.id, typeoftask_id: 1, typeofstatus_id: 1, user_id: current_user.id, options: "<URLS><URL>#{file.mediafile.file}|#{file.mediafile.md5[-4..-1]}</URL><NAME>#{file.mediafile.filename}</NAME></URLS>", mediafile_id: file.mediafile.id)
+            order.tasks.create(device_id: order.device.id, typeoftask_id: 1, typeofstatus_id: 1, user_id: current_user.id, options: "<URLS><URL>#{file.mediafile.file}|#{file.mediafile.md5[-4..-1]}</URL><NAME>#{file.mediafile.filename}</NAME><HASH>#{file.mediafile.md5}</HASH><WEIGHT>#{file.mediafile.weight}</WEIGHT></URLS>", mediafile_id: file.mediafile.id)
             #order.tasks.create(device_id: order.device.id, typeoftask_id: 1, typeofstatus_id: 1, user_id: current_user.id, options: "<URLS><URL>http://192.168.0.91:3000#{file.mediafile.file}|#{file.mediafile.md5[-4..-1]}</URL></URLS>", mediafile_id: file.mediafile.id)
           end
         end

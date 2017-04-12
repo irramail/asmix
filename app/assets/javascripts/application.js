@@ -700,6 +700,20 @@ jQuery(document).ready(function($){
         }, 1000);
     });
 
+    $(".range-vol").click(function (e) {
+        var cid = $(this).prop('id');
+        var id = cid.substring(6, cid.length);
+        var val = $(this).val();
+        $('#device_volumes_attributes_' + id + '_value').val(val);
+    });
+
+    function touchend_deal() {
+        var cid = $(this).prop('id');
+        var id = cid.substring(6, cid.length);
+        var val = $(this).val();
+        $('#device_volumes_attributes_' + id + '_value').val(val);
+    }
+
     $('.timepicker input').each(function(a, b){
         $(b).timepicker({
             showMeridian: false
@@ -712,3 +726,9 @@ jQuery(document).ready(function($){
         });
     });
 });
+
+function touchend_deal(cid, value) {
+  var id = cid.substring(6, cid.length);
+  var a = document.getElementById('device_volumes_attributes_' + id + '_value');
+  a.value = value;
+}

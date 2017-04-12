@@ -19,6 +19,11 @@
           source src="#{mediafile.file}" type="video/mp4"
           | Your browser does not support HTML5 video.
 
+      - if mediafile.filename.length > 4 && mediafile.filename[-4..-1] == '.avi'
+        video width="50" controls=true
+          source src="#{mediafile.file}" type="video/mp4"
+          | Your browser does not support HTML5 video.
+
       - if mediafile.filename.length > 4 && (mediafile.filename[-4..-1] == '.png' || mediafile.filename[-4..-1] == '.jpg')
         = link_to image_tag(mediafile.file, :size => '25x25'), image_path(mediafile.file)
 

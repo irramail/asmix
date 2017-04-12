@@ -30,7 +30,7 @@ class PlsbgmusicsController < ApplicationController
 
     respond_to do |format|
       if @plsbgmusic.save
-        tracks=""
+        tracks="<STIME>#{@plsbgmusic.time.strftime("%H:%M")}</STIME>"
         @plsbgmusic.mediafiles.each do |mediafile|
           tracks += "<TRACK><HASH>#{mediafile.md5}</HASH></TRACK>"
         end
@@ -40,7 +40,7 @@ class PlsbgmusicsController < ApplicationController
           device.tasks.create(typeoftask_id: 14, typeofstatus_id: 1, user_id: current_user.id, options: "<TRACKS>#{tracks}</TRACKS>")
           @plsbgmusic.mediafiles.each do |mediafile|
             if device.tasks.where(mediafile_id: mediafile.id).empty?
-              device.tasks.create(typeoftask_id: 1, typeofstatus_id: 1, user_id: current_user.id, options: "<URLS><URL>#{mediafile.file}|#{mediafile.md5[-4..-1]}</URL><NAME>#{mediafile.filename}</NAME></URLS>", mediafile_id: mediafile.id)
+              device.tasks.create(typeoftask_id: 1, typeofstatus_id: 1, user_id: current_user.id, options: "<URLS><URL>#{mediafile.file}|#{mediafile.md5[-4..-1]}</URL><NAME>#{mediafile.filename}</NAME><HASH>#{mediafile.md5}</HASH><WEIGHT>#{mediafile.weight}</WEIGHT></URLS>", mediafile_id: mediafile.id)
               #device.tasks.create(typeoftask_id: 1, typeofstatus_id: 1, options: "<URLS><URL>http://192.168.0.91:3000#{mediafile.file}|#{mediafile.md5[-4..-1]}</URL></URLS>", mediafile_id: mediafile.id)
             end
           end
@@ -86,6 +86,6 @@ class PlsbgmusicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plsbgmusic_params
-      params.require(:plsbgmusic).permit(:name, :device_ids => [], :mediafile_ids => [])
+      params.require(:plsbgmusic).permit(:name, :time, :device_ids => [], :mediafile_ids => [])
     end
 end

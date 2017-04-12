@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'execjs'
+gem 'therubyracer'
 gem 'slim-rails'
 gem 'carrierwave'
 gem 'bootstrap-sass'

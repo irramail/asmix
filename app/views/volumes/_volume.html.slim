@@ -1,9 +1,14 @@
 = form_for @device, remote:true do |device_form|
   .col-md-12.padb20
+    - count = 0
     = device_form.fields_for :volumes do |volumes_form|
       .field.col-md-2
         = volumes_form.text_field :description, readonly: true, style: "border:none; font-weight: bold"
         = volumes_form.number_field :value, min: 0, max:100, class: "form-control"
+        .field
+          = range_field_tag "range_#{count}", volumes_form.object.value, min: 1, max: 99, step: 1, class: "range-vol", ontouchend:"touchend_deal(this.id, this.value);"
+        - count += 1
+
     .col-md-12.padt20
       = device_form.submit t('std.save'), class: "btn btn-md btn-success pull-left col-md-12"
 

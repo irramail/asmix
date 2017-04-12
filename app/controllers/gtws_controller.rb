@@ -18,7 +18,7 @@ class GtwsController < ApplicationController
         not_found if Device.where(:id => id, :active => true).blank?
         Device.where(:id => id).first.touch
 
-        if Task.where(:device_id => id, :typeofstatus_id => 1).present?
+        if Task.where(:device_id => id, :typeofstatus_id => 1).present? && Task.where(:device_id => id, :typeofstatus_id => 3, :typeoftask_id => 1).empty?
           render plain: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<STATUS><TASKS/></STATUS>"
         else
           render xml: done_status1
