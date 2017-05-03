@@ -30,7 +30,16 @@ class PlsbgmusicsController < ApplicationController
 
     respond_to do |format|
       if @plsbgmusic.save
-        tracks="<STIME>#{@plsbgmusic.time.strftime("%H:%M")}</STIME>"
+        tracks="<STIME>#{@plsbgmusic.time.strftime("%R")}</STIME>"
+
+        tracks+="<BEGINTIME>#{@plsbgmusic.begintime.strftime("%T")}</BEGINTIME>"
+        tracks+="<ENDTIME>#{@plsbgmusic.endtime.strftime("%T")}</ENDTIME>"
+
+        tracks+="<BEGINDATE>#{@plsbgmusic.startdt.strftime("%F")}</BEGINDATE>"
+        tracks+="<ENDDATE>#{@plsbgmusic.stopdt.strftime("%F")}</ENDDATE>"
+
+        #tracks+="<ENDDATE>#{@plsbgmusic.stopdt.to_s[0..18]}</ENDDATE>"
+
         @plsbgmusic.mediafiles.each do |mediafile|
           tracks += "<TRACK><HASH>#{mediafile.md5}</HASH></TRACK>"
         end

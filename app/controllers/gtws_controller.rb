@@ -111,10 +111,10 @@ class GtwsController < ApplicationController
         bgpls = hash['JOB']['BGPLS']['MD5']
         if bgpls.kind_of?(Array)
           bgpls.each do |md5|
-            files << Mediafile.where(md5: md5).first
+            files << md5 #Mediafile.where(md5: md5).first
           end
         else
-          files << Mediafile.where(md5: bgpls['MD5'])
+          files << bgpls['MD5'] #Mediafile.where(md5: bgpls['MD5'])
         end
 
         task_id = hash['JOB']['TASK_ID'].to_i if hash['JOB']['TASK_ID'].present?
