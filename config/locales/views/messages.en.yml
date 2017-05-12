@@ -1,0 +1,5 @@
+en:
+  messages:
+    text: "text"
+    runtime: "runtime"
+    created_at: "creat_at"

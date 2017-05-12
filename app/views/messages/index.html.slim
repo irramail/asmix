@@ -6,13 +6,12 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
       th = t('devices.thead.id')
       th = t('devices.thead.id')
       th = t('devices.thead.name')
-      th Runtime
-      th Text
-      th Created_at
+      th = t('messages.runtime')
+      th = t('messages.text')
+      th = t('messages.created_at')
       th
       /th
       /th
-
   tbody
     - @messages.each do |message|
       tr
