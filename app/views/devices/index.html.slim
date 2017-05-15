@@ -1,12 +1,13 @@
 p.col-md-12
   .btn-group
-    = link_to '', { controller: 'devices', action: 'okping' }, class: "glyphicon glyphicon-ok-sign btn btn-md btn-success pull-left", title: t('devices.okping')
-    = link_to '', { controller: 'devices', action: 'badping' }, class: "glyphicon glyphicon-minus-sign btn btn-md btn-danger pull-left", title: t('devices.badping')
+    = link_to '', { controller: 'devices', action: 'okping' }, class: "glyphicon glyphicon-ok-sign btn btn-md btn-success pull-left", title: t('devices.title.okping')
+    = link_to '', { controller: 'devices', action: 'badping' }, class: "glyphicon glyphicon-minus-sign btn btn-md btn-danger pull-left", title: t('devices.title.badping')
   = link_to new_device_path, class: "btn btn-md btn-primary pull-right"
     span.glyphicon.glyphicon-plus
     = t('devices.new')
 
 table.table.table-striped.table-hover.table-condensed.table-bordered
+  = text_field_tag 'devices_search', nil, class: "col-md-4"
   thead
     tr
       th = t('devices.thead.id')
@@ -47,25 +48,25 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
 
         /td = link_to 'Destroy', device, data: {:confirm => 'Are you sure?'}, :method => :delete
         td.btn-group role="group"
-          = link_to '', {:controller => "tasks", :action => "create_setvol", :task => { :device_id => device.id, :typeoftask_id => 3, :typeofstatus_id => 1, :options => ''} }, :method => "post", class: "glyphicon glyphicon-volume-up btn btn-md btn-default", title: t('devices.setvol')
-          = link_to '', {:controller => "tasks", :action => "create_synctime", :task => { :device_id => device.id, :typeoftask_id => 4, :typeofstatus_id => 1, :options => ''} }, :method => "post", class: "glyphicon glyphicon-hourglass btn btn-md btn-default", title: t('devices.sync_time')
-          = link_to '', {:controller => "tasks", :action => "create_setinterval", :task => {:device_id => device.id, :typeoftask_id => 5, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-send btn btn-md btn-default", title: t('devices.ping')
-          = link_to '', {:controller => "tasks", :action => "create_setequalizer", :task => {:device_id => device.id, :typeoftask_id => 6, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-equalizer btn btn-md btn-default", title: t('devices.equalizer')
-          = link_to '', {:controller => "tasks", :action => "create_reboot", :task => {:device_id => device.id, :typeoftask_id => 9, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-repeat btn btn-md btn-default", title: t('devices.reboot')
-          = link_to '', {:controller => "tasks", :action => "create_getver", :task => {:device_id => device.id, :typeoftask_id => 7, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-tag btn btn-md btn-default", title: t('devices.getvr')
+          = link_to '', {:controller => "tasks", :action => "create_setvol", :task => { :device_id => device.id, :typeoftask_id => 3, :typeofstatus_id => 1, :options => ''} }, :method => "post", class: "glyphicon glyphicon-volume-up btn btn-md btn-default", title: t('devices.title.setvol')
+          = link_to '', {:controller => "tasks", :action => "create_synctime", :task => { :device_id => device.id, :typeoftask_id => 4, :typeofstatus_id => 1, :options => ''} }, :method => "post", class: "glyphicon glyphicon-hourglass btn btn-md btn-default", title: t('devices.title.sync_time')
+          = link_to '', {:controller => "tasks", :action => "create_setinterval", :task => {:device_id => device.id, :typeoftask_id => 5, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-send btn btn-md btn-default", title: t('devices.title.ping')
+          = link_to '', {:controller => "tasks", :action => "create_setequalizer", :task => {:device_id => device.id, :typeoftask_id => 6, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-equalizer btn btn-md btn-default", title: t('devices.title.equalizer')
+          = link_to '', {:controller => "tasks", :action => "create_reboot", :task => {:device_id => device.id, :typeoftask_id => 9, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-repeat btn btn-md btn-default", title: t('devices.title.reboot')
+          = link_to '', {:controller => "tasks", :action => "create_getver", :task => {:device_id => device.id, :typeoftask_id => 7, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-tag btn btn-md btn-default", title: t('devices.title.getvr')
           /cmd.two
-          = link_to '', {:controller => "tasks", :action => "create_getinfo", :task => {:device_id => device.id, :typeoftask_id => 10, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-info-sign btn btn-md btn-default", title: t('devices.getinfo')
-          = link_to '', {:controller => "tasks", :action => "create_gettrack", :task => {:device_id => device.id, :typeoftask_id => 8, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-question-sign btn btn-md btn-default", title: t('devices.gettrack')
-          = link_to '', {:controller => "tasks", :action => "create_setweight", :task => {:device_id => device.id, :typeoftask_id => 34, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-sort btn btn-md btn-default", title: t('devices.setweight')
-          = link_to '', {:controller => "tasks", :action => "create_sendbgpls", :task => {:device_id => device.id, :typeoftask_id => 36, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon glyphicon-tree-conifer btn btn-md btn-default", title: t('devices.sendbgpls')
-          = link_to '', {:controller => "tasks", :action => "create_sendadpls", :task => {:device_id => device.id, :typeoftask_id => 37, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon glyphicon-tree-deciduous btn btn-md btn-default", title: t('devices.sendadpls')
+          = link_to '', {:controller => "tasks", :action => "create_getinfo", :task => {:device_id => device.id, :typeoftask_id => 10, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-info-sign btn btn-md btn-default", title: t('devices.title.getinfo')
+          = link_to '', {:controller => "tasks", :action => "create_gettrack", :task => {:device_id => device.id, :typeoftask_id => 8, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-question-sign btn btn-md btn-default", title: t('devices.title.gettrack')
+          = link_to '', {:controller => "tasks", :action => "create_setweight", :task => {:device_id => device.id, :typeoftask_id => 34, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-sort btn btn-md btn-default", title: t('devices.title.setweight')
+          = link_to '', {:controller => "tasks", :action => "create_sendbgpls", :task => {:device_id => device.id, :typeoftask_id => 36, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon glyphicon-tree-conifer btn btn-md btn-default", title: t('devices.title.sendbgpls')
+          = link_to '', {:controller => "tasks", :action => "create_sendadpls", :task => {:device_id => device.id, :typeoftask_id => 37, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon glyphicon-tree-deciduous btn btn-md btn-default", title: t('devices.title.sendadpls')
           /cmd.one
-          = link_to '', {:controller => "tasks", :action => "create_ssh", :task => {:device_id => device.id, :typeoftask_id => 11, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-console btn btn-md btn-default", title: t('devices.ssh')
-          = link_to '', {:controller => "tasks", :action => "create_setvolsofday", :task => {:device_id => device.id, :typeoftask_id => 12, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-headphones btn btn-md btn-default", title: t('devices.volsofday')
-          = link_to '', {:controller => "tasks", :action => "create_worktime", :task => {:device_id => device.id, :typeoftask_id => 13, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-calendar btn btn-md btn-default", title: t('devices.worktime')
-          = link_to '', {:controller => "tasks", :action => "create_update", :task => {:device_id => device.id, :typeoftask_id => 15, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-wrench btn btn-md btn-default", title: t('devices.update')
-          = link_to '', {:controller => "tasks", :action => "create_delall", :task => {:device_id => device.id, :typeoftask_id => 17, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-floppy-remove btn btn-md btn-default", title: t('devices.delall')
-          = link_to '', {:controller => "tasks", :action => "create_cancelall", :task => {:device_id => device.id, :options => ''}}, :method => "post", class: "glyphicon glyphicon-fire btn btn-md btn-default", title: t('devices.cancelall')
+          = link_to '', {:controller => "tasks", :action => "create_ssh", :task => {:device_id => device.id, :typeoftask_id => 11, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-console btn btn-md btn-default", title: t('devices.title.ssh')
+          = link_to '', {:controller => "tasks", :action => "create_setvolsofday", :task => {:device_id => device.id, :typeoftask_id => 12, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-headphones btn btn-md btn-default", title: t('devices.title.volsofday')
+          = link_to '', {:controller => "tasks", :action => "create_worktime", :task => {:device_id => device.id, :typeoftask_id => 13, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-calendar btn btn-md btn-default", title: t('devices.title.worktime')
+          = link_to '', {:controller => "tasks", :action => "create_update", :task => {:device_id => device.id, :typeoftask_id => 15, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-wrench btn btn-md btn-default", title: t('devices.title.update')
+          = link_to '', {:controller => "tasks", :action => "create_delall", :task => {:device_id => device.id, :typeoftask_id => 17, :typeofstatus_id => 1, :options => ''}}, :method => "post", class: "glyphicon glyphicon-floppy-remove btn btn-md btn-default", title: t('devices.title.delall')
+          = link_to '', {:controller => "tasks", :action => "create_cancelall", :task => {:device_id => device.id, :options => ''}}, :method => "post", class: "glyphicon glyphicon-fire btn btn-md btn-default", title: t('devices.title.cancelall')
 
 = paginate @devices
 
