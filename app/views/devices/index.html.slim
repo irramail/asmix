@@ -5,9 +5,11 @@ p.col-md-12
   = link_to new_device_path, class: "btn btn-md btn-primary pull-right"
     span.glyphicon.glyphicon-plus
     = t('devices.new')
+  = form_tag devices_path, method: 'get' do
+    = text_field_tag :devices_search, params[:search]
+    = submit_tag t('orders.search'), name: nil
 
 table.table.table-striped.table-hover.table-condensed.table-bordered
-  = text_field_tag 'devices_search', nil, class: "col-md-4"
   thead
     tr
       th = t('devices.thead.id')
