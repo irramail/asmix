@@ -5,6 +5,8 @@ ru:
       device: "Устройство"
       type: "Тип"
       status: "Статус"
+      created: "Создана"
+      complited: "Выполнена"
 
       name: "Имя"
       priority: "Приоритет"

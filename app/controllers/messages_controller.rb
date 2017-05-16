@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
     if params[:device_id]
       @messages = Message.where(device_id: params[:device_id]).page params[:page]
     else
-      @messages = Message.all.page params[:page]
+      @messages = Message.search(params[:search]).page params[:page]
     end
   end
 

@@ -1,12 +1,12 @@
-h1 Listing playlists
+h1 = t('pls.a_title')
 
 table.table.table-striped.table-hover.table-condensed.table-bordered
   thead
     tr
       /th Mediafile
-      th Device
-      th Task
-      th Date
+      th = t('pls.devices')
+      th = t('pls.task')
+      th = t('pls.date')
       th
       /th
       th
@@ -18,6 +18,9 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
         td = Playlist.where(task_id: id).first.task.device.name
         td = Playlist.where(task_id: id).first.task.typeoftask.name
         td = Playlist.where(task_id: id).first.created_at
-        td = link_to 'Show', Playlist.where(task_id: id).first
+        td = link_to t('std.show'), Playlist.where(task_id: id).first
         /td = link_to 'Edit', edit_playlist_path(Playlist.where(task_id: id).first)
-        td = link_to 'Destroy', Playlist.where(task_id: id).first, data: { confirm: 'Are you sure?' }, method: :delete
+        td = link_to t('std.destroy'), Playlist.where(task_id: id).first, data: { confirm: 'Are you sure?' }, method: :delete
+        /td.btn-group role="group
+          = link_to t('std.show'), Playlist.where(task_id: id).first
+          = link_to t('std.destroy'), Playlist.where(task_id: id).first, data: { confirm: 'Are you sure?' }, method: :delete
