@@ -5,7 +5,7 @@ class PlsbgmusicsController < ApplicationController
   # GET /plsbgmusics
   # GET /plsbgmusics.json
   def index
-    @plsbgmusics = Plsbgmusic.all.page params[:page]
+    @plsbgmusics = Plsbgmusic.search(params[:search]).page params[:page]
   end
 
   # GET /plsbgmusics/1

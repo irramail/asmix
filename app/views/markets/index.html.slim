@@ -1,4 +1,7 @@
 .col-md-6
+  = form_tag markets_path, method: 'get' do
+    = text_field_tag :search, params[:search]
+    = submit_tag t('orders.search'), name: nil
   h1.col-md-8.pull-left = t('markets.title')
   = link_to new_market_path, class:"btn btn-md btn-primary pull-right col-md-4"
     span.glyphicon.glyphicon-plus

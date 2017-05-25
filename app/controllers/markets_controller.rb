@@ -3,10 +3,11 @@ class MarketsController < ApplicationController
   before_action :set_market, only: [:show, :edit, :update, :destroy]
 
   # GET /markets
-  # GET /markets.json
+  # GET /markets.json.
   def index
-    @markets = Market.all.page params[:page]
+    @markets = Market.search(params[:search]).page params[:page]
   end
+
 
   # GET /markets/1
   # GET /markets/1.json

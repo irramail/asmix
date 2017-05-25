@@ -5,7 +5,7 @@ class PlsbgimagesController < ApplicationController
   # GET /plsbgimages
   # GET /plsbgimages.json
   def index
-    @plsbgimages = Plsbgimage.all.all.page params[:page]
+    @plsbgimages = Plsbgimage.search(params[:search]).page params[:page]
   end
 
   # GET /plsbgimages/1
