@@ -25,7 +25,7 @@
           td = (plsbgvideo.created_at + 3600 * 7).to_s[0..18]
           td.btn-group role="group"
             = link_to '', plsbgvideo, class: "glyphicon glyphicon-eye-open btn btn-sm btn-default", title: t('std.show')
-            = link_to '', {:controller => "plsbgvideos", :action => "new", :old_id => plsbgvideo.id}, :method => "get", class: "glyphicon glyphicon-copy btn btn-sm btn-success", title: t('std.clone')
+            = link_to '', {:controller => "plsbgvideos", :action => "new", :old_id => plsbgvideo.id}, data: { confirm: 'hui'}, :method => "get", class: "glyphicon glyphicon-copy btn btn-sm btn-success", title: t('std.clone')
           /  = link_to '', edit_plsbgvideo_path(plsbgvideo), class: "glyphicon glyphicon-edit btn btn-md btn-default", title: t('std.edit')
           /td = link_to 'Destroy', plsbgvideo, data: {:confirm => 'Are you sure?'}, :method => :delete
 .col-md-12 = paginate @plsbgvideos

@@ -16,13 +16,13 @@
 
     tbody
       - @plsbgimages.each do |plsbgimage|
-        tr
+        tr onclick="window.location.href=plsbgimage"
           td = plsbgimage.id
           td.col-md-6 = plsbgimage.name
           td = (plsbgimage.created_at + 3600 * 7).to_s[0..18]
           td.btn-group role="group"
             = link_to '', plsbgimage, class: "glyphicon glyphicon-eye-open btn btn-sm btn-default", title: t('std.show')
-            = link_to '', {:controller => "plsbgimages", :action => "new", :old_id => plsbgimage.id}, :method => "get", class: "glyphicon glyphicon-copy btn btn-sm btn-success", title: t('std.clone')
+            = link_to '', {:controller => "plsbgimages", :action => "new", :old_id => plsbgimage.id},:method => "get", class: "glyphicon glyphicon-copy btn btn-sm btn-success", title: t('std.clone')
           /td = link_to t('std.edit'), edit_plsbgimage_path(plsbgimage)
           /td = link_to 'Destroy', plsbgimage, data: {:confirm => 'Are you sure?'}, :method => :delete
 = paginate @plsbgimages

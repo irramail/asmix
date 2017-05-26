@@ -24,4 +24,4 @@
           li = link_to t('nav.ordersstatuses'), statuses_path
           li = link_to t('nav.tasksstatuses'), typeofstatuses_path
           li = link_to t('nav.typeoftasks'), typeoftasks_path
-          li = link_to t('nav.logout'), destroy_user_session_path, method: :delete
+          li = link_to t('nav.logout'), destroy_user_session_path,  data: {confirm: t('nav.confirm_logout')},method: :delete
