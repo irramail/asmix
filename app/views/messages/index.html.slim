@@ -24,7 +24,7 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
         td = message.runtime
         td = message.text
         td = message.created_at
-        td = link_to 'Show', message
+        td = link_to '', message, class: "glyphicon glyphicon-eye-open btn btn-sm btn-default"
         /td = link_to 'Edit', edit_message_path(message)
         /td = link_to 'Destroy', message, data: { confirm: 'Are you sure?' }, method: :delete
 

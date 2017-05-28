@@ -8,7 +8,7 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
       th = t('pls.task')
       th = t('pls.date')
       th
-      /th
+      th
       th
 
   tbody
@@ -18,9 +18,10 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
         td = Playlist.where(task_id: id).first.task.device.name
         td = Playlist.where(task_id: id).first.task.typeoftask.name
         td = Playlist.where(task_id: id).first.created_at
-        td = link_to t('std.show'), Playlist.where(task_id: id).first
-        /td = link_to 'Edit', edit_playlist_path(Playlist.where(task_id: id).first)
-        td = link_to t('std.destroy'), Playlist.where(task_id: id).first, data: { confirm: 'Are you sure?' }, method: :delete
+        td.btn-group role="group"
+          = link_to '', Playlist.where(task_id: id).first, class: "glyphicon glyphicon-eye-open btn btn-sm btn-default"
+           /td = link_to 'Edit', edit_playlist_path(Playlist.where(task_id: id).first)
+          = link_to '', Playlist.where(task_id: id).first, data: { confirm: 'Are you sure?' },class: "glyphicon glyphicon-remove btn btn-sm btn-default" ,method: :delete
         /td.btn-group role="group
           = link_to t('std.show'), Playlist.where(task_id: id).first
           = link_to t('std.destroy'), Playlist.where(task_id: id).first, data: { confirm: 'Are you sure?' }, method: :delete
