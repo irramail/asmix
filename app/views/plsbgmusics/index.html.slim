@@ -18,7 +18,7 @@
 
     tbody
       - @plsbgmusics.each do |plsbgmusic|
-        tr
+        tr onclick="window.location.href='plsbgmusics/#{plsbgmusic.id}'"
           td = plsbgmusic.id
           td.col-md-6 = plsbgmusic.name
           / FIXME timezone in user.tz

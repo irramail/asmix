@@ -24,7 +24,7 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
 
   tbody
     - @orders.each do |order|
-      tr
+      tr onclick="window.location.href='orders/#{order.id}'"
         td = order.id
         td.col-md-6 = order.name
         td class="img-status status-#{order.status.name.downcase}"

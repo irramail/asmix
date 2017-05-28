@@ -20,7 +20,7 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
 
   tbody
     - @tasks.each do |task|
-      tr
+      tr onclick="window.location.href='tasks/#{task.id}'"
         td = task.id
         td.col-md-5 = task.device.name
         td = task.typeoftask.name

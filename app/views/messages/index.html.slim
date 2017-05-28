@@ -17,7 +17,7 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
       /th
   tbody
     - @messages.each do |message|
-      tr
+      tr onclick="window.location.href='messages/#{message.id}'"
         td = message.id
         td = message.device.id
         td = message.device.name

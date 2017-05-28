@@ -19,7 +19,7 @@
 
     tbody
       - @plsbgvideos.each do |plsbgvideo|
-        tr
+        tr onclick="window.location.href='plsbgvideos/#{plsbgvideo.id}'"
           td = plsbgvideo.id
           td.col-md-6 = plsbgvideo.name
           td = (plsbgvideo.created_at + 3600 * 7).to_s[0..18]

@@ -16,7 +16,7 @@
 
     tbodys
       - @markets.each do |market|
-        tr
+        tr onclick="window.location.href='markets/#{market.id}'"
           td = market.id
           td.col-md-7 = market.name
           td = Period.where(id: market.period.to_i).first.name
