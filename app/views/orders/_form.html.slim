@@ -83,7 +83,7 @@
   .field.col-md-12
 
   .field hidden="hidden"
-    = f.label t('orders.periods')
+    /= f.label t('orders.periods')
     = collection_select :periods, :period_id, Period.all, :id, :name
 
     /= f.label :startdt
