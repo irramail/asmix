@@ -195,13 +195,16 @@ class TasksController < ApplicationController
   # CANCEL.ALL
   def create_cancelall
     tasks = Task.where(device_id: task_params[:device_id], typeofstatus_id: 1)
+
     tasks += Task.where(device_id: task_params[:device_id], typeofstatus_id: 2, typeoftask_id: 1) #downloads RECEIVED
     tasks += Task.where(device_id: task_params[:device_id], typeofstatus_id: 3, typeoftask_id: 1) #downloads PROGRESS
+    tasks += Task.where(device_id: task_params[:device_id], typeofstatus_id: 4, typeoftask_id: 1) #downloads COMPLETED
+    tasks += Task.where(device_id: task_params[:device_id], typeofstatus_id: 5, typeoftask_id: 1) #downloads CANCEL
 
     success = true
 
     tasks.each do |task|
-      success = false unless task.update(typeofstatus_id: 5, user_id: current_user.id)
+      success = false unless task.update(typeofstatus_id: 5, user_id: current_user.id, mediafile_id: nil)
     end
 
     respond_to do |format|
