@@ -15,3 +15,4 @@ ru:
     tasksstatuses:  "Статусы задач"
     typeoftasks:  "Типы задач"
     logout:   "Выход"
+    confirm_logout: "Вы уверены что хотите выйти?"

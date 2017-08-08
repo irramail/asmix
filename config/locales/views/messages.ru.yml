@@ -1,0 +1,5 @@
+ru:
+  messages:
+    text: "Текст"
+    runtime: "Выполнен"
+    created_at: "Создан"

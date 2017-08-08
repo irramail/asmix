@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
     @order.update(status_id: 3)
 
     respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'Order was successfully canceled.' }
+      format.html { redirect_to orders_url, notice: t('orders.canceled')}
       format.json { head :no_content }
     end
   end
@@ -138,12 +138,11 @@ class OrdersController < ApplicationController
       b [:files].each do |c|
         @order.suborders.last.plists.new(mediafile_id: c.to_i) unless c == ''
       end
-
     end
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.html { redirect_to @order, notice: t('orders.creat')}
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -157,7 +156,7 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+        format.html { redirect_to @order, notice: t('orders.creat')}
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit }
@@ -171,7 +170,7 @@ class OrdersController < ApplicationController
   def destroy
     @order.destroy
     respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
+      format.html { redirect_to orders_url, notice: t('orders.deleted') }
       format.json { head :no_content }
     end
   end

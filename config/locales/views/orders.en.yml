@@ -8,3 +8,5 @@ en:
       user: "User"
 
     new: "New Order"
+
+    new_creat_successfully: "new orders creat successfully"

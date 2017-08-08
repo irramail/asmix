@@ -17,6 +17,7 @@
 //= require moment/ru.js
 //= require bootstrap-datetimepicker.min
 //= require bootstrap-timepicker
+//= require twitter/bootstrap/rails/confirm
 
 jQuery(document).ready(function($){
 
@@ -732,3 +733,4 @@ function touchend_deal(cid, value) {
   var a = document.getElementById('device_volumes_attributes_' + id + '_value');
   a.value = value;
 }
+

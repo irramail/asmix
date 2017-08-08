@@ -1,28 +1,30 @@
 = paginate @messages
 
+= form_tag messages_path, method: 'get' do
+  = text_field_tag :search, params[:search]
+  = submit_tag t('orders.search'), name: nil
 table.table.table-striped.table-hover.table-condensed.table-bordered
   thead
     tr
       th = t('devices.thead.id')
       th = t('devices.thead.id')
       th = t('devices.thead.name')
-      th Runtime
-      th Text
-      th Created_at
+      th = t('messages.runtime')
+      th = t('messages.text')
+      th = t('messages.created_at')
       th
       /th
       /th
-
   tbody
     - @messages.each do |message|
-      tr
+      tr onclick="window.location.href='messages/#{message.id}'" onmouseover="this.style.cursor='pointer'"
         td = message.id
         td = message.device.id
         td = message.device.name
         td = message.runtime
         td = message.text
         td = message.created_at
-        td = link_to 'Show', message
+        td = link_to '', message, class: "glyphicon glyphicon-eye-open btn btn-sm btn-default"
         /td = link_to 'Edit', edit_message_path(message)
         /td = link_to 'Destroy', message, data: { confirm: 'Are you sure?' }, method: :delete
 

@@ -1,8 +1,14 @@
 .col-md-6
+  = form_tag plsbgvideos_path, method: 'get' do
+    = text_field_tag :search, params[:search]
+    = submit_tag t('orders.search'), name: nil
   h1.col-md-8.pull-left = t('pls.v_title')
   = link_to new_plsbgvideo_path, class:"btn btn-md btn-primary pull-right"
     span.glyphicon.glyphicon-plus
     = t('pls.new')
+
+
+
 
   table.table.table-striped.table-hover.table-condensed.table-bordered
     thead
@@ -13,13 +19,13 @@
 
     tbody
       - @plsbgvideos.each do |plsbgvideo|
-        tr
+        tr onclick="window.location.href='plsbgvideos/#{plsbgvideo.id}'" onmouseover="this.style.cursor='pointer'"
           td = plsbgvideo.id
           td.col-md-6 = plsbgvideo.name
           td = (plsbgvideo.created_at + 3600 * 7).to_s[0..18]
           td.btn-group role="group"
             = link_to '', plsbgvideo, class: "glyphicon glyphicon-eye-open btn btn-sm btn-default", title: t('std.show')
-            = link_to '', {:controller => "plsbgvideos", :action => "new", :old_id => plsbgvideo.id}, :method => "get", class: "glyphicon glyphicon-copy btn btn-sm btn-success", title: t('std.clone')
+            = link_to '', {:controller => "plsbgvideos", :action => "new", :old_id => plsbgvideo.id}, data: { confirm: 'hui'}, :method => "get", class: "glyphicon glyphicon-copy btn btn-sm btn-success", title: t('std.clone')
           /  = link_to '', edit_plsbgvideo_path(plsbgvideo), class: "glyphicon glyphicon-edit btn btn-md btn-default", title: t('std.edit')
           /td = link_to 'Destroy', plsbgvideo, data: {:confirm => 'Are you sure?'}, :method => :delete
 .col-md-12 = paginate @plsbgvideos

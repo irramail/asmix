@@ -25,6 +25,7 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
   tbody
     - @orders.each do |order|
       tr
+        /Fixme onclick="window.location.href='orders/#{order.id}'" не объеденяется с модальным коном
         td = order.id
         td.col-md-6 = order.name
         td class="img-status status-#{order.status.name.downcase}"
@@ -38,6 +39,6 @@ table.table.table-striped.table-hover.table-condensed.table-bordered
           td = link_to '', {:controller => "orders", :action => "start", :id => order.id}, :method => "post", class: "glyphicon glyphicon-play btn btn-sm btn-primary", title: t('orders.start')
         td = link_to '', {:controller => "orders", :action => "new", :old_id => order.id}, :method => "get", class: "glyphicon glyphicon-copy btn btn-sm btn-success", title: t('std.clone')
         - unless order.status.name == 'Cancel'
-          td = link_to '', {controller: "orders", action: "cancel", id: order}, :method => "post", class: "glyphicon glyphicon-remove btn btn-sm btn-danger", title: t('std.cancel')
+          td = link_to '', {controller: "orders", action: "cancel", id: order}, data: { confirm: t('orders.confirm_cancel')},:method => "post", class: "glyphicon glyphicon-remove btn btn-sm btn-danger", title: t('std.cancel')
 
 = paginate @orders

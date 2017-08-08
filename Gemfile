@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'twitter-bootstrap-rails-confirm'
 gem 'execjs'
 gem 'therubyracer'
 gem 'slim-rails'

@@ -4,8 +4,9 @@ class PlsbgvideosController < ApplicationController
 
   # GET /plsbgvideos
   # GET /plsbgvideos.json
+
   def index
-    @plsbgvideos = Plsbgvideo.all.page params[:page]
+    @plsbgvideos = Plsbgvideo.search(params[:search]).page params[:page]
   end
 
   # GET /plsbgvideos/1
