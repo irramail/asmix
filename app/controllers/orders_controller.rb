@@ -41,6 +41,10 @@ class OrdersController < ApplicationController
     result[0..-2]
   end
 
+  def self.start
+    #p a
+  end
+
   def start
     # <TRACKS><TRACK><HASH>995601c21bde3d16f6b4e1d6e22d9361</HASH><IMGHASH>1a45c2f07844e503f2ee09fde16c4a6f</IMGHASH></TRACK></TRACKS>
     # <TASK><TASK_ID>143676</TASK_ID><TYPE>PLAYLIST.MUSIC</TYPE>

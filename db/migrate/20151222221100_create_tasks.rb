@@ -4,7 +4,7 @@ class CreateTasks < ActiveRecord::Migration
       t.references :device, index: true, foreign_key: true
       t.references :typeoftask, index: true, foreign_key: true
       t.references :typeofstatus, index: true, foreign_key: true
-      t.string :options
+      t.text :options
 
       t.timestamps null: false
     end

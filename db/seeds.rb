@@ -44,10 +44,10 @@ Typeofstatus.create!(id: 5, name: "CANCEL", priority: 5)
 
 Typeoftask.delete_all
 
-Typeoftask.create!(id: 1, name: "DOWNLOADS", priority: "2")
-Typeoftask.create!(id: 2, name: "PLAYLIST.MUSIC", priority: "3")
+Typeoftask.create!(id: 1, name: "DOWNLOADS", priority: "3")
+Typeoftask.create!(id: 2, name: "PLAYLIST.MUSIC", priority: "4")
 Typeoftask.create!(id: 3, name: "SETVOL", priority: "1")
-Typeoftask.create!(id: 4, name: "SYNC.TIME", priority: "4")
+Typeoftask.create!(id: 4, name: "SYNC.TIME", priority: "2")
 Typeoftask.create!(id: 5, name: "SETINTERVAL", priority: "5")
 Typeoftask.create!(id: 6, name: "SETEQU", priority: "6")
 Typeoftask.create!(id: 7, name: "GETVER", priority: "7")
@@ -81,4 +81,5 @@ Typeoftask.create!(id: 34, name: "SET.FILES.WEIGHT", priority: "34")
 Typeoftask.create!(id: 35, name: "CHG.FILES.WEIGHT", priority: "35")
 Typeoftask.create!(id: 36, name: "SEND.BGPLS", priority: "36")
 Typeoftask.create!(id: 37, name: "SEND.ADPLS", priority: "37")
+Typeoftask.create!(id: 38, name: "DATESETVOL", priority: "38")
 

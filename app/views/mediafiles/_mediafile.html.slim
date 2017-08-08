@@ -10,12 +10,12 @@
     / td = mediafile.file
     td
       - if mediafile.filename.length > 4 && mediafile.filename[-4..-1] == '.mp3'
-        audio controls=true style="width:100px"
+        audio controls=true preload="none" style="width:100px"
           source src="#{mediafile.file}" type="audio/mpeg"
           | Your browser does not support the audio tag.
 
       - if mediafile.filename.length > 4 && mediafile.filename[-4..-1] == '.mp4'
-        video width="50" controls=true
+        video width="50" controls=true preload="none"
           source src="#{mediafile.file}" type="video/mp4"
           | Your browser does not support HTML5 video.
 
