@@ -160,7 +160,7 @@ class TasksController < ApplicationController
     @task.user_id = current_user.id
 
     day = ""
-    stringdays = "SUNMONTUEWEDTHUFRISAT"
+    stringdays = "MONTUEWEDTHUFRISATSUN"
     worktime = ""
     i = 0;
 

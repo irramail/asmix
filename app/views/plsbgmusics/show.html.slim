@@ -35,7 +35,7 @@
             td = mediafile.filename
             td
               - if mediafile.filename.length > 4 && mediafile.filename[-4..-1] == '.mp3'
-                audio controls=true
+                audio controls=true preload="none"
                   source src="#{mediafile.file}" type="audio/mpeg"
                   | Your browser does not support the audio tag.
 

@@ -78,7 +78,7 @@ class MarketsController < ApplicationController
 
         if market_params.has_key?('worktime_broadcastings_attributes')
           day = ""
-          stringdays = "SUNMONTUEWEDTHUFRISAT"
+          stringdays = "MONTUEWEDTHUFRISATSUN"
           worktime = ""
           i = 0
 
